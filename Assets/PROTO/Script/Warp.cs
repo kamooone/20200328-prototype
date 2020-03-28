@@ -19,26 +19,18 @@ public class Warp : MonoBehaviour//上る処理
     // Update is called once per frame
     void Update()
     {
-        
+       
     }
 
-<<<<<<< Updated upstream
-    void OnCollisionEnter(Collision collision)
-=======
     void OnTriggerStay(Collider collision)//Enter(衝突した瞬間)からStay(触れている間)に変更
->>>>>>> Stashed changes
     {
-        if (collision.gameObject.tag == "Player")//プレイヤータグとぶつかったら
+        if (collision.gameObject.tag == "Player")//プレイヤータグとぶつかっている間
         {
-<<<<<<< Updated upstream
-            collision.gameObject.transform.position = new Vector3(pos.x, pos.y+0.28f, pos.z );//ワープ先まで座標変換
-=======
             Debug.Log("ワープ");
             if (Input.GetKey("up"))//上キーを押したら
             {
                 collision.gameObject.transform.position = new Vector3(pos.x, pos.y + 0.28f, pos.z);//ワープ先まで座標変換
             }
->>>>>>> Stashed changes
         }
     }
 }
