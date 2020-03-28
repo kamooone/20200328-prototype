@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 975783536260083225}
   - component: {fileID: 975783536260083222}
   - component: {fileID: 975783536260083223}
-  - component: {fileID: 975783536260083227}
   m_Layer: 10
   m_Name: Warp
   m_TagString: Warp
@@ -94,16 +93,3 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1.5527064, z: 1}
   m_Center: {x: 0, y: 0.27635306, z: 0}
---- !u!114 &975783536260083227
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 975783536260083220}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ae9dc652e73d0f64da9a4ae9169dc544, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Warptarget: {fileID: 0}
