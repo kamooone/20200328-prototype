@@ -5,44 +5,34 @@ using UnityEngine;
 
 public class CameraMove : MonoBehaviour//カメラ移動処理
 {
-    public float speed = 10.0f;//移動速度
-    private float move;//移動
+    GameObject PlayerObject;
+    PlayerMove PlayerScript;
+
+    GameObject Camera;
+
     public Transform target;//中心となるオブジェクト
 
     // Use this for initialization
     void Start()
     {
-        /*もしかしたらプレイヤーの動きに合わせてのカメラ移動の可能性もあるからひとまずはコマンド入力で移動するだけの処理にしてる
-        //target = GameObject.FindWithTag("Player").transform;
-        //Vector3 pos;
-        //pos.x = target.position.x;
-        //pos.y = target.position.y;
-        //pos.z = target.position.z;
-        //this.gameObject.transform.position = new Vector3(pos.x, pos.y, pos.z-5);
-        */
-
+        PlayerObject = GameObject.Find("player");
+        PlayerScript = PlayerObject.GetComponent<PlayerMove>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        /*移動処理*/
-        if (move != 0)//もし移動が0以上だったら
+        //プレイヤを軸に回転
+        if (Input.GetKey("left"))
         {
-            move = 0;
+            Vector3 axis = transform.TransformDirection(Vector3.up);
+            transform.RotateAround(target.position, axis, PlayerScript.speed * Time.deltaTime);
         }
 
-        if (Input.GetKey("right"))//右に移動
+        if (Input.GetKey("right"))
         {
-            move = -speed;
+            Vector3 axis = transform.TransformDirection(Vector3.down);
+            transform.RotateAround(target.position, axis, PlayerScript.speed * Time.deltaTime);
         }
-
-        if (Input.GetKey("left"))//左に移動
-        {
-            move = speed;
-        }
-
-        transform.RotateAround(target.position, Vector3.up, move * Time.deltaTime);//オブジェクト周りにY軸回転しながら移動
-
     }
 }

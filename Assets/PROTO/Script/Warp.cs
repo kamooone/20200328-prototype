@@ -4,33 +4,60 @@ using UnityEngine;
 
 public class Warp : MonoBehaviour//上る処理
 {
-    public Transform Warptarget;//ワープする行き先
-    private Vector3 pos;//ワープ先の座標
+    GameObject PlayerObject;
+    PlayerMove PlayerScript;
+
+    GameObject CameraObject;
+    CameraMove CameraScript;
+
+    bool ClassUp_Flag = false;
+    float up = 0.0f;
 
     // Start is called before the first frame update
     void Start()
     {
-        /*ワープ先の座標取得*/
-        pos.x = Warptarget.position.x;
-        pos.y = Warptarget.position.y;
-        pos.z = Warptarget.position.z;
+        PlayerObject = GameObject.Find("player");
+        PlayerScript = PlayerObject.GetComponent<PlayerMove>();
+
+        CameraObject = GameObject.Find("MainCamera");
+        CameraScript = CameraObject.GetComponent<CameraMove>();
     }
 
     // Update is called once per frame
     void Update()
     {
-       
+        if (ClassUp_Flag == true)
+        {
+            //上の階層へ
+            ClassUp();
+        }
     }
 
     void OnTriggerStay(Collider collision)//Enter(衝突した瞬間)からStay(触れている間)に変更
     {
         if (collision.gameObject.tag == "Player")//プレイヤータグとぶつかっている間
         {
-            Debug.Log("ワープ");
             if (Input.GetKey("up"))//上キーを押したら
             {
-                collision.gameObject.transform.position = new Vector3(pos.x, pos.y + 0.28f, pos.z);//ワープ先まで座標変換
+                ClassUp_Flag = true;
             }
         }
     }
+
+
+    void ClassUp()
+    {
+        Debug.Log("ワープ");
+
+        PlayerObject.transform.position =
+            new Vector3(PlayerScript.transform.position.x, PlayerScript.transform.position.y + up,
+            PlayerScript.transform.position.z);
+        if (up < 0.28f) { up += 0.04f; }
+        if (up >= 0.28f)
+        {
+            up = 0.0f;
+            ClassUp_Flag = false;
+        }
+    }
+
 }
