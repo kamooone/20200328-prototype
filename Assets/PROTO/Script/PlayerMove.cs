@@ -101,9 +101,13 @@ public class PlayerMove : MonoBehaviour//プレイヤー移動処理(現在は2D
     //当たり判定エンター
     void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.tag == "Player")
+        if (collision.gameObject.tag == "Goal")
         {
-            SceneManager.LoadScene("EndScene");//終了シーンへ移動
+            SceneManager.LoadScene("ClearScene");
+        }
+        if (collision.gameObject.tag == "Enemy")
+        {
+            SceneManager.LoadScene("GameOverScene");
         }
     }
 

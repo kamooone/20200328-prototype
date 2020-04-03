@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 8151859029566891926}
   - component: {fileID: 8151859029566891927}
   - component: {fileID: 8151859029566891920}
-  - component: {fileID: 8151859029566891922}
   - component: {fileID: 1956025782}
   m_Layer: 10
   m_Name: goal
@@ -81,18 +80,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!114 &8151859029566891922
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8151859029566891923}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5746ec63622159d41aa9a5a03213f6b3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!136 &1956025782
 CapsuleCollider:
   m_ObjectHideFlags: 0
