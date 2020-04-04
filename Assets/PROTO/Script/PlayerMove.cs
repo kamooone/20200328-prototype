@@ -33,6 +33,12 @@ public class PlayerMove : MonoBehaviour//プレイヤー移動処理(現在は2D
     // Update is called once per frame
     void Update()
     {
+        //ポーズ画面になるとUpdate以外の処理も止める
+        if (Mathf.Approximately(Time.timeScale, 0f))
+        {
+            return;
+        }
+
         /*画像切り替え処理*/
         if (Input.GetKey("left"))//左に移動
         {
@@ -95,9 +101,13 @@ public class PlayerMove : MonoBehaviour//プレイヤー移動処理(現在は2D
     //当たり判定エンター
     void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.tag == "Player")
+        if (collision.gameObject.tag == "Goal")
         {
-            SceneManager.LoadScene("EndScene");//終了シーンへ移動
+            SceneManager.LoadScene("ClearScene");
+        }
+        if (collision.gameObject.tag == "Enemy")
+        {
+            SceneManager.LoadScene("GameOverScene");
         }
     }
 
