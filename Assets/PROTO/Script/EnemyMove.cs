@@ -41,9 +41,9 @@ public class EnemyMove : MonoBehaviour//敵の移動処理(本来はまとめて
 
     void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.tag == "Player")//プレイヤータグとぶつかったら
+        if (collision.gameObject.tag == "Player")
         {
-            SceneManager.LoadScene("EndScene");//終了シーンへ移動
+            SceneManager.LoadScene("GameOverScene");
         }
     }
 }
