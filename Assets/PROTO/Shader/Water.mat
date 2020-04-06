@@ -9,7 +9,7 @@ Material:
   m_PrefabAsset: {fileID: 0}
   m_Name: Water
   m_Shader: {fileID: 4800000, guid: c2207445aec3e2d4dbfac0b76ecd3ba1, type: 3}
-  m_ShaderKeywords: BLEND_ENABLED _CULL_NONE
+  m_ShaderKeywords: BLEND_ENABLED _CULL_BACK
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -135,7 +135,7 @@ Material:
     - _CubemapGlossiness: 0.849
     - _CubemapStrength: 1
     - _CubemapUseCustomCubemap: 0
-    - _Cull: 0
+    - _Cull: 2
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
@@ -173,14 +173,14 @@ Material:
     - _ThirdWaveHeightStrength: 0.5
     - _ThirdWaveNormalStrength: 0.5
     - _UVSec: 0
-    - _ZWrite: 1
+    - _ZWrite: 0
     m_Colors:
-    - _BaseColor: {r: 1, g: 1, b: 1, a: 0.5}
+    - _BaseColor: {r: 0, g: 0.27541065, b: 1, a: 0.5}
     - _BlendColor: {r: 1, g: 1, b: 1, a: 1}
     - _BlendTextureUandVspeedZWNotused: {r: -0.05, g: -0.075, b: 0, a: 0}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _CubemapBaseColor: {r: 1, g: 1, b: 1, a: 1}
-    - _EmissionColor: {r: 0, g: 0.35255194, b: 1, a: 1}
+    - _EmissionColor: {r: 0, g: 0.3529415, b: 1, a: 1}
     - _FirstWaveUandVspeed: {r: 0.05, g: 0.123, b: 0, a: 0}
     - _FourthWaveUandVspeed: {r: -0.05, g: -0.075, b: 0, a: 0}
     - _SecondWaveUandVspeed: {r: -0.05, g: -0.075, b: 0, a: 0}
