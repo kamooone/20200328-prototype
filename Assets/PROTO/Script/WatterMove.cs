@@ -16,9 +16,14 @@ public class WatterMove : MonoBehaviour //水の処理
     // Update is called once per frame
     void Update()
     {
+        //ポーズ画面になるとUpdate以外の処理も止める
+        if (Mathf.Approximately(Time.timeScale, 0f))
+        {
+            return;
+        }
 
         /*α版では特定のボタンを押したら水を下げる処理を入れるため(β版とかではなくす)*/
-        if (Input.GetKey("down"))//右に移動
+        if (Input.GetKey("down"))
         {
             transform.Translate(0, downspeed, 0);//
         }

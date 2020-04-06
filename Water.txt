@@ -1,0 +1,80 @@
+Waterシェーダーについての説明
+
+
+<共通項目>
+	Tiling 			指定したテクスチャのタイリング枚数(重ならないように並べて表現する枚数)
+	Offset			指定したテクスチャの初期位置をどれくらいずらすか指定
+
+<項目>
+	ZWrite 	深度バッファ 
+	Culling メッシュのカリングモード (両面を設定→off)
+
+Base　基本色を指定
+	Texture テクスチャで指定
+	Color 	色で指定
+
+Emission 発光色を指定
+	Texture テクスチャで指定
+	Color	色で指定
+
+First～Forth 波テクスチャ指定(First(一枚)でも可能) 使いたい枚数に応じて追加していく
+	Heightmap		波の工程を表すテクスチャを設定
+	Normalmap		波の表面の凹凸のテクスチャを設定
+	NormalmapStrengh 	強さをスライダーで指定	
+	HeightmapStrengh 	高さをスライダーで指定
+	U and V speed 		波のスクロール速度指定
+	Tiling 			HeightmapとNormalmapで指定したテクスチャのタイリング枚数(重ならないように並べて表現する枚数)
+	Offset			HeightmapとNormalmapで指定したテクスチャの初期位置をどれくらいずらすか指定
+
+CubeMap 水面の反射の設定(カスタムキューブマップを使用する場合)※今のところ使っていない
+	Use Custom Cubemap	使用するかどうか
+	BaseColor		乗算する色に指定
+	Glossiness		反射の正確さを設定
+	Strength		反射の強さを設定
+	Fresnel			反射の強度にフレネル効果(高いほど水面に対して平行に見た時のみ光る)
+	
+Blend 波とオブジェクトの境界の設定(鏡面をぼかすことで表現の違和感を減らすことができる)
+	Blend Distance		ブレンドの距離指定
+	BlendAlpha		境界のオブジェクト側の透明度を設定(0で境目が見えなくなる)
+	IsAdditive Blend	ブレンドで指定した色をもともとの色に加算する
+	Color			カラーコードを指定する
+	Texture			テクスチャを指定
+	UandVspeed		スクロール速度指定
+	Emissionvalue		どの程度指定したテクスチャ・色が自己発光させるかスライダーで指定		
+	
+Tessellation テッセレーションの指定(視点から近い部分のポリゴン数を上げる)
+	Strength 		テッセレーションの強さ指定
+	Near Cap		テッセレーションの終了点（もっとも近い地点）をカメラからのメートルで指定
+	Far Cap			テッセレーションの開始点（もっとも遠い地点）をカメラからのメートルで指定
+
+Overall 波に関する共通の設定
+	Metallic		波にどれくらいつやを持たせるか指定
+	Gloss			波がどの程度光をきれいに反射するか指定
+	Tiling 			HeightmapとNormalmapで指定したテクスチャのタイリング枚数(重ならないように並べて表現する枚数)
+	Offset			HeightmapとNormalmapで指定したテクスチャの初期位置をどれくらいずらすか指定
+	NormalStrength		First～Forthで指定したNormalmapの全体の強度を指定
+	Wave Height		First～Forthで指定したHeightmapの全体の強度を指定
+
+Shadow 影の設定
+	ShadowOpacityRatic	影の濃さを乗算する(影か濃かったら下げる)
+	ShadowWaveFactor	波に応じての影の濃さそ左右させるか指定
+
+SSRefraction 屈折の設定
+	Decay Distance		屈折を行う最大距離(ここで指定した値より遠くの水は屈折表現はしない)
+	Refraction Fresnel	高いほど水面に対して平行に視線を向けないと屈折しないようになる
+	Strength		屈折の強さ指定
+	StrengthMask		マスクテクスチャで指定
+
+
+
+
+
+
+
+
+
+
+
+
+
+
