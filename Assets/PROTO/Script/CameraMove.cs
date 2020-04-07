@@ -25,13 +25,13 @@ public class CameraMove : MonoBehaviour//カメラ移動処理
         //プレイヤを軸に回転
         if (Input.GetKey("left"))
         {
-            Vector3 axis = transform.TransformDirection(Vector3.up);
+            Vector3 axis = PlayerScript.transform.TransformDirection(Vector3.up);
             transform.RotateAround(target.position, axis, PlayerScript.speed * Time.deltaTime);
         }
 
         if (Input.GetKey("right"))
         {
-            Vector3 axis = transform.TransformDirection(Vector3.down);
+            Vector3 axis = PlayerScript.transform.TransformDirection(Vector3.down);
             transform.RotateAround(target.position, axis, PlayerScript.speed * Time.deltaTime);
         }
     }
