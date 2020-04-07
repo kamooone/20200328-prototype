@@ -1,4 +1,4 @@
-﻿Shader "Wave"
+﻿Shader "WaveShader"
 {
 	Properties
 	{

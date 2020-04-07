@@ -3,17 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class PlayerMove : MonoBehaviour//プレイヤー移動処理(現在は2Dなので画像切り替えの処理のみ)
+public class PlayerMove : MonoBehaviour
 {
 
     public float speed = 10.0f;
 
     public Transform target;//中心となるオブジェクト
-
-    SpriteRenderer MainSpriteRenderer;//描画する画像
-
-    public Sprite Right;//右向き画像
-    public Sprite Left;//左向き画像
 
     bool ClassUp_Flag = false;
     float up = 0.0f;
@@ -24,10 +19,16 @@ public class PlayerMove : MonoBehaviour//プレイヤー移動処理(現在は2D
     public bool UIUp_Flag = false;
     public bool UIDown_Flag = false;
 
+    //プレイヤーの左向き右向きを表す
+    int PlayerDirection = 1;
+
+    //方向チェンジ時の角度
+    float radian = 180.0f;
+    
     // Start is called before the first frame update
     void Start()
     {
-        MainSpriteRenderer = gameObject.GetComponent<SpriteRenderer>();//
+
     }
 
     // Update is called once per frame
@@ -39,20 +40,32 @@ public class PlayerMove : MonoBehaviour//プレイヤー移動処理(現在は2D
             return;
         }
 
-        /*画像切り替え処理*/
-        if (Input.GetKey("left"))//左に移動
+        //左に移動
+        if (Input.GetKey("left"))
         {
-            MainSpriteRenderer.sprite = Left;
+            PlayerDirection = 1;
+            if (radian != 180.0f)
+            {
+                radian = 180.0f;
+                transform.Rotate(new Vector3(0f, radian, 0f));
+            }
             Vector3 axis = transform.TransformDirection(Vector3.up);
             transform.RotateAround(target.position, axis, speed * Time.deltaTime);
         }
-        if (Input.GetKey("right"))//右に移動
+
+        //右に移動
+        if (Input.GetKey("right"))
         {
-            MainSpriteRenderer.sprite = Right;
+            PlayerDirection = 2;
+            if (radian != -180.0f)
+            {
+                radian = -180.0f;
+                transform.Rotate(new Vector3(0f, radian, 0f));
+            }
             Vector3 axis = transform.TransformDirection(Vector3.down);
             transform.RotateAround(target.position, axis, speed * Time.deltaTime);
         }
-
+        
         if (ClassUp_Flag == true)
         {
             //上の階層へ
