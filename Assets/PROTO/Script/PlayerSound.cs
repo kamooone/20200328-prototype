@@ -8,13 +8,14 @@ public class PlayerSound : MonoBehaviour
     // Start is called before the first frame update
 
     //鳴らしたいSEを入れておく変数
-    public AudioClip sound1;
-    public AudioClip sound2;
+    public      AudioClip sound1;
+    public      AudioClip sound2;
     AudioSource audiosource;
 
     //判定用変数
-    bool b_left = false;
-    bool b_right = false;
+    bool        b_left = false;
+    bool        b_right = false;
+    //int         presound = 1;
 
     //waterそのものが入る変数
     GameObject water;
@@ -29,19 +30,29 @@ public class PlayerSound : MonoBehaviour
         audiosource.clip = sound1;
 
         water = GameObject.Find("Water"); //Waterをオブジェクトの名前から取得して変数に格納する
+        
     }
 
     // Update is called once per frame
     void Update()
     {
         script = water.GetComponent<VariableManager>(); //Waterの中にあるVariableManagerを取得して変数に格納する
-        if (script.soundNo == 2)
+
+        //足音の切り替え処理
+        if (script.soundNo == 1)
         {
-            audiosource.clip = sound2;
-        }else
-        {
+            //通常足音
+            Debug.Log("通常"); // ログを表示する
             audiosource.clip = sound1;
         }
+
+        if (script.soundNo == 2)
+        {
+            //水面足音
+            Debug.Log("水面"); // ログを表示する
+            audiosource.clip = sound2;
+        }
+        
 
         //AキーまたはDキーが押されたらSEを再生する
         if (Input.GetKeyDown("left"))
@@ -57,6 +68,7 @@ public class PlayerSound : MonoBehaviour
             b_right = true;     //右キーが押されたらtrueに
            
         }
+
 
         //AキーまたはDキーから手が離れたらSEを停止させる
         if (Input.GetKeyUp("left"))
