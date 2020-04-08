@@ -16,16 +16,18 @@ public class PlayerMove : MonoBehaviour
     public Transform target;//中心となるオブジェクト
 
     bool ClassUp_Flag = false;
-    float up = 0.0f;
+    float up = 0.12f;
 
     bool ClassDown_Flag = false;
-    float Down = 0.28f;
+    float Down = 0.32f;
 
     public bool UIUp_Flag = false;
     public bool UIDown_Flag = false;
 
+    bool key = false;
+
     //水増し機1
-    float WaterHight1 = 0.0f;
+    public float WaterHight1 = 0.0f;
     bool WaterUp1_Flag = false;
     bool WaterUp1 = false;
 
@@ -33,7 +35,7 @@ public class PlayerMove : MonoBehaviour
     bool WaterDown1 = false;
 
     //水増し機2
-    float WaterHight2 = 0.0f;
+    public float WaterHight2 = 0.0f;
     bool WaterUp2_Flag = false;
     bool WaterUp2 = false;
 
@@ -41,15 +43,15 @@ public class PlayerMove : MonoBehaviour
     bool WaterDown2 = false;
 
     //水増し機3
-    float WaterHight3 = 0.0f;
+    public float WaterHight3 = 0.0f;
     bool WaterUp3_Flag = false;
     bool WaterUp3 = false;
 
-    bool WaterDown3_Flag = true;
+    public bool WaterDown3_Flag = true;
     bool WaterDown3 = false;
 
     //水増し機4
-    float WaterHight4 = 0.0f;
+    public float WaterHight4 = 0.0f;
     bool WaterUp4_Flag = false;
     bool WaterUp4 = false;
 
@@ -57,7 +59,7 @@ public class PlayerMove : MonoBehaviour
     bool WaterDown4 = false;
 
     //水増し機3
-    float WaterHight5 = 0.0f;
+    public float WaterHight5 = 0.0f;
     bool WaterUp5_Flag = false;
     bool WaterUp5 = false;
 
@@ -200,13 +202,14 @@ public class PlayerMove : MonoBehaviour
     //当たり判定トリガー
     void OnTriggerStay(Collider collision)
     {
-        if (collision.gameObject.tag == "StageUp")
+        if (collision.gameObject.tag == "StageUp" && gameObject.tag == "Player")
         {
             UIUp_Flag = true;
             
-            if (Input.GetKey("up"))
+            if (Input.GetKey("up") && ClassUp_Flag == false && key == false)
             {
                 ClassUp_Flag = true;
+                key = true;
             }
         }
 
@@ -214,9 +217,10 @@ public class PlayerMove : MonoBehaviour
         {
             UIDown_Flag = true;
 
-            if (Input.GetKey("down"))
+            if (Input.GetKey("down") && ClassDown_Flag == false && key == false)
             {
                 ClassDown_Flag = true;
+                key = true;
             }
         }
 
@@ -367,13 +371,14 @@ public class PlayerMove : MonoBehaviour
 
         transform.position = new Vector3(transform.position.x, transform.position.y + up, transform.position.z);
 
-        if (up < 0.28f) { up += 0.04f; }
+        if (up < 0.32f) { up += 0.04f; }
 
-        if (up >= 0.28f)
+        if (up >= 0.32f)
         {
-            up = 0.0f;
+            up = 0.12f;
             ClassUp_Flag = false;
             UIUp_Flag = false;
+            key = false;
         }
     }
 
@@ -383,13 +388,14 @@ public class PlayerMove : MonoBehaviour
 
         transform.position = new Vector3(transform.position.x, transform.position.y - Down, transform.position.z);
 
-        if (Down > 0.0f) { Down -= 0.04f; }
+        if (Down > 0.24f) { Down -= 0.04f; }
 
-        if (Down <= 0.0f)
+        if (Down < 0.24f)
         {
-            Down = 0.28f;
+            Down = 0.32f;
             ClassDown_Flag = false;
             UIDown_Flag = false;
+            key = false;
         }
     }
 
