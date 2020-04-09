@@ -19,7 +19,7 @@ public class PlayerMove : MonoBehaviour
     float up = 0.12f;
 
     bool ClassDown_Flag = false;
-    float Down = 0.32f;
+    float Down = 0.28f;
 
     public bool UIUp_Flag = false;
     public bool UIDown_Flag = false;
@@ -66,14 +66,16 @@ public class PlayerMove : MonoBehaviour
     bool WaterDown5_Flag = true;
     bool WaterDown5 = false;
 
-
-
     //プレイヤーの左向き右向きを表す
     int PlayerDirection = 1;
 
     //方向チェンジ時の角度
     float radian = 180.0f;
-    
+
+    //エネミー2とのコリジョン判定(水位ゼロの時はゲームオーバーにならず、壁と同じ状態)
+    public bool Enemy2_Collision_Left = false;
+    public bool Enemy2_Collision_Right = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -95,7 +97,7 @@ public class PlayerMove : MonoBehaviour
         }
 
         //左に移動
-        if (Input.GetKey("left"))
+        if (Input.GetKey("left") && Enemy2_Collision_Left == false)
         {
             PlayerDirection = 1;
             if (radian != 180.0f)
@@ -108,9 +110,9 @@ public class PlayerMove : MonoBehaviour
         }
 
         //右に移動
-        if (Input.GetKey("right"))
+        if (Input.GetKey("right") && Enemy2_Collision_Right == false)
         {
-            PlayerDirection = 2;
+            PlayerDirection = -1;
             if (radian != -180.0f)
             {
                 radian = -180.0f;
@@ -119,7 +121,8 @@ public class PlayerMove : MonoBehaviour
             Vector3 axis = transform.TransformDirection(Vector3.down);
             transform.RotateAround(target.position, axis, speed * Time.deltaTime);
         }
-        
+
+
         if (ClassUp_Flag == true)
         {
             //上の階層へ
@@ -352,17 +355,29 @@ public class PlayerMove : MonoBehaviour
         UIDown_Flag = false;
     }
 
-    //当たり判定エンター
+    //コリジョン当たり判定
     void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.tag == "Goal")
         {
             SceneManager.LoadScene("ClearScene");
         }
-        if (collision.gameObject.tag == "Enemy")
+        
+        if (collision.gameObject.tag == "Enemy2" && PlayerDirection == 1)
         {
-            SceneManager.LoadScene("GameOverScene");
+            Enemy2_Collision_Left = true;
         }
+        if (collision.gameObject.tag == "Enemy2" && PlayerDirection == -1)
+        {
+            Enemy2_Collision_Right = true;
+        }
+    }
+
+    //ノットコリジョン当たり判定
+    void OnCollisionExit(Collision collision)
+    {
+        Enemy2_Collision_Left = false;
+        Enemy2_Collision_Right = false;
     }
 
     void ClassUp()
@@ -371,9 +386,9 @@ public class PlayerMove : MonoBehaviour
 
         transform.position = new Vector3(transform.position.x, transform.position.y + up, transform.position.z);
 
-        if (up < 0.32f) { up += 0.04f; }
+        if (up < 0.28f) { up += 0.04f; }
 
-        if (up >= 0.32f)
+        if (up >= 0.28f)
         {
             up = 0.12f;
             ClassUp_Flag = false;
@@ -392,7 +407,7 @@ public class PlayerMove : MonoBehaviour
 
         if (Down < 0.24f)
         {
-            Down = 0.32f;
+            Down = 0.28f;
             ClassDown_Flag = false;
             UIDown_Flag = false;
             key = false;

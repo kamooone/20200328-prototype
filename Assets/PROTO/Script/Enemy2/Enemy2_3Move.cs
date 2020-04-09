@@ -13,10 +13,10 @@ public class Enemy2_3Move : MonoBehaviour//敵の移動処理(本来はまとめ
     float speed = 7.0f;
 
     //エネミーの向き(1が左-1が右)
-    int direction = 1;
+    int direction = -1;
 
     //方向チェンジ時の角度
-    float radian = 180.0f;
+    float radian = -180.0f;
 
     //各層の水の高さ取得
     float WaterHight;
@@ -75,7 +75,7 @@ public class Enemy2_3Move : MonoBehaviour//敵の移動処理(本来はまとめ
 
     void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.tag == "Player")
+        if (collision.gameObject.tag == "Player" && WaterHight == 0.1f)
         {
             SceneManager.LoadScene("GameOverScene");
         }
