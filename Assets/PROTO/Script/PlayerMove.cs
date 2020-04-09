@@ -16,7 +16,7 @@ public class PlayerMove : MonoBehaviour
     public Transform target;//中心となるオブジェクト
 
     bool ClassUp_Flag = false;
-    float up = 0.0f;
+    float up = 0.12f;
 
     bool ClassDown_Flag = false;
     float Down = 0.28f;
@@ -24,8 +24,10 @@ public class PlayerMove : MonoBehaviour
     public bool UIUp_Flag = false;
     public bool UIDown_Flag = false;
 
+    bool key = false;
+
     //水増し機1
-    float WaterHight1 = 0.0f;
+    public float WaterHight1 = 0.0f;
     bool WaterUp1_Flag = false;
     bool WaterUp1 = false;
 
@@ -33,7 +35,7 @@ public class PlayerMove : MonoBehaviour
     bool WaterDown1 = false;
 
     //水増し機2
-    float WaterHight2 = 0.0f;
+    public float WaterHight2 = 0.0f;
     bool WaterUp2_Flag = false;
     bool WaterUp2 = false;
 
@@ -41,15 +43,15 @@ public class PlayerMove : MonoBehaviour
     bool WaterDown2 = false;
 
     //水増し機3
-    float WaterHight3 = 0.0f;
+    public float WaterHight3 = 0.0f;
     bool WaterUp3_Flag = false;
     bool WaterUp3 = false;
 
-    bool WaterDown3_Flag = true;
+    public bool WaterDown3_Flag = true;
     bool WaterDown3 = false;
 
     //水増し機4
-    float WaterHight4 = 0.0f;
+    public float WaterHight4 = 0.0f;
     bool WaterUp4_Flag = false;
     bool WaterUp4 = false;
 
@@ -57,21 +59,23 @@ public class PlayerMove : MonoBehaviour
     bool WaterDown4 = false;
 
     //水増し機3
-    float WaterHight5 = 0.0f;
+    public float WaterHight5 = 0.0f;
     bool WaterUp5_Flag = false;
     bool WaterUp5 = false;
 
     bool WaterDown5_Flag = true;
     bool WaterDown5 = false;
 
-
-
     //プレイヤーの左向き右向きを表す
     int PlayerDirection = 1;
 
     //方向チェンジ時の角度
     float radian = 180.0f;
-    
+
+    //エネミー2とのコリジョン判定(水位ゼロの時はゲームオーバーにならず、壁と同じ状態)
+    public bool Enemy2_Collision_Left = false;
+    public bool Enemy2_Collision_Right = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -93,7 +97,7 @@ public class PlayerMove : MonoBehaviour
         }
 
         //左に移動
-        if (Input.GetKey("left"))
+        if (Input.GetKey("left") && Enemy2_Collision_Left == false)
         {
             PlayerDirection = 1;
             if (radian != 180.0f)
@@ -106,9 +110,9 @@ public class PlayerMove : MonoBehaviour
         }
 
         //右に移動
-        if (Input.GetKey("right"))
+        if (Input.GetKey("right") && Enemy2_Collision_Right == false)
         {
-            PlayerDirection = 2;
+            PlayerDirection = -1;
             if (radian != -180.0f)
             {
                 radian = -180.0f;
@@ -117,7 +121,8 @@ public class PlayerMove : MonoBehaviour
             Vector3 axis = transform.TransformDirection(Vector3.down);
             transform.RotateAround(target.position, axis, speed * Time.deltaTime);
         }
-        
+
+
         if (ClassUp_Flag == true)
         {
             //上の階層へ
@@ -200,13 +205,14 @@ public class PlayerMove : MonoBehaviour
     //当たり判定トリガー
     void OnTriggerStay(Collider collision)
     {
-        if (collision.gameObject.tag == "StageUp")
+        if (collision.gameObject.tag == "StageUp" && gameObject.tag == "Player")
         {
             UIUp_Flag = true;
             
-            if (Input.GetKey("up"))
+            if (Input.GetKey("up") && ClassUp_Flag == false && key == false)
             {
                 ClassUp_Flag = true;
+                key = true;
             }
         }
 
@@ -214,9 +220,10 @@ public class PlayerMove : MonoBehaviour
         {
             UIDown_Flag = true;
 
-            if (Input.GetKey("down"))
+            if (Input.GetKey("down") && ClassDown_Flag == false && key == false)
             {
                 ClassDown_Flag = true;
+                key = true;
             }
         }
 
@@ -348,17 +355,29 @@ public class PlayerMove : MonoBehaviour
         UIDown_Flag = false;
     }
 
-    //当たり判定エンター
+    //コリジョン当たり判定
     void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.tag == "Goal")
         {
             SceneManager.LoadScene("ClearScene");
         }
-        if (collision.gameObject.tag == "Enemy")
+        
+        if (collision.gameObject.tag == "Enemy2" && PlayerDirection == 1)
         {
-            SceneManager.LoadScene("GameOverScene");
+            Enemy2_Collision_Left = true;
         }
+        if (collision.gameObject.tag == "Enemy2" && PlayerDirection == -1)
+        {
+            Enemy2_Collision_Right = true;
+        }
+    }
+
+    //ノットコリジョン当たり判定
+    void OnCollisionExit(Collision collision)
+    {
+        Enemy2_Collision_Left = false;
+        Enemy2_Collision_Right = false;
     }
 
     void ClassUp()
@@ -371,9 +390,10 @@ public class PlayerMove : MonoBehaviour
 
         if (up >= 0.28f)
         {
-            up = 0.0f;
+            up = 0.12f;
             ClassUp_Flag = false;
             UIUp_Flag = false;
+            key = false;
         }
     }
 
@@ -383,13 +403,14 @@ public class PlayerMove : MonoBehaviour
 
         transform.position = new Vector3(transform.position.x, transform.position.y - Down, transform.position.z);
 
-        if (Down > 0.0f) { Down -= 0.04f; }
+        if (Down > 0.24f) { Down -= 0.04f; }
 
-        if (Down <= 0.0f)
+        if (Down < 0.24f)
         {
             Down = 0.28f;
             ClassDown_Flag = false;
             UIDown_Flag = false;
+            key = false;
         }
     }
 
