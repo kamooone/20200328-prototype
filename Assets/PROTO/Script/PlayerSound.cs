@@ -15,8 +15,11 @@ public class PlayerSound : MonoBehaviour
     //判定用変数
     bool        b_left = false;
     bool        b_right = false;
-    //int         presound = 1;
 
+    //SEが変更されたのを感知するための変数
+    int         presound = 0;   //サウンド番号管理用(元々のサウンド番号)
+    int         sound = 1;      //サウンド番号管理用(変更がかかったサウンド番号) 
+    
     //waterそのものが入る変数
     GameObject water;
 
@@ -30,7 +33,7 @@ public class PlayerSound : MonoBehaviour
         audiosource.clip = sound1;
 
         water = GameObject.Find("Water"); //Waterをオブジェクトの名前から取得して変数に格納する
-        
+        script = water.GetComponent<VariableManager>(); //Waterの中にあるVariableManagerを取得して変数に格納する
     }
 
     // Update is called once per frame
@@ -38,12 +41,15 @@ public class PlayerSound : MonoBehaviour
     {
         script = water.GetComponent<VariableManager>(); //Waterの中にあるVariableManagerを取得して変数に格納する
 
+        presound = sound;   //元々のサウンド番号を覚えておく
+
         //足音の切り替え処理
         if (script.soundNo == 1)
         {
             //通常足音
             Debug.Log("通常"); // ログを表示する
             audiosource.clip = sound1;
+            sound = 1;
         }
 
         if (script.soundNo == 2)
@@ -51,6 +57,7 @@ public class PlayerSound : MonoBehaviour
             //水面足音
             Debug.Log("水面"); // ログを表示する
             audiosource.clip = sound2;
+            sound = 2;
         }
         
 
@@ -69,6 +76,18 @@ public class PlayerSound : MonoBehaviour
            
         }
 
+        //サウンドが切り替わりなおかつキーが押された判定なら音を一旦停止させ再度再生する
+        if (presound != sound && b_right == true || presound != sound && b_left == true) 
+        {
+            audiosource.Stop();
+            Debug.Log("音声が変わったのでストップ"); // ログを表示する
+            if (b_left == true || b_right == true)
+            {
+                audiosource.Play();
+                Debug.Log("キーが押された判定なら再生"); // ログを表示する
+            }
+
+        }
 
         //AキーまたはDキーから手が離れたらSEを停止させる
         if (Input.GetKeyUp("left"))
