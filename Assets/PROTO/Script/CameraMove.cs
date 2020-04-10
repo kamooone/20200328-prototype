@@ -23,13 +23,13 @@ public class CameraMove : MonoBehaviour//カメラ移動処理
     void Update()
     {
         //プレイヤを軸に回転
-        if (Input.GetKey("left"))
+        if (Input.GetKey("left") && PlayerScript.Enemy2_Collision_Left == false)
         {
             Vector3 axis = PlayerScript.transform.TransformDirection(Vector3.up);
             transform.RotateAround(target.position, axis, PlayerScript.speed * Time.deltaTime);
         }
 
-        if (Input.GetKey("right"))
+        if (Input.GetKey("right") && PlayerScript.Enemy2_Collision_Right == false)
         {
             Vector3 axis = PlayerScript.transform.TransformDirection(Vector3.down);
             transform.RotateAround(target.position, axis, PlayerScript.speed * Time.deltaTime);

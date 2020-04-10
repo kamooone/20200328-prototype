@@ -3,16 +3,25 @@ using System.Collections;
 
 public class PauseScript : MonoBehaviour
 {
+    public AudioClip DecidedSE;
+    AudioSource aud;
 
     //　ポーズした時に表示するUI
     [SerializeField]
     private GameObject pauseUI;
+
+    void Start()
+    {
+        this.aud = GetComponent<AudioSource>();
+    }
 
     // Update is called once per frame
     void Update()
     {
         if (Input.GetKeyDown("p"))
         {
+            this.aud.PlayOneShot(this.DecidedSE);
+
             //　ポーズUIのアクティブ、非アクティブを切り替え
             pauseUI.SetActive(!pauseUI.activeSelf);
 

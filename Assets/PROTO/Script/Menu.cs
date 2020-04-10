@@ -11,6 +11,10 @@ public class Menu : MonoBehaviour
 
     int StageNo = 1;
 
+    public AudioClip CursorSE;
+    public AudioClip DecidedSE;
+    AudioSource aud;
+
     void Start()
     {
         // ボタンコンポーネントの取得
@@ -20,6 +24,8 @@ public class Menu : MonoBehaviour
 
         // 最初に選択状態にしたいボタンの設定
         stage1.Select();
+
+        this.aud = GetComponent<AudioSource>();
     }
 
 
@@ -31,6 +37,7 @@ public class Menu : MonoBehaviour
             if(StageNo < 3)
             {
                 StageNo++;
+                this.aud.PlayOneShot(this.CursorSE);
             }
         }
         if (Input.GetKeyDown("left"))
@@ -38,12 +45,14 @@ public class Menu : MonoBehaviour
             if (StageNo > 1)
             {
                 StageNo--;
+                this.aud.PlayOneShot(this.CursorSE);
             }
         }
 
         //シーン遷移
         if(Input.GetKeyDown(KeyCode.Space) && StageNo == 1)
         {
+            this.aud.PlayOneShot(this.DecidedSE);
             SceneManager.LoadScene("GameScene1");
         }
         //if (Input.GetKeyDown(KeyCode.Space) && StageNo == 2)
