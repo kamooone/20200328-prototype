@@ -103,6 +103,7 @@ public class PlayerMove : MonoBehaviour
         {
             return;
         }
+        
 
         //左に移動
         if (Input.GetKey("left") && Enemy2_Collision_Left == false)

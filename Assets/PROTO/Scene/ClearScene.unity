@@ -133,8 +133,9 @@ GameObject:
   - component: {fileID: 217152809}
   - component: {fileID: 217152808}
   - component: {fileID: 217152807}
-  - component: {fileID: 217152806}
   - component: {fileID: 217152811}
+  - component: {fileID: 217152806}
+  - component: {fileID: 217152812}
   m_Layer: 5
   m_Name: PauseUI
   m_TagString: Untagged
@@ -151,7 +152,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 217152805}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 19d0f3e79d02bd048b761a1741c05839, type: 3}
+  m_Script: {fileID: 11500000, guid: 9a22e1682803c9846981e45042e45ad6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   CursorSE: {fileID: 8300000, guid: dad54b5039b9da64886eac0e5eec133f, type: 3}
@@ -333,6 +334,18 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &217152812
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 217152805}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e120c42ed9f6d1c45a29e505b118cc4e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &294035790
 GameObject:
   m_ObjectHideFlags: 0
@@ -425,6 +438,7 @@ GameObject:
   m_Component:
   - component: {fileID: 629986947}
   - component: {fileID: 629986946}
+  - component: {fileID: 629986948}
   m_Layer: 0
   m_Name: SoundObject
   m_TagString: Untagged
@@ -542,6 +556,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &629986948
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 629986945}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e120c42ed9f6d1c45a29e505b118cc4e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &702332523
 GameObject:
   m_ObjectHideFlags: 0

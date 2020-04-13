@@ -7,75 +7,156 @@ public class PauseMenu : MonoBehaviour
 {
     Button PauseMenu1;
     Button PauseMenu2;
+    Button PauseMenu3;
+    Slider BGMSlider;
+    Slider SESlider;
+    GameObject SoundPanel;
 
-    int PauseMenuNo = 1;
+    GameObject PauseObject;
+    PauseScript Pause;
 
     public AudioClip CursorSE;
     public AudioClip DecidedSE;
     AudioSource aud;
+
+    public bool SoundControll = false;
+    public int SoundVolume = 0;
 
     void Start()
     {
         // ボタンコンポーネントの取得
         PauseMenu1 = GameObject.Find("PauseUI/retry").GetComponent<Button>();
         PauseMenu2 = GameObject.Find("PauseUI/select").GetComponent<Button>();
+        PauseMenu3 = GameObject.Find("PauseUI/sound").GetComponent<Button>();
 
-        // 最初に選択状態にしたいボタンの設定
-        PauseMenu1.Select();
+        SoundPanel = GameObject.Find("PauseUI/SoundPanel");
+        BGMSlider = GameObject.Find("PauseUI/SoundPanel/BGMSlider").GetComponent<Slider>();
+        SESlider = GameObject.Find("PauseUI/SoundPanel/SESlider").GetComponent<Slider>();
+
+        PauseObject = GameObject.Find("MainCamera");
+        Pause = PauseObject.GetComponent<PauseScript>();
 
         this.aud = GetComponent<AudioSource>();
+
+        SoundPanel.gameObject.SetActive(false);
     }
 
 
     void Update()
     {
-
-
-        //ステージを選択
-        if (Input.GetKeyDown("right"))
+        if (Input.GetKeyDown("o") && SoundControll == true)
         {
-            if (PauseMenuNo < 2)
+            //this.aud.PlayOneShot(this.DecidedSE);
+
+            PauseMenu1.gameObject.SetActive(true);
+            PauseMenu2.gameObject.SetActive(true);
+            PauseMenu3.gameObject.SetActive(true);
+
+            SoundControll = false;
+            SoundPanel.gameObject.SetActive(false);
+            BGMSlider.gameObject.SetActive(false);
+            SESlider.gameObject.SetActive(false);
+        }
+
+        //ポーズ画面のメニューを選択
+        if (SoundControll == false)
+        {
+            SoundVolume = 0;
+            SoundPanel.gameObject.SetActive(false);
+
+            if (Input.GetKeyDown("right"))
             {
-                PauseMenuNo++;
-                this.aud.PlayOneShot(this.CursorSE);
+                if (Pause.PauseMenuNo < 3)
+                {
+                    Pause.PauseMenuNo++;
+                    this.aud.PlayOneShot(this.CursorSE);
+                }
+            }
+            if (Input.GetKeyDown("left"))
+            {
+                if (Pause.PauseMenuNo > 1)
+                {
+                    Pause.PauseMenuNo--;
+                    this.aud.PlayOneShot(this.CursorSE);
+                }
             }
         }
-        if (Input.GetKeyDown("left"))
+
+
+        //BGMかSEかを選択
+        if (SoundControll == true)
         {
-            if (PauseMenuNo > 1)
+            if (Input.GetKeyDown("down"))
             {
-                PauseMenuNo--;
-                this.aud.PlayOneShot(this.CursorSE);
+                if (SoundVolume < 1)
+                {
+                    Debug.Log("BGM音量アップ");
+                    SoundVolume++;
+                }
+            }
+            if (Input.GetKeyDown("up"))
+            {
+                if (SoundVolume > 0)
+                {
+                    Debug.Log("BGM音量daun");
+                    SoundVolume--;
+                }
             }
         }
+
+
 
         //シーン遷移
-        if (Input.GetKeyDown(KeyCode.Space) && PauseMenuNo == 1)
+        if (SoundControll == false)
         {
-            //ポーズ解除
-            Time.timeScale = 1f;
-            this.aud.PlayOneShot(this.DecidedSE);
-            SceneManager.LoadScene("GameScene1");
-        }
-        if (Input.GetKeyDown(KeyCode.Space) && PauseMenuNo == 2)
-        {
-            //ポーズ解除
-            Time.timeScale = 1f;
-            this.aud.PlayOneShot(this.DecidedSE);
-            SceneManager.LoadScene("SelectScene");
+            if (Input.GetKeyDown(KeyCode.Space) && Pause.PauseMenuNo == 1)
+            {
+                //ポーズ解除
+                Time.timeScale = 1f;
+                this.aud.PlayOneShot(this.DecidedSE);
+                SceneManager.LoadScene("GameScene1");
+            }
+            if (Input.GetKeyDown(KeyCode.Space) && Pause.PauseMenuNo == 2)
+            {
+                //ポーズ解除
+                Time.timeScale = 1f;
+                this.aud.PlayOneShot(this.DecidedSE);
+                SceneManager.LoadScene("SelectScene");
+            }
+            if (Input.GetKeyDown(KeyCode.Space) && Pause.PauseMenuNo == 3)
+            {
+                this.aud.PlayOneShot(this.DecidedSE);
+                
+                PauseMenu1.gameObject.SetActive(false);
+                PauseMenu2.gameObject.SetActive(false);
+                PauseMenu3.gameObject.SetActive(false);
+
+                SoundControll = true;
+                SoundPanel.gameObject.SetActive(true);
+                BGMSlider.gameObject.SetActive(true);
+                SESlider.gameObject.SetActive(true);
+            }
         }
 
 
         //選んでいるやつを赤く表示する
-        if (PauseMenuNo == 1)
+        if (Pause.PauseMenuNo > 0)
         {
-            Debug.Log("1");
-            PauseMenu1.Select();
-        }
-        if (PauseMenuNo == 2)
-        {
-            Debug.Log("2");
-            PauseMenu2.Select();
+            if (Pause.PauseMenuNo == 1)
+            {
+                Debug.Log("1");
+                PauseMenu1.Select();
+            }
+            if (Pause.PauseMenuNo == 2)
+            {
+                Debug.Log("2");
+                PauseMenu2.Select();
+            }
+            if (Pause.PauseMenuNo == 3)
+            {
+                Debug.Log("3");
+                PauseMenu3.Select();
+            }
         }
     }
 }
