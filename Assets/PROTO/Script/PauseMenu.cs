@@ -15,12 +15,14 @@ public class PauseMenu : MonoBehaviour
     GameObject PauseObject;
     PauseScript Pause;
 
+    public static bool SoundControll = false;
+    public static int SoundVolume = 0;
+
     public AudioClip CursorSE;
     public AudioClip DecidedSE;
     AudioSource aud;
 
-    public bool SoundControll = false;
-    public int SoundVolume = 0;
+
 
     void Start()
     {
