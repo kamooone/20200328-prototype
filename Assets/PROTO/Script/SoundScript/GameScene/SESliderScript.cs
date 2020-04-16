@@ -16,32 +16,35 @@ public class SESliderScript : MonoBehaviour
     void Update()
     {
         //BGMの音量調節
-        if (PauseMenu.SoundControll == true && PauseMenu.SoundVolume == 1)
+        if (PauseMenu.SoundControll == true)
         {
             slider = GameObject.Find("PauseUI/SoundPanel/SESlider").GetComponent<Slider>();
 
             //他シーンでの音量変更を反映
             slider.value = SE.volume;
 
-            slider.Select();
-           
-            Debug.Log("さらにここに入った");
-            if (Input.GetKeyDown("right"))
+            if (PauseMenu.SoundVolume == 1)
             {
-                if (slider.value < 1.0f)
+                slider.Select();
+
+                Debug.Log("さらにここに入った");
+                if (Input.GetKeyDown("right"))
                 {
-                    Debug.Log("SE音量ア");
-                    slider.value += 0.1f;
-                    SE.volume = slider.value;
+                    if (slider.value < 1.0f)
+                    {
+                        Debug.Log("SE音量ア");
+                        slider.value += 0.1f;
+                        SE.volume = slider.value;
+                    }
                 }
-            }
-            if (Input.GetKeyDown("left"))
-            {
-                if (slider.value > 0.0f)
+                if (Input.GetKeyDown("left"))
                 {
-                    Debug.Log("SE音量ダ");
-                    slider.value -= 0.1f;
-                    SE.volume = slider.value;
+                    if (slider.value > 0.0f)
+                    {
+                        Debug.Log("SE音量ダ");
+                        slider.value -= 0.1f;
+                        SE.volume = slider.value;
+                    }
                 }
             }
         }
