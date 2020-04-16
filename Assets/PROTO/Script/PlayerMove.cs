@@ -11,6 +11,12 @@ public class PlayerMove : MonoBehaviour
     GameObject W_Machine4;
     GameObject W_Machine5;
 
+    public AudioClip WaterUpSE;
+    public AudioClip WaterDownSE;
+    public AudioClip StageUpSE;
+    public AudioClip StageDownSE;
+    AudioSource aud;
+
     public float speed = 10.0f;
 
     public Transform target;//中心となるオブジェクト
@@ -19,7 +25,7 @@ public class PlayerMove : MonoBehaviour
     float up = 0.12f;
 
     bool ClassDown_Flag = false;
-    float Down = 0.28f;
+    float Down = 0.32f;
 
     public bool UIUp_Flag = false;
     public bool UIDown_Flag = false;
@@ -85,6 +91,8 @@ public class PlayerMove : MonoBehaviour
         W_Machine3 = GameObject.Find("Water/WaterProNighttime3");
         W_Machine4 = GameObject.Find("Water/WaterProNighttime4");
         W_Machine5 = GameObject.Find("Water/WaterProNighttime5");
+
+        this.aud = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -95,6 +103,7 @@ public class PlayerMove : MonoBehaviour
         {
             return;
         }
+        
 
         //左に移動
         if (Input.GetKey("left") && Enemy2_Collision_Left == false)
@@ -211,6 +220,7 @@ public class PlayerMove : MonoBehaviour
             
             if (Input.GetKey("up") && ClassUp_Flag == false && key == false)
             {
+                this.aud.PlayOneShot(this.StageUpSE);
                 ClassUp_Flag = true;
                 key = true;
             }
@@ -222,6 +232,7 @@ public class PlayerMove : MonoBehaviour
 
             if (Input.GetKey("down") && ClassDown_Flag == false && key == false)
             {
+                this.aud.PlayOneShot(this.StageDownSE);
                 ClassDown_Flag = true;
                 key = true;
             }
@@ -243,10 +254,12 @@ public class PlayerMove : MonoBehaviour
 
             if (Input.GetKey("down") && WaterDown1_Flag == true)
             {
+                this.aud.PlayOneShot(this.WaterDownSE);
                 WaterDown1 = true;
             }
             if (Input.GetKey("up") && WaterUp1_Flag == true)
             {
+                this.aud.PlayOneShot(this.WaterUpSE);
                 WaterUp1 = true;
             }
         }
@@ -267,10 +280,12 @@ public class PlayerMove : MonoBehaviour
 
             if (Input.GetKey("down") && WaterDown2_Flag == true)
             {
+                this.aud.PlayOneShot(this.WaterDownSE);
                 WaterDown2 = true;
             }
             if (Input.GetKey("up") && WaterUp2_Flag == true)
             {
+                this.aud.PlayOneShot(this.WaterUpSE);
                 WaterUp2 = true;
             }
         }
@@ -291,10 +306,12 @@ public class PlayerMove : MonoBehaviour
 
             if (Input.GetKey("down") && WaterDown3_Flag == true)
             {
+                this.aud.PlayOneShot(this.WaterDownSE);
                 WaterDown3 = true;
             }
             if (Input.GetKey("up") && WaterUp3_Flag == true)
             {
+                this.aud.PlayOneShot(this.WaterUpSE);
                 WaterUp3 = true;
             }
         }
@@ -315,10 +332,12 @@ public class PlayerMove : MonoBehaviour
 
             if (Input.GetKey("down") && WaterDown4_Flag == true)
             {
+                this.aud.PlayOneShot(this.WaterDownSE);
                 WaterDown4 = true;
             }
             if (Input.GetKey("up") && WaterUp4_Flag == true)
             {
+                this.aud.PlayOneShot(this.WaterUpSE);
                 WaterUp4 = true;
             }
         }
@@ -339,10 +358,12 @@ public class PlayerMove : MonoBehaviour
 
             if (Input.GetKey("down") && WaterDown5_Flag == true)
             {
+                this.aud.PlayOneShot(this.WaterDownSE);
                 WaterDown5 = true;
             }
             if (Input.GetKey("up") && WaterUp5_Flag == true)
             {
+                this.aud.PlayOneShot(this.WaterUpSE);
                 WaterUp5 = true;
             }
         }
@@ -386,9 +407,9 @@ public class PlayerMove : MonoBehaviour
 
         transform.position = new Vector3(transform.position.x, transform.position.y + up, transform.position.z);
 
-        if (up < 0.28f) { up += 0.04f; }
+        if (up < 0.32f) { up += 0.04f; }
 
-        if (up >= 0.28f)
+        if (up >= 0.32f)
         {
             up = 0.12f;
             ClassUp_Flag = false;
@@ -407,7 +428,7 @@ public class PlayerMove : MonoBehaviour
 
         if (Down < 0.24f)
         {
-            Down = 0.28f;
+            Down = 0.32f;
             ClassDown_Flag = false;
             UIDown_Flag = false;
             key = false;
