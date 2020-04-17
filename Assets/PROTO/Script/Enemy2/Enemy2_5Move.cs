@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class Enemy2_2Move : MonoBehaviour//敵の移動処理(本来はまとめてやる)
+public class Enemy2_5Move : MonoBehaviour//敵の移動処理(本来はまとめてやる)
 {
     GameObject PlayerObject;
     PlayerMove PlayerScript;
@@ -31,8 +31,8 @@ public class Enemy2_2Move : MonoBehaviour//敵の移動処理(本来はまとめ
     // Update is called once per frame
     void Update()
     {
-        //二階の水の高さ取得
-        WaterHight = PlayerScript.WaterHight2;
+        //三階の水の高さ取得
+        WaterHight = PlayerScript.WaterHight5;
 
         //水の判定
         if (WaterHight == 0.1f)

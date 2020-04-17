@@ -6,6 +6,8 @@ public class PauseScript : MonoBehaviour
     public AudioClip DecidedSE;
     AudioSource aud;
 
+    public int PauseMenuNo = 0;
+
     //　ポーズした時に表示するUI
     [SerializeField]
     private GameObject pauseUI;
@@ -34,6 +36,7 @@ public class PauseScript : MonoBehaviour
             else
             {
                 Time.timeScale = 1f;
+                PauseMenuNo = 0;
             }
         }
     }

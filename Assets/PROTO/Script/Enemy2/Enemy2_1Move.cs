@@ -69,7 +69,7 @@ public class Enemy2_1Move : MonoBehaviour//敵の移動処理(本来はまとめ
     {
         if (collision.gameObject.tag == "Flip")
         {
-            direction *= -1;
+            //direction *= -1;
         }
     }
 

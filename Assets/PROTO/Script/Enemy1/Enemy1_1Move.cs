@@ -70,6 +70,11 @@ public class Enemy1_1Move : MonoBehaviour
         {
             SceneManager.LoadScene("GameOverScene");
         }
+
+        if (collision.gameObject.tag == "Enemy2")
+        {
+            gameObject.SetActive(false);
+        }
     }
 
 }

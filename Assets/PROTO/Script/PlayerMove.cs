@@ -25,7 +25,7 @@ public class PlayerMove : MonoBehaviour
     float up = 0.12f;
 
     bool ClassDown_Flag = false;
-    float Down = 0.32f;
+    float Down = 0.28f;
 
     public bool UIUp_Flag = false;
     public bool UIDown_Flag = false;
@@ -103,6 +103,7 @@ public class PlayerMove : MonoBehaviour
         {
             return;
         }
+        
 
         //左に移動
         if (Input.GetKey("left") && Enemy2_Collision_Left == false)
@@ -404,11 +405,13 @@ public class PlayerMove : MonoBehaviour
     {
         Debug.Log("階層アップ");
 
-        transform.position = new Vector3(transform.position.x, transform.position.y + up, transform.position.z);
+        if (up < 0.28f && ClassUp_Flag == true)
+        {
+            up += 0.04f;
+            transform.position = new Vector3(transform.position.x, transform.position.y + up, transform.position.z);
+        }
 
-        if (up < 0.32f) { up += 0.04f; }
-
-        if (up >= 0.32f)
+        if (up >= 0.28f)
         {
             up = 0.12f;
             ClassUp_Flag = false;
@@ -427,7 +430,7 @@ public class PlayerMove : MonoBehaviour
 
         if (Down < 0.24f)
         {
-            Down = 0.32f;
+            Down = 0.28f;
             ClassDown_Flag = false;
             UIDown_Flag = false;
             key = false;
