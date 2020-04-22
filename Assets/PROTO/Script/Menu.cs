@@ -15,6 +15,7 @@ public class Menu : MonoBehaviour
     Slider SESlider;
 
     int StageNo = 1;
+    public static int NowStageNo = 1;
 
     public bool SoundControll = false;
     public int SoundVolume = 0;
@@ -106,15 +107,20 @@ public class Menu : MonoBehaviour
             {
                 this.aud.PlayOneShot(this.DecidedSE);
                 SceneManager.LoadScene("GameScene1");
+                NowStageNo = 1;
             }
-            //if (Input.GetKeyDown(KeyCode.Space) && StageNo == 2)
-            //{
-            //    SceneManager.LoadScene("GameScene2");
-            //}
-            //if (Input.GetKeyDown(KeyCode.Space) && StageNo == 3)
-            //{
-            //    SceneManager.LoadScene("GameScene3");
-            //}
+            if (Input.GetKeyDown(KeyCode.Space) && StageNo == 2)
+            {
+                this.aud.PlayOneShot(this.DecidedSE);
+                SceneManager.LoadScene("GameScene2");
+                NowStageNo = 2;
+            }
+            if (Input.GetKeyDown(KeyCode.Space) && StageNo == 3)
+            {
+                this.aud.PlayOneShot(this.DecidedSE);
+                SceneManager.LoadScene("GameScene3");
+                NowStageNo = 3;
+            }
             if (Input.GetKeyDown(KeyCode.Space) && StageNo == 4)
             {
                 this.aud.PlayOneShot(this.DecidedSE);

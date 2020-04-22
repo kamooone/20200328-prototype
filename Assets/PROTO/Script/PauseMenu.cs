@@ -116,7 +116,21 @@ public class PauseMenu : MonoBehaviour
                 //ポーズ解除
                 Time.timeScale = 1f;
                 this.aud.PlayOneShot(this.DecidedSE);
-                SceneManager.LoadScene("GameScene1");
+
+                if (Menu.NowStageNo == 1)
+                {
+                    SceneManager.LoadScene("GameScene1");
+                }
+
+                if (Menu.NowStageNo == 2)
+                {
+                    SceneManager.LoadScene("GameScene2");
+                }
+
+                if (Menu.NowStageNo == 3)
+                {
+                    SceneManager.LoadScene("GameScene3");
+                }
             }
             if (Input.GetKeyDown(KeyCode.Space) && Pause.PauseMenuNo == 2)
             {

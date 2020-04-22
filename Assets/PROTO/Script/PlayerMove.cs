@@ -15,7 +15,10 @@ public class PlayerMove : MonoBehaviour
     public AudioClip WaterDownSE;
     public AudioClip StageUpSE;
     public AudioClip StageDownSE;
+
     AudioSource aud;
+
+    public GameObject Text;
 
     public float speed = 10.0f;
 
@@ -25,12 +28,16 @@ public class PlayerMove : MonoBehaviour
     float up = 0.12f;
 
     bool ClassDown_Flag = false;
-    float Down = 0.32f;
+    float Down = 0.28f;
 
     public bool UIUp_Flag = false;
     public bool UIDown_Flag = false;
 
     bool key = false;
+
+    int StageNow = 1;
+
+    bool NoWaterMove = false;
 
     //水増し機1
     public float WaterHight1 = 0.0f;
@@ -132,6 +139,160 @@ public class PlayerMove : MonoBehaviour
         }
 
 
+
+
+
+
+
+        ////水増し機１との判定
+        //if (collision.gameObject.tag == "Water1")
+        //{
+        if (StageNow == 1 && NoWaterMove == false)
+        {
+            if (WaterHight1 == 0.0f || WaterHight1 == -0.1f)
+            {
+                WaterUp1_Flag = true;
+                UIUp_Flag = true;
+            }
+            if (WaterHight1 == 0.1f)
+            {
+                WaterDown1_Flag = true;
+                UIDown_Flag = true;
+            }
+
+            //(ボタンを別にする)
+            if (Input.GetKey("down") && WaterDown1_Flag == true)
+            {
+                this.aud.PlayOneShot(this.WaterDownSE);
+                WaterDown1 = true;
+            }
+            if (Input.GetKey("up") && WaterUp1_Flag == true)
+            {
+                this.aud.PlayOneShot(this.WaterUpSE);
+                WaterUp1 = true;
+            }
+        }
+        //}
+        //
+        ////水増し機2との判定
+        //if (collision.gameObject.tag == "Water2")
+        //{
+        if (StageNow == 2 && NoWaterMove == false)
+        {
+            if (WaterHight2 == 0.0f || WaterHight2 == -0.1f)
+            {
+                WaterUp2_Flag = true;
+                UIUp_Flag = true;
+            }
+            if (WaterHight2 == 0.1f)
+            {
+                WaterDown2_Flag = true;
+                UIDown_Flag = true;
+            }
+
+            if (Input.GetKey("down") && WaterDown2_Flag == true)
+            {
+                this.aud.PlayOneShot(this.WaterDownSE);
+                WaterDown2 = true;
+            }
+            if (Input.GetKey("up") && WaterUp2_Flag == true)
+            {
+                this.aud.PlayOneShot(this.WaterUpSE);
+                WaterUp2 = true;
+            }
+        }
+        //}
+        //
+        ////水増し機3との判定
+        //if (collision.gameObject.tag == "Water3")
+        //{
+        if (StageNow == 3 && NoWaterMove == false)
+        {
+            if (WaterHight3 == 0.0f || WaterHight3 == -0.1f)
+            {
+                WaterUp3_Flag = true;
+                UIUp_Flag = true;
+            }
+            if (WaterHight3 == 0.1f)
+            {
+                WaterDown3_Flag = true;
+                UIDown_Flag = true;
+            }
+
+            if (Input.GetKey("down") && WaterDown3_Flag == true)
+            {
+                this.aud.PlayOneShot(this.WaterDownSE);
+                WaterDown3 = true;
+            }
+            if (Input.GetKey("up") && WaterUp3_Flag == true)
+            {
+                this.aud.PlayOneShot(this.WaterUpSE);
+                WaterUp3 = true;
+            }
+        }
+        //}
+        //
+        ////水増し機4との判定
+        //if (collision.gameObject.tag == "Water4")
+        //{
+        if (StageNow == 4 && NoWaterMove == false)
+        {
+            if (WaterHight4 == 0.0f || WaterHight4 == -0.1f)
+            {
+                WaterUp4_Flag = true;
+                UIUp_Flag = true;
+            }
+            if (WaterHight4 == 0.1f)
+            {
+                WaterDown4_Flag = true;
+                UIDown_Flag = true;
+            }
+
+            if (Input.GetKey("down") && WaterDown4_Flag == true)
+            {
+                this.aud.PlayOneShot(this.WaterDownSE);
+                WaterDown4 = true;
+            }
+            if (Input.GetKey("up") && WaterUp4_Flag == true)
+            {
+                this.aud.PlayOneShot(this.WaterUpSE);
+                WaterUp4 = true;
+            }
+        }
+        //}
+        //
+        ////水増し機5との判定
+        //if (collision.gameObject.tag == "Water5")
+        //{
+        if (StageNow == 5 && NoWaterMove == false)
+        {
+            if (WaterHight5 == 0.0f || WaterHight5 == -0.1f)
+            {
+                WaterUp5_Flag = true;
+                UIUp_Flag = true;
+            }
+            if (WaterHight5 == 0.1f)
+            {
+                WaterDown5_Flag = true;
+                UIDown_Flag = true;
+            }
+
+            if (Input.GetKey("down") && WaterDown5_Flag == true)
+            {
+                this.aud.PlayOneShot(this.WaterDownSE);
+                WaterDown5 = true;
+            }
+            if (Input.GetKey("up") && WaterUp5_Flag == true)
+            {
+                this.aud.PlayOneShot(this.WaterUpSE);
+                WaterUp5 = true;
+            }
+        }
+        //}
+
+
+
+
         if (ClassUp_Flag == true)
         {
             //上の階層へ
@@ -214,159 +375,184 @@ public class PlayerMove : MonoBehaviour
     //当たり判定トリガー
     void OnTriggerStay(Collider collision)
     {
-        if (collision.gameObject.tag == "StageUp" && gameObject.tag == "Player")
+        if (collision.gameObject.tag == "StageUp" && gameObject.tag == "Player" && (StageNow != 5))
         {
             UIUp_Flag = true;
-            
+            NoWaterMove = true;
+
             if (Input.GetKey("up") && ClassUp_Flag == false && key == false)
             {
                 this.aud.PlayOneShot(this.StageUpSE);
                 ClassUp_Flag = true;
                 key = true;
+                StageNow++;
             }
+        }
+
+        if (collision.gameObject.tag == "StageUp" && gameObject.tag == "Player" && (StageNow == 5) && KeyItemScript.key == true)
+        {
+            UIUp_Flag = true;
+            NoWaterMove = true;
+
+            if (Input.GetKey("up") && ClassUp_Flag == false && key == false)
+            {
+                this.aud.PlayOneShot(this.StageUpSE);
+                ClassUp_Flag = true;
+                key = true;
+                StageNow++;
+            }
+        }
+
+        if (collision.gameObject.tag == "StageUp" && gameObject.tag == "Player" && (StageNow == 5) && KeyItemScript.key == false)
+        {
+            UIUp_Flag = true;
+            NoWaterMove = true;
+            Text.gameObject.SetActive(true);
         }
 
         if (collision.gameObject.tag == "StageDown")
         {
             UIDown_Flag = true;
+            NoWaterMove = true;
 
             if (Input.GetKey("down") && ClassDown_Flag == false && key == false)
             {
                 this.aud.PlayOneShot(this.StageDownSE);
                 ClassDown_Flag = true;
                 key = true;
+                StageNow--;
             }
         }
 
-        //水増し機１との判定
-        if (collision.gameObject.tag == "Water1")
-        {
-            if (WaterHight1 == 0.0f || WaterHight1 == -0.1f)
-            {
-                WaterUp1_Flag = true;
-                UIUp_Flag = true;
-            }
-            if (WaterHight1 == 0.1f)
-            {
-                WaterDown1_Flag = true;
-                UIDown_Flag = true;
-            }
+        ////水増し機１との判定
+        //if (collision.gameObject.tag == "Water1")
+        //{
+        //    if (WaterHight1 == 0.0f || WaterHight1 == -0.1f)
+        //    {
+        //        WaterUp1_Flag = true;
+        //        UIUp_Flag = true;
+        //    }
+        //    if (WaterHight1 == 0.1f)
+        //    {
+        //        WaterDown1_Flag = true;
+        //        UIDown_Flag = true;
+        //    }
 
-            if (Input.GetKey("down") && WaterDown1_Flag == true)
-            {
-                this.aud.PlayOneShot(this.WaterDownSE);
-                WaterDown1 = true;
-            }
-            if (Input.GetKey("up") && WaterUp1_Flag == true)
-            {
-                this.aud.PlayOneShot(this.WaterUpSE);
-                WaterUp1 = true;
-            }
-        }
+        //    if (Input.GetKey("down") && WaterDown1_Flag == true)
+        //    {
+        //        this.aud.PlayOneShot(this.WaterDownSE);
+        //        WaterDown1 = true;
+        //    }
+        //    if (Input.GetKey("up") && WaterUp1_Flag == true)
+        //    {
+        //        this.aud.PlayOneShot(this.WaterUpSE);
+        //        WaterUp1 = true;
+        //    }
+        //}
 
-        //水増し機2との判定
-        if (collision.gameObject.tag == "Water2")
-        {
-            if (WaterHight2 == 0.0f || WaterHight2 == -0.1f)
-            {
-                WaterUp2_Flag = true;
-                UIUp_Flag = true;
-            }
-            if (WaterHight2 == 0.1f)
-            {
-                WaterDown2_Flag = true;
-                UIDown_Flag = true;
-            }
+        ////水増し機2との判定
+        //if (collision.gameObject.tag == "Water2")
+        //{
+        //    if (WaterHight2 == 0.0f || WaterHight2 == -0.1f)
+        //    {
+        //        WaterUp2_Flag = true;
+        //        UIUp_Flag = true;
+        //    }
+        //    if (WaterHight2 == 0.1f)
+        //    {
+        //        WaterDown2_Flag = true;
+        //        UIDown_Flag = true;
+        //    }
 
-            if (Input.GetKey("down") && WaterDown2_Flag == true)
-            {
-                this.aud.PlayOneShot(this.WaterDownSE);
-                WaterDown2 = true;
-            }
-            if (Input.GetKey("up") && WaterUp2_Flag == true)
-            {
-                this.aud.PlayOneShot(this.WaterUpSE);
-                WaterUp2 = true;
-            }
-        }
+        //    if (Input.GetKey("down") && WaterDown2_Flag == true)
+        //    {
+        //        this.aud.PlayOneShot(this.WaterDownSE);
+        //        WaterDown2 = true;
+        //    }
+        //    if (Input.GetKey("up") && WaterUp2_Flag == true)
+        //    {
+        //        this.aud.PlayOneShot(this.WaterUpSE);
+        //        WaterUp2 = true;
+        //    }
+        //}
 
-        //水増し機3との判定
-        if (collision.gameObject.tag == "Water3")
-        {
-            if (WaterHight3 == 0.0f || WaterHight3 == -0.1f)
-            {
-                WaterUp3_Flag = true;
-                UIUp_Flag = true;
-            }
-            if (WaterHight3 == 0.1f)
-            {
-                WaterDown3_Flag = true;
-                UIDown_Flag = true;
-            }
+        ////水増し機3との判定
+        //if (collision.gameObject.tag == "Water3")
+        //{
+        //    if (WaterHight3 == 0.0f || WaterHight3 == -0.1f)
+        //    {
+        //        WaterUp3_Flag = true;
+        //        UIUp_Flag = true;
+        //    }
+        //    if (WaterHight3 == 0.1f)
+        //    {
+        //        WaterDown3_Flag = true;
+        //        UIDown_Flag = true;
+        //    }
 
-            if (Input.GetKey("down") && WaterDown3_Flag == true)
-            {
-                this.aud.PlayOneShot(this.WaterDownSE);
-                WaterDown3 = true;
-            }
-            if (Input.GetKey("up") && WaterUp3_Flag == true)
-            {
-                this.aud.PlayOneShot(this.WaterUpSE);
-                WaterUp3 = true;
-            }
-        }
+        //    if (Input.GetKey("down") && WaterDown3_Flag == true)
+        //    {
+        //        this.aud.PlayOneShot(this.WaterDownSE);
+        //        WaterDown3 = true;
+        //    }
+        //    if (Input.GetKey("up") && WaterUp3_Flag == true)
+        //    {
+        //        this.aud.PlayOneShot(this.WaterUpSE);
+        //        WaterUp3 = true;
+        //    }
+        //}
 
-        //水増し機4との判定
-        if (collision.gameObject.tag == "Water4")
-        {
-            if (WaterHight4 == 0.0f || WaterHight4 == -0.1f)
-            {
-                WaterUp4_Flag = true;
-                UIUp_Flag = true;
-            }
-            if (WaterHight4 == 0.1f)
-            {
-                WaterDown4_Flag = true;
-                UIDown_Flag = true;
-            }
+        ////水増し機4との判定
+        //if (collision.gameObject.tag == "Water4")
+        //{
+        //    if (WaterHight4 == 0.0f || WaterHight4 == -0.1f)
+        //    {
+        //        WaterUp4_Flag = true;
+        //        UIUp_Flag = true;
+        //    }
+        //    if (WaterHight4 == 0.1f)
+        //    {
+        //        WaterDown4_Flag = true;
+        //        UIDown_Flag = true;
+        //    }
 
-            if (Input.GetKey("down") && WaterDown4_Flag == true)
-            {
-                this.aud.PlayOneShot(this.WaterDownSE);
-                WaterDown4 = true;
-            }
-            if (Input.GetKey("up") && WaterUp4_Flag == true)
-            {
-                this.aud.PlayOneShot(this.WaterUpSE);
-                WaterUp4 = true;
-            }
-        }
+        //    if (Input.GetKey("down") && WaterDown4_Flag == true)
+        //    {
+        //        this.aud.PlayOneShot(this.WaterDownSE);
+        //        WaterDown4 = true;
+        //    }
+        //    if (Input.GetKey("up") && WaterUp4_Flag == true)
+        //    {
+        //        this.aud.PlayOneShot(this.WaterUpSE);
+        //        WaterUp4 = true;
+        //    }
+        //}
 
-        //水増し機5との判定
-        if (collision.gameObject.tag == "Water5")
-        {
-            if (WaterHight5 == 0.0f || WaterHight5 == -0.1f)
-            {
-                WaterUp5_Flag = true;
-                UIUp_Flag = true;
-            }
-            if (WaterHight5 == 0.1f)
-            {
-                WaterDown5_Flag = true;
-                UIDown_Flag = true;
-            }
+        ////水増し機5との判定
+        //if (collision.gameObject.tag == "Water5")
+        //{
+        //    if (WaterHight5 == 0.0f || WaterHight5 == -0.1f)
+        //    {
+        //        WaterUp5_Flag = true;
+        //        UIUp_Flag = true;
+        //    }
+        //    if (WaterHight5 == 0.1f)
+        //    {
+        //        WaterDown5_Flag = true;
+        //        UIDown_Flag = true;
+        //    }
 
-            if (Input.GetKey("down") && WaterDown5_Flag == true)
-            {
-                this.aud.PlayOneShot(this.WaterDownSE);
-                WaterDown5 = true;
-            }
-            if (Input.GetKey("up") && WaterUp5_Flag == true)
-            {
-                this.aud.PlayOneShot(this.WaterUpSE);
-                WaterUp5 = true;
-            }
-        }
+        //    if (Input.GetKey("down") && WaterDown5_Flag == true)
+        //    {
+        //        this.aud.PlayOneShot(this.WaterDownSE);
+        //        WaterDown5 = true;
+        //    }
+        //    if (Input.GetKey("up") && WaterUp5_Flag == true)
+        //    {
+        //        this.aud.PlayOneShot(this.WaterUpSE);
+        //        WaterUp5 = true;
+        //    }
+        //}
     }
 
     //ノット当たり判定トリガー
@@ -374,6 +560,8 @@ public class PlayerMove : MonoBehaviour
     {
         UIUp_Flag = false;
         UIDown_Flag = false;
+        NoWaterMove = false;
+        Text.gameObject.SetActive(false);
     }
 
     //コリジョン当たり判定
@@ -405,11 +593,13 @@ public class PlayerMove : MonoBehaviour
     {
         Debug.Log("階層アップ");
 
-        transform.position = new Vector3(transform.position.x, transform.position.y + up, transform.position.z);
+        if (up < 0.28f && ClassUp_Flag == true)
+        {
+            up += 0.04f;
+            transform.position = new Vector3(transform.position.x, transform.position.y + up, transform.position.z);
+        }
 
-        if (up < 0.32f) { up += 0.04f; }
-
-        if (up >= 0.32f)
+        if (up >= 0.28f)
         {
             up = 0.12f;
             ClassUp_Flag = false;
@@ -428,7 +618,7 @@ public class PlayerMove : MonoBehaviour
 
         if (Down < 0.24f)
         {
-            Down = 0.32f;
+            Down = 0.28f;
             ClassDown_Flag = false;
             UIDown_Flag = false;
             key = false;
