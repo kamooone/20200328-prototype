@@ -80,5 +80,10 @@ public class Enemy2_1Move : MonoBehaviour//敵の移動処理(本来はまとめ
         {
             SceneManager.LoadScene("GameOverScene");
         }
+
+        if (collision.gameObject.tag == "Enemy2" || collision.gameObject.tag == "Enemy")
+        {
+            direction *= -1;
+        }
     }
 }

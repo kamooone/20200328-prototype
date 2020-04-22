@@ -11,6 +11,8 @@ public class Enemy1_1Move : MonoBehaviour
 
     float speed = 10.0f;
 
+    float Down = 0.0f;
+
     //エネミーの向き
     int direction = 1;
 
@@ -62,6 +64,20 @@ public class Enemy1_1Move : MonoBehaviour
     }
 
 
+    //当たり判定当たっている間
+    void OnTriggerStay(Collider collision)
+    {
+        if (collision.gameObject.tag == "Fall")
+        {
+            Debug.Log("階層ダウン");
+
+            transform.position = new Vector3(transform.position.x, transform.position.y + Down, transform.position.z);
+
+            Down -= 0.01f; 
+            
+        }
+    }
+
 
 
     void OnCollisionEnter(Collision collision)
@@ -71,9 +87,9 @@ public class Enemy1_1Move : MonoBehaviour
             SceneManager.LoadScene("GameOverScene");
         }
 
-        if (collision.gameObject.tag == "Enemy2")
+        if (collision.gameObject.tag == "Enemy2" || collision.gameObject.tag == "Enemy")
         {
-            gameObject.SetActive(false);
+            direction *= -1;
         }
     }
 
