@@ -35,7 +35,7 @@ public class Enemy2_3Move : MonoBehaviour//敵の移動処理(本来はまとめ
         WaterHight = PlayerScript.WaterHight3;
 
         //水の判定
-        if (WaterHight == 0.1f)
+        if (WaterHight == 0.11f)
         {
             /*移動処理*/
             if (direction == 1)

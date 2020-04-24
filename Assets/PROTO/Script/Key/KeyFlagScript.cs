@@ -11,6 +11,7 @@ public class KeyFlagScript : MonoBehaviour
     {
         //keyobjコンポーネントの取得
         //KeyObj = GameObject.Find("player/Key").GetComponent<GameObject>();
+        KeyItemScript.key = false;
     }
 
     // Update is called once per frame
