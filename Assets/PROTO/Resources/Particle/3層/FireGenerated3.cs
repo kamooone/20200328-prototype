@@ -7,6 +7,8 @@ public class FireGenerated3 : MonoBehaviour//炎パーティクル生成と消�
     GameObject PlayerObject;
     PlayerMove PlayerScript;
 
+    public static float speed = 10.0f;
+
     //水の高さ取得
     float WaterHight;
 
@@ -47,18 +49,23 @@ public class FireGenerated3 : MonoBehaviour//炎パーティクル生成と消�
                 ChildObj.transform.parent = EnemyObj.transform;//指定したオブジェクトと親子関係
 
                 Generated = true;//出現している
+
+                speed = 10.0f;
             }
         }
 
-            //水の判定
-            if (WaterHight == 0.11f)
+        //水の判定
+        if (WaterHight == 0.11f)
+        {
+            if (Generated)
             {
-                if (Generated == false)//出現していなかったら生成する
-                {
-                    Destroy(gameObject.transform.Find("Fire(Clone)").gameObject);//Fireという子オブジェクトを削除(なぜかFire(clone)になる)
-                    Generated = false;//出現していない
-                }
+                Destroy(gameObject.transform.Find("Fire(Clone)").gameObject);//Fireという子オブジェクトを削除(なぜかFire(clone)になる)
+                Generated = false;//出現していない
+
+                speed = 6.0f;
+
             }
+        }
 
     }
 }

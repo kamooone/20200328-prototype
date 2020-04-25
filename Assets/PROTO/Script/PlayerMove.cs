@@ -319,6 +319,11 @@ public class PlayerMove : MonoBehaviour
             }
         }
 
+        if (collision.gameObject.tag == "Goal")
+        {
+            SceneManager.LoadScene("ClearScene");
+        }
+
         ////水増し機１との判定
         //if (collision.gameObject.tag == "Water1")
         //{
@@ -396,7 +401,7 @@ public class PlayerMove : MonoBehaviour
         //        WaterUp3 = true;
         //    }
         //}
-        
+
     }
 
     //ノット当たり判定トリガー

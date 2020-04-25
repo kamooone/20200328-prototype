@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class Enemy1_1Move : MonoBehaviour
+public class Enemy2Move : MonoBehaviour
 {
     public Transform target;
 
     GameObject Enemy;
 
-    float speed = 10.0f;
+    //float speed = 10.0f;
 
     float Down = 0.0f;
 
@@ -38,7 +38,7 @@ public class Enemy1_1Move : MonoBehaviour
             }
 
             Vector3 axis = transform.TransformDirection(Vector3.up);
-            transform.RotateAround(target.position, axis, speed * Time.deltaTime);
+            transform.RotateAround(target.position, axis, FireGenerated2.speed * Time.deltaTime);
         }
 
         if (direction == -1)
@@ -50,7 +50,7 @@ public class Enemy1_1Move : MonoBehaviour
             }
 
             Vector3 axis = transform.TransformDirection(Vector3.down);
-            transform.RotateAround(target.position, axis, speed * Time.deltaTime);
+            transform.RotateAround(target.position, axis, FireGenerated2.speed * Time.deltaTime);
         }
     }
 
