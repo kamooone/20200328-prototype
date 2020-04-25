@@ -91,6 +91,11 @@ public class Enemy1_1Move : MonoBehaviour
         {
             direction *= -1;
         }
+
+        if (collision.gameObject.tag == "Wall")
+        {
+            direction *= -1;
+        }
     }
 
 }

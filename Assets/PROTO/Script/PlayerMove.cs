@@ -33,7 +33,7 @@ public class PlayerMove : MonoBehaviour
 
     bool key = false;
 
-    int StageNow = 1;
+    public int StageNow = 1;
 
     bool NoWaterMove = false;
 
@@ -416,11 +416,11 @@ public class PlayerMove : MonoBehaviour
             SceneManager.LoadScene("ClearScene");
         }
         
-        if (collision.gameObject.tag == "Enemy2" && PlayerDirection == 1)
+        if ((collision.gameObject.tag == "Enemy2" || collision.gameObject.tag == "Wall") && PlayerDirection == 1)
         {
             Enemy2_Collision_Left = true;
         }
-        if (collision.gameObject.tag == "Enemy2" && PlayerDirection == -1)
+        if ((collision.gameObject.tag == "Enemy2" || collision.gameObject.tag == "Wall") && PlayerDirection == -1)
         {
             Enemy2_Collision_Right = true;
         }
