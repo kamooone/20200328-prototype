@@ -45,6 +45,12 @@ public class SplashesGenerated2 : MonoBehaviour//水しぶき生成と消滅
                 ChildObj = (GameObject)Instantiate(Particle);
                 ChildObj.transform.parent = EnemyObj.transform;//指定したオブジェクトと親子関係
                 Generated = true;//出現している
+
+                /*直接代入(追加)*/
+                ChildObj.transform.localPosition = new Vector3(0.0f, 0.0f, 0.0f);
+                Vector3 rotationVector = new Vector3(-90, 0, 0);
+                ChildObj.transform.rotation = Quaternion.Euler(rotationVector);
+                ChildObj.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
             }
         }
 

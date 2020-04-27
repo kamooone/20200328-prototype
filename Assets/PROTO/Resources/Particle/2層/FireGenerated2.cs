@@ -51,6 +51,12 @@ public class FireGenerated2 : MonoBehaviour//炎パーティクル生成と消�
                 Generated = true;//出現している
 
                 speed = 10.0f;
+
+                /*直接代入(追加)*/
+                ChildObj.transform.localPosition = new Vector3(0.0f, 0.03f, 0.0f);
+                Vector3 rotationVector = new Vector3(-90, 0, 0);
+                ChildObj.transform.rotation = Quaternion.Euler(rotationVector);
+                ChildObj.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
             }
         }
 

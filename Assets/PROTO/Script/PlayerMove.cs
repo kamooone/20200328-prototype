@@ -31,9 +31,9 @@ public class PlayerMove : MonoBehaviour
     public bool UIUp_Flag = false;
     public bool UIDown_Flag = false;
 
-    bool key = false;
+    bool GroundCollision = true;
 
-    public int StageNow = 1;
+    int StageNow = 1;
 
     bool NoWaterMove = false;
 
@@ -42,7 +42,7 @@ public class PlayerMove : MonoBehaviour
     bool WaterUp1_Flag = false;
     bool WaterUp1 = false;
 
-    bool WaterDown1_Flag = true;
+    bool WaterDown1_Flag = false;
     bool WaterDown1 = false;
 
     //水増し機2
@@ -50,7 +50,7 @@ public class PlayerMove : MonoBehaviour
     bool WaterUp2_Flag = false;
     bool WaterUp2 = false;
 
-    bool WaterDown2_Flag = true;
+    bool WaterDown2_Flag = false;
     bool WaterDown2 = false;
 
     //水増し機3
@@ -58,12 +58,12 @@ public class PlayerMove : MonoBehaviour
     bool WaterUp3_Flag = false;
     bool WaterUp3 = false;
 
-    public bool WaterDown3_Flag = true;
+    public bool WaterDown3_Flag = false;
     bool WaterDown3 = false;
 
 
     //プレイヤーの左向き右向きを表す
-    int PlayerDirection = 1;
+    public static int PlayerDirection = 1;
 
     //方向チェンジ時の角度
     float radian = 180.0f;
@@ -270,39 +270,17 @@ public class PlayerMove : MonoBehaviour
     //当たり判定トリガー
     void OnTriggerStay(Collider collision)
     {
-        if (collision.gameObject.tag == "StageUp" && gameObject.tag == "Player" && (StageNow != 3))
+        if (collision.gameObject.tag == "StageUp" && (StageNow != 3))
         {
             UIUp_Flag = true;
             NoWaterMove = true;
 
-            if (Input.GetKey("up") && ClassUp_Flag == false && key == false)
+            if (Input.GetKey("up") && ClassUp_Flag == false && GroundCollision == true)
             {
                 this.aud.PlayOneShot(this.StageUpSE);
                 ClassUp_Flag = true;
-                key = true;
                 StageNow++;
             }
-        }
-
-        if (collision.gameObject.tag == "GoalUp" && gameObject.tag == "Player" && (StageNow == 3) && KeyItemScript.key == true)
-        {
-            UIUp_Flag = true;
-            NoWaterMove = true;
-
-            if (Input.GetKey("up") && ClassUp_Flag == false && key == false)
-            {
-                this.aud.PlayOneShot(this.StageUpSE);
-                ClassUp_Flag = true;
-                key = true;
-                StageNow++;
-            }
-        }
-
-        if (collision.gameObject.tag == "GoalUp" && gameObject.tag == "Player" && (StageNow == 3) && KeyItemScript.key == false)
-        {
-            UIUp_Flag = true;
-            NoWaterMove = true;
-            Text.gameObject.SetActive(true);
         }
 
         if (collision.gameObject.tag == "StageDown")
@@ -310,18 +288,27 @@ public class PlayerMove : MonoBehaviour
             UIDown_Flag = true;
             NoWaterMove = true;
 
-            if (Input.GetKey("down") && ClassDown_Flag == false && key == false)
+            if (Input.GetKey("down") && ClassDown_Flag == false && GroundCollision == true)
             {
                 this.aud.PlayOneShot(this.StageDownSE);
                 ClassDown_Flag = true;
-                key = true;
                 StageNow--;
             }
         }
 
-        if (collision.gameObject.tag == "Goal")
+        if (collision.gameObject.tag == "Goal" && StageNow == 3 && KeyItemScript.key == true)
         {
+            UIUp_Flag = true;
+            NoWaterMove = true;
+
             SceneManager.LoadScene("ClearScene");
+        }
+
+        if (collision.gameObject.tag == "Goal" && StageNow == 3 && KeyItemScript.key == false)
+        {
+            UIUp_Flag = true;
+            NoWaterMove = true;
+            Text.gameObject.SetActive(true);
         }
 
         ////水増し機１との判定
@@ -416,10 +403,6 @@ public class PlayerMove : MonoBehaviour
     //コリジョン当たり判定
     void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.tag == "Goal")
-        {
-            SceneManager.LoadScene("ClearScene");
-        }
         
         if ((collision.gameObject.tag == "Enemy2" || collision.gameObject.tag == "Wall") && PlayerDirection == 1)
         {
@@ -431,11 +414,25 @@ public class PlayerMove : MonoBehaviour
         }
     }
 
+
+    void OnCollisionStay(Collision collision)
+    {
+        if (collision.gameObject.tag == "Ground")
+        {
+            GroundCollision = true;
+        }
+    }
+
     //ノットコリジョン当たり判定
     void OnCollisionExit(Collision collision)
     {
         Enemy2_Collision_Left = false;
         Enemy2_Collision_Right = false;
+    }
+
+    void OnCollisionStayExit(Collision collision)
+    {
+        GroundCollision = false;
     }
 
     void ClassUp()
@@ -453,7 +450,6 @@ public class PlayerMove : MonoBehaviour
             up = 0.12f;
             ClassUp_Flag = false;
             UIUp_Flag = false;
-            key = false;
         }
     }
 
@@ -463,14 +459,13 @@ public class PlayerMove : MonoBehaviour
 
         transform.position = new Vector3(transform.position.x, transform.position.y - Down, transform.position.z);
 
-        if (Down > 0.24f) { Down -= 0.04f; }
+        if (Down > 0.12f) { Down -= 0.04f; }
 
-        if (Down < 0.24f)
+        if (Down <= 0.12f)
         {
-            Down = 0.28f;
+            Down = 0.36f;
             ClassDown_Flag = false;
             UIDown_Flag = false;
-            key = false;
         }
     }
 
