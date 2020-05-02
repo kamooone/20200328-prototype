@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+// 必要なコンポーネントの列記
+[RequireComponent(typeof(Animator))]
+
 public class PlayerMove : MonoBehaviour
 {
     GameObject W_Machine1;
@@ -15,6 +18,21 @@ public class PlayerMove : MonoBehaviour
     public AudioClip StageDownSE;
 
     AudioSource aud;
+
+    // キャラにアタッチされるアニメーターへの参照
+    private Animator anim;
+
+    // base layerで使われる、アニメーターの現在の状態の参照
+    private AnimatorStateInfo currentBaseState;
+
+
+    // アニメーター各ステートへの参照
+    static int locoState = Animator.StringToHash("Base Layer.walk");
+    static int jumpState = Animator.StringToHash("Base Layer.climb");
+    //static int restState = Animator.StringToHash("Base Layer.Rest");
+
+    // アニメーション再生速度設定
+    float animSpeed = 1.0f;
 
     public GameObject Text;
 
@@ -80,28 +98,53 @@ public class PlayerMove : MonoBehaviour
         W_Machine2 = GameObject.Find("Ground/Ground(2)/Water");
         W_Machine3 = GameObject.Find("Ground/Ground(3)/Water");
 
+        // Animatorコンポーネントを取得する
+        anim = GetComponent<Animator>();
+
         this.aud = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        // Animatorのモーション再生速度に animSpeedを設定する
+        anim.speed = animSpeed;
+
+        // 参照用のステート変数にBase Layer (0)の現在のステートを設定する
+        currentBaseState = anim.GetCurrentAnimatorStateInfo(0);
+
+
         //ポーズ画面になるとUpdate以外の処理も止める
         if (Mathf.Approximately(Time.timeScale, 0f))
         {
             return;
         }
-        
 
         //左に移動
         if (Input.GetKey("left") && Enemy2_Collision_Left == false)
         {
             PlayerDirection = 1;
-            if (radian != 180.0f)
+            anim.SetBool("walk", true);     // Animatorにジャンプに切り替えるフラグを送る
+
+            if (radian != 180.0f && radian != 90.0f && radian != -90.0f)
             {
                 radian = 180.0f;
                 transform.Rotate(new Vector3(0f, radian, 0f));
             }
+
+            if (radian == 90.0f)
+            {
+                radian = -90.0f;
+                transform.Rotate(new Vector3(0f, radian, 0f));
+                radian = 180.0f;
+            }
+
+            if (radian == -90.0f)
+            {
+                transform.Rotate(new Vector3(0f, radian, 0f));
+                radian = 180.0f;
+            }
+
             Vector3 axis = transform.TransformDirection(Vector3.up);
             transform.RotateAround(target.position, axis, speed * Time.deltaTime);
         }
@@ -110,17 +153,35 @@ public class PlayerMove : MonoBehaviour
         if (Input.GetKey("right") && Enemy2_Collision_Right == false)
         {
             PlayerDirection = -1;
-            if (radian != -180.0f)
+            anim.SetBool("walk", true);     // Animatorにジャンプに切り替えるフラグを送る
+
+            if (radian != -180.0f && radian != 90.0f && radian != -90.0f)
             {
                 radian = -180.0f;
                 transform.Rotate(new Vector3(0f, radian, 0f));
             }
+
+            if (radian == 90.0f)
+            {
+                transform.Rotate(new Vector3(0f, radian, 0f));
+                radian = -180.0f;
+            }
+
+            if (radian == -90.0f)
+            {
+                radian = -90.0f;
+                transform.Rotate(new Vector3(0f, radian, 0f));
+                radian = 180.0f;
+            }
+
             Vector3 axis = transform.TransformDirection(Vector3.down);
             transform.RotateAround(target.position, axis, speed * Time.deltaTime);
         }
 
-
-
+        if (!(Input.GetKey("right")) && !(Input.GetKey("left")))
+        {
+            anim.SetBool("walk", false);
+        }
 
 
 
@@ -263,9 +324,8 @@ public class PlayerMove : MonoBehaviour
             //三階の水減
             WaterLoss3();
         }
-
     }
-    
+
 
     //当たり判定トリガー
     void OnTriggerStay(Collider collision)
@@ -296,7 +356,7 @@ public class PlayerMove : MonoBehaviour
             }
         }
 
-        if (collision.gameObject.tag == "Goal" && StageNow == 3 && KeyItemScript.key == true)
+        if (collision.gameObject.tag == "Goal" && KeyItemScript.key == true)
         {
             UIUp_Flag = true;
             NoWaterMove = true;
@@ -304,11 +364,13 @@ public class PlayerMove : MonoBehaviour
             SceneManager.LoadScene("ClearScene");
         }
 
-        if (collision.gameObject.tag == "Goal" && StageNow == 3 && KeyItemScript.key == false)
+        if (collision.gameObject.tag == "Goal" && KeyItemScript.key == false)
         {
             UIUp_Flag = true;
             NoWaterMove = true;
             Text.gameObject.SetActive(true);
+
+            SceneManager.LoadScene("ClearScene");
         }
 
         ////水増し機１との判定
@@ -403,7 +465,7 @@ public class PlayerMove : MonoBehaviour
     //コリジョン当たり判定
     void OnCollisionEnter(Collision collision)
     {
-        
+
         if ((collision.gameObject.tag == "Enemy2" || collision.gameObject.tag == "Wall") && PlayerDirection == 1)
         {
             Enemy2_Collision_Left = true;
@@ -417,9 +479,22 @@ public class PlayerMove : MonoBehaviour
 
     void OnCollisionStay(Collision collision)
     {
-        if (collision.gameObject.tag == "Ground")
+        if (collision.gameObject.tag == "Ground3")
         {
             GroundCollision = true;
+            StageNow = 3;
+        }
+
+        if (collision.gameObject.tag == "Ground2")
+        {
+            GroundCollision = true;
+            StageNow = 2;
+        }
+
+        if (collision.gameObject.tag == "Ground1")
+        {
+            GroundCollision = true;
+            StageNow = 1;
         }
     }
 
@@ -441,8 +516,22 @@ public class PlayerMove : MonoBehaviour
 
         if (up < 0.36f && ClassUp_Flag == true)
         {
+
             up += 0.04f;
             transform.position = new Vector3(transform.position.x, transform.position.y + up, transform.position.z);
+
+            if (radian != 90.0f && radian == 180.0f)
+            {
+                radian = 90.0f;
+                transform.Rotate(new Vector3(0f, radian, 0f));
+            }
+
+            if (radian != 90.0f && radian == -180.0f)
+            {
+                radian = -90.0f;
+                transform.Rotate(new Vector3(0f, radian, 0f));
+            }
+            anim.SetBool("climb", true);     // Animatorにジャンプに切り替えるフラグを送る
         }
 
         if (up >= 0.36f)
@@ -450,6 +539,8 @@ public class PlayerMove : MonoBehaviour
             up = 0.12f;
             ClassUp_Flag = false;
             UIUp_Flag = false;
+
+            anim.SetBool("climb", false);     // Animatorにジャンプに切り替えるフラグを送る
         }
     }
 
@@ -459,13 +550,34 @@ public class PlayerMove : MonoBehaviour
 
         transform.position = new Vector3(transform.position.x, transform.position.y - Down, transform.position.z);
 
-        if (Down > 0.12f) { Down -= 0.04f; }
+        if (Down > 0.12f)
+        {
+
+            Down -= 0.04f;
+
+
+            if (radian != 90.0f && radian == 180.0f)
+            {
+                radian = 90.0f;
+                transform.Rotate(new Vector3(0f, radian, 0f));
+            }
+
+            if (radian != 90.0f && radian == -180.0f)
+            {
+                radian = -90.0f;
+                transform.Rotate(new Vector3(0f, radian, 0f));
+            }
+            anim.SetBool("climb", true);     // Animatorにジャンプに切り替えるフラグを送る
+        }
+
 
         if (Down <= 0.12f)
         {
             Down = 0.36f;
             ClassDown_Flag = false;
             UIDown_Flag = false;
+
+            anim.SetBool("climb", false);     // Animatorにジャンプに切り替えるフラグを送る
         }
     }
 
@@ -476,7 +588,7 @@ public class PlayerMove : MonoBehaviour
         Debug.Log("水アップ");
 
         WaterHight1 = 0.11f;
-        
+
         W_Machine1.transform.position = new Vector3(W_Machine1.transform.position.x, W_Machine1.transform.position.y + WaterHight1, W_Machine1.transform.position.z);
 
         WaterUp1_Flag = false;
