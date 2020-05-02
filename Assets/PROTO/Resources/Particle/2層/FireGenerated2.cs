@@ -7,7 +7,7 @@ public class FireGenerated2 : MonoBehaviour//炎パーティクル生成と消�
     GameObject PlayerObject;
     PlayerMove PlayerScript;
 
-    public static float speed = 10.0f;
+    public static float speed = 4.0f;
 
     //水の高さ取得
     float WaterHight;
