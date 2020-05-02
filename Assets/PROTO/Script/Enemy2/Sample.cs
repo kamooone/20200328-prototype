@@ -22,7 +22,7 @@ public class EnemyMove2 : MonoBehaviour//敵の移動処理(本来はまとめ�
     float[] radian = new float[3];
 
     //各層の水の高さ取得
-    float[] WaterHight = new float[5];
+    float[] WaterHight = new float[3];
 
     // Start is called before the first frame update
     void Start()
@@ -50,8 +50,7 @@ public class EnemyMove2 : MonoBehaviour//敵の移動処理(本来はまとめ�
         WaterHight[0] = PlayerScript.WaterHight2;
         WaterHight[1] = PlayerScript.WaterHight1;
         WaterHight[2] = PlayerScript.WaterHight3;
-        WaterHight[3] = PlayerScript.WaterHight4;
-        WaterHight[4] = PlayerScript.WaterHight5;
+
 
         if (Input.GetKey("left"))
         {

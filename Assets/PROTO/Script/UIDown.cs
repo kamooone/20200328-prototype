@@ -28,6 +28,7 @@ public class UIDown : MonoBehaviour
         if (PlayerScript.UIDown_Flag == true) { alfa = 1.0f; }
 
         uiImage.position = RectTransformUtility.WorldToScreenPoint(Camera.main, targetObject.position);
+        uiImage.position = new Vector3(uiImage.position.x+2.0f, uiImage.position.y + 30.0f, uiImage.position.z);
         GetComponent<Image>().color = new Color(red, green, blue, alfa);
     }
 }

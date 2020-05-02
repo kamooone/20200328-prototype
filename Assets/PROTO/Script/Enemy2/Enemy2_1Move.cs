@@ -35,7 +35,7 @@ public class Enemy2_1Move : MonoBehaviour//敵の移動処理(本来はまとめ
         WaterHight = PlayerScript.WaterHight1;
 
         //水の判定
-        if (WaterHight == 0.1f)
+        if (WaterHight == 0.11f)
         {
             /*移動処理*/
             if (direction == 1)
@@ -79,6 +79,11 @@ public class Enemy2_1Move : MonoBehaviour//敵の移動処理(本来はまとめ
         if (collision.gameObject.tag == "Player" && WaterHight == 0.1f)
         {
             SceneManager.LoadScene("GameOverScene");
+        }
+
+        if (collision.gameObject.tag == "Enemy2" || collision.gameObject.tag == "Enemy")
+        {
+            direction *= -1;
         }
     }
 }
