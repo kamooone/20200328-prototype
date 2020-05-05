@@ -68,7 +68,7 @@ public class PauseMenu : MonoBehaviour
 
             if (Input.GetKeyDown("right"))
             {
-                if (Pause.PauseMenuNo < 3)
+                if (Pause.PauseMenuNo < 5)
                 {
                     Pause.PauseMenuNo++;
                     this.aud.PlayOneShot(this.CursorSE);
@@ -130,6 +130,16 @@ public class PauseMenu : MonoBehaviour
                 if (Menu.NowStageNo == 3)
                 {
                     SceneManager.LoadScene("GameScene3");
+                }
+
+                if (Menu.NowStageNo == 4)
+                {
+                    SceneManager.LoadScene("GameScene4");
+                }
+
+                if (Menu.NowStageNo == 5)
+                {
+                    SceneManager.LoadScene("GameScene5");
                 }
             }
             if (Input.GetKeyDown(KeyCode.Space) && Pause.PauseMenuNo == 2)

@@ -8,6 +8,8 @@ public class Menu : MonoBehaviour
     Button stage1;
     Button stage2;
     Button stage3;
+    Button stage4;
+    Button stage5;
     Button sound;
 
     GameObject SoundPanel;
@@ -30,6 +32,8 @@ public class Menu : MonoBehaviour
         stage1 = GameObject.Find("StageSelectCanvas/stage/stage1").GetComponent<Button>();
         stage2 = GameObject.Find("StageSelectCanvas/stage/stage2").GetComponent<Button>();
         stage3 = GameObject.Find("StageSelectCanvas/stage/stage3").GetComponent<Button>();
+        stage4 = GameObject.Find("StageSelectCanvas/stage/stage4").GetComponent<Button>();
+        stage5 = GameObject.Find("StageSelectCanvas/stage/stage5").GetComponent<Button>();
         sound = GameObject.Find("StageSelectCanvas/stage/sound").GetComponent<Button>(); ;
 
         SoundPanel = GameObject.Find("StageSelectCanvas/stage/SoundPanel");
@@ -50,7 +54,7 @@ public class Menu : MonoBehaviour
         {
             if (Input.GetKeyDown("right"))
             {
-                if (StageNo < 4)
+                if (StageNo < 6)
                 {
                     StageNo++;
                     this.aud.PlayOneShot(this.CursorSE);
@@ -124,6 +128,18 @@ public class Menu : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Space) && StageNo == 4)
             {
                 this.aud.PlayOneShot(this.DecidedSE);
+                SceneManager.LoadScene("GameScene4");
+                NowStageNo = 4;
+            }
+            if (Input.GetKeyDown(KeyCode.Space) && StageNo == 5)
+            {
+                this.aud.PlayOneShot(this.DecidedSE);
+                SceneManager.LoadScene("GameScene5");
+                NowStageNo = 5;
+            }
+            if (Input.GetKeyDown(KeyCode.Space) && StageNo == 6)
+            {
+                this.aud.PlayOneShot(this.DecidedSE);
                 SoundControll = true;
 
                 stage1.gameObject.SetActive(false);
@@ -151,6 +167,14 @@ public class Menu : MonoBehaviour
             stage3.Select();
         }
         if (StageNo == 4)
+        {
+            stage4.Select();
+        }
+        if (StageNo == 5)
+        {
+            stage5.Select();
+        }
+        if (StageNo == 6)
         {
             sound.Select();
         }

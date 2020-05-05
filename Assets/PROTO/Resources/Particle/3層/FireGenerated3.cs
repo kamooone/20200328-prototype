@@ -53,9 +53,13 @@ public class FireGenerated3 : MonoBehaviour//炎パーティクル生成と消�
 
                 Generated = true;//出現している
 
-                speed = 10.0f;
+                //speed = 10.0f;
+                //
+                //AnimSpeed = 4.0f;
 
-                AnimSpeed = 4.0f;
+                speed = 6.0f;
+
+                AnimSpeed = 1.0f;
 
                 /*直接代入(追加)*/
                 ChildObj.transform.localPosition = new Vector3(0.0f, 0.03f, 0.0f);
@@ -74,9 +78,13 @@ public class FireGenerated3 : MonoBehaviour//炎パーティクル生成と消�
                 Destroy(gameObject.transform.Find("Fire(Clone)").gameObject);//Fireという子オブジェクトを削除(なぜかFire(clone)になる)
                 Generated = false;//出現していない
 
-                speed = 6.0f;
+                speed = 10.0f;
+                
+                AnimSpeed = 4.0f;
 
-                AnimSpeed = 1.0f;
+                //speed = 6.0f;
+                //
+                //AnimSpeed = 1.0f;
             }
         }
 

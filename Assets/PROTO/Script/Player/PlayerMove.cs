@@ -29,7 +29,7 @@ public class PlayerMove : MonoBehaviour
     // アニメーター各ステートへの参照
     static int locoState = Animator.StringToHash("Base Layer.walk");
     static int jumpState = Animator.StringToHash("Base Layer.climb");
-    //static int restState = Animator.StringToHash("Base Layer.Rest");
+    static int restState = Animator.StringToHash("Base Layer.water");
 
     // アニメーション再生速度設定
     float animSpeed = 1.0f;
@@ -54,6 +54,12 @@ public class PlayerMove : MonoBehaviour
     int StageNow = 1;
 
     bool NoWaterMove = false;
+
+
+    public static bool WaterAction = false;
+    int WaterTime = 0;
+    bool Water = false;
+
 
     //水増し機1
     public float WaterHight1 = 0.0f;
@@ -102,7 +108,13 @@ public class PlayerMove : MonoBehaviour
         anim = GetComponent<Animator>();
 
         this.aud = GetComponent<AudioSource>();
+
+
+        WaterAction = false;
+        WaterTime = 0;
+        Water = false;
     }
+
 
     // Update is called once per frame
     void Update()
@@ -122,64 +134,37 @@ public class PlayerMove : MonoBehaviour
 
 
 
-
-
-
+        //水アクション
         if (Input.GetKey("h"))
         {
-            Debug.Log("階層アップ");
-            if (radian != 90.0f && radian == 180.0f)
-            {
-                radian = 90.0f;
-                transform.Rotate(new Vector3(0f, radian, 0f));
-            }
-
-            if (radian != 90.0f && radian == -180.0f)
-            {
-                radian = -90.0f;
-                transform.Rotate(new Vector3(0f, radian, 0f));
-            }
-            anim.SetBool("climb", true);     // Animatorにジャンプに切り替えるフラグを送る
+            anim.SetBool("water", true);     // Animatorにジャンプに切り替えるフラグを送る
+            WaterAction = true;
+        }
+        if (WaterAction == true)
+        {
+            WaterTime++;
         }
 
-        //if ()
-        //{
-        //    anim.SetBool("climb", false);     // Animatorにジャンプに切り替えるフラグを送る
-        //}
-
-
-        //Debug.Log("階層ダウン");
-        //
-        //if ()
-        //{
-        //    if (radian != 90.0f && radian == 180.0f)
-        //    {
-        //        radian = 90.0f;
-        //        transform.Rotate(new Vector3(0f, radian, 0f));
-        //    }
-        //
-        //    if (radian != 90.0f && radian == -180.0f)
-        //    {
-        //        radian = -90.0f;
-        //        transform.Rotate(new Vector3(0f, radian, 0f));
-        //    }
-        //    anim.SetBool("climb", true);     // Animatorにジャンプに切り替えるフラグを送る
-        //}
-        //
-        //
-        //if ()
-        //{
-        //    
-        //    anim.SetBool("climb", false);     // Animatorにジャンプに切り替えるフラグを送る
-        //}
+        if(WaterAction == true && WaterTime == 199)
+        {
+            Water = true;
+        }
+        if(WaterAction == true && WaterTime == 200)
+        {
+            WaterAction = false;
+            WaterTime = 0;
+            anim.SetBool("water", false);     // Animatorにジャンプに切り替えるフラグを送る
+            
+            Water = false;
+        }
 
 
 
 
 
-
+        
         //左に移動
-        if (Input.GetKey("left") && Enemy2_Collision_Left == false)
+        if (Input.GetKey("left") && Enemy2_Collision_Left == false && WaterAction == false)
         {
             PlayerDirection = 1;
             anim.SetBool("walk", true);     // Animatorにジャンプに切り替えるフラグを送る
@@ -208,7 +193,7 @@ public class PlayerMove : MonoBehaviour
         }
 
         //右に移動
-        if (Input.GetKey("right") && Enemy2_Collision_Right == false)
+        if (Input.GetKey("right") && Enemy2_Collision_Right == false && WaterAction == false)
         {
             PlayerDirection = -1;
             anim.SetBool("walk", true);     // Animatorにジャンプに切り替えるフラグを送る
@@ -247,7 +232,7 @@ public class PlayerMove : MonoBehaviour
         ////水増し機１との判定
         //if (collision.gameObject.tag == "Water1")
         //{
-        if (StageNow == 1 && NoWaterMove == false)
+        if (StageNow == 1 && Water == true)
         {
             if (WaterHight1 == 0.0f || WaterHight1 == -0.11f)
             {
@@ -260,13 +245,13 @@ public class PlayerMove : MonoBehaviour
                 UIDown_Flag = true;
             }
 
-            //(ボタンを別にする)
-            if (Input.GetKey("s") && WaterDown1_Flag == true)
+
+            if (WaterDown1_Flag == true)
             {
                 this.aud.PlayOneShot(this.WaterDownSE);
                 WaterDown1 = true;
             }
-            if (Input.GetKey("w") && WaterUp1_Flag == true)
+            if (WaterUp1_Flag == true)
             {
                 this.aud.PlayOneShot(this.WaterUpSE);
                 WaterUp1 = true;
@@ -277,7 +262,7 @@ public class PlayerMove : MonoBehaviour
         ////水増し機2との判定
         //if (collision.gameObject.tag == "Water2")
         //{
-        if (StageNow == 2 && NoWaterMove == false)
+        if (StageNow == 2 && Water == true)
         {
             if (WaterHight2 == 0.0f || WaterHight2 == -0.11f)
             {
@@ -290,12 +275,12 @@ public class PlayerMove : MonoBehaviour
                 UIDown_Flag = true;
             }
 
-            if (Input.GetKey("s") && WaterDown2_Flag == true)
+            if (WaterDown2_Flag == true)
             {
                 this.aud.PlayOneShot(this.WaterDownSE);
                 WaterDown2 = true;
             }
-            if (Input.GetKey("w") && WaterUp2_Flag == true)
+            if (WaterUp2_Flag == true)
             {
                 this.aud.PlayOneShot(this.WaterUpSE);
                 WaterUp2 = true;
@@ -306,7 +291,7 @@ public class PlayerMove : MonoBehaviour
         ////水増し機3との判定
         //if (collision.gameObject.tag == "Water3")
         //{
-        if (StageNow == 3 && NoWaterMove == false)
+        if (StageNow == 3 && Water == true)
         {
             if (WaterHight3 == 0.0f || WaterHight3 == -0.11f)
             {
@@ -319,12 +304,12 @@ public class PlayerMove : MonoBehaviour
                 UIDown_Flag = true;
             }
 
-            if (Input.GetKey("s") && WaterDown3_Flag == true)
+            if (WaterDown3_Flag == true)
             {
                 this.aud.PlayOneShot(this.WaterDownSE);
                 WaterDown3 = true;
             }
-            if (Input.GetKey("w") && WaterUp3_Flag == true)
+            if (WaterUp3_Flag == true)
             {
                 this.aud.PlayOneShot(this.WaterUpSE);
                 WaterUp3 = true;
@@ -486,6 +471,7 @@ public class PlayerMove : MonoBehaviour
         UIUp_Flag = false;
         UIDown_Flag = false;
         NoWaterMove = false;
+        Text.gameObject.SetActive(false);
     }
 
     //コリジョン当たり判定
