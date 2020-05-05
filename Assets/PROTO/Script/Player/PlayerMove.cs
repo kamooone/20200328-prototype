@@ -120,6 +120,64 @@ public class PlayerMove : MonoBehaviour
             return;
         }
 
+
+
+
+
+
+        if (Input.GetKey("h"))
+        {
+            Debug.Log("階層アップ");
+            if (radian != 90.0f && radian == 180.0f)
+            {
+                radian = 90.0f;
+                transform.Rotate(new Vector3(0f, radian, 0f));
+            }
+
+            if (radian != 90.0f && radian == -180.0f)
+            {
+                radian = -90.0f;
+                transform.Rotate(new Vector3(0f, radian, 0f));
+            }
+            anim.SetBool("climb", true);     // Animatorにジャンプに切り替えるフラグを送る
+        }
+
+        //if ()
+        //{
+        //    anim.SetBool("climb", false);     // Animatorにジャンプに切り替えるフラグを送る
+        //}
+
+
+        //Debug.Log("階層ダウン");
+        //
+        //if ()
+        //{
+        //    if (radian != 90.0f && radian == 180.0f)
+        //    {
+        //        radian = 90.0f;
+        //        transform.Rotate(new Vector3(0f, radian, 0f));
+        //    }
+        //
+        //    if (radian != 90.0f && radian == -180.0f)
+        //    {
+        //        radian = -90.0f;
+        //        transform.Rotate(new Vector3(0f, radian, 0f));
+        //    }
+        //    anim.SetBool("climb", true);     // Animatorにジャンプに切り替えるフラグを送る
+        //}
+        //
+        //
+        //if ()
+        //{
+        //    
+        //    anim.SetBool("climb", false);     // Animatorにジャンプに切り替えるフラグを送る
+        //}
+
+
+
+
+
+
         //左に移動
         if (Input.GetKey("left") && Enemy2_Collision_Left == false)
         {
@@ -333,7 +391,7 @@ public class PlayerMove : MonoBehaviour
         if (collision.gameObject.tag == "StageUp" && (StageNow != 3))
         {
             UIUp_Flag = true;
-            NoWaterMove = true;
+            //NoWaterMove = true;
 
             if (Input.GetKey("up") && ClassUp_Flag == false && GroundCollision == true)
             {
@@ -346,7 +404,7 @@ public class PlayerMove : MonoBehaviour
         if (collision.gameObject.tag == "StageDown")
         {
             UIDown_Flag = true;
-            NoWaterMove = true;
+            //NoWaterMove = true;
 
             if (Input.GetKey("down") && ClassDown_Flag == false && GroundCollision == true)
             {
@@ -356,100 +414,69 @@ public class PlayerMove : MonoBehaviour
             }
         }
 
-        if (collision.gameObject.tag == "Goal" && KeyItemScript.key == true)
+        if (collision.gameObject.tag == "Goal")
         {
-            UIUp_Flag = true;
-            NoWaterMove = true;
-
-            SceneManager.LoadScene("ClearScene");
+            GoalDoor.GoalFlag = true;
         }
 
-        if (collision.gameObject.tag == "Goal" && KeyItemScript.key == false)
+
+
+        if (collision.gameObject.tag == "Normal" && KeyItemScript.key == false)
         {
-            UIUp_Flag = true;
-            NoWaterMove = true;
             Text.gameObject.SetActive(true);
-
-            SceneManager.LoadScene("ClearScene");
+        }
+        if (collision.gameObject.tag == "Normal" && KeyItemScript.key == true)
+        {
+            DoorRotate.RotateFlag = true;
         }
 
-        ////水増し機１との判定
-        //if (collision.gameObject.tag == "Water1")
-        //{
-        //    if (WaterHight1 == 0.0f || WaterHight1 == -0.1f)
-        //    {
-        //        WaterUp1_Flag = true;
-        //        UIUp_Flag = true;
-        //    }
-        //    if (WaterHight1 == 0.1f)
-        //    {
-        //        WaterDown1_Flag = true;
-        //        UIDown_Flag = true;
-        //    }
+        if (collision.gameObject.tag == "Reverse" && KeyItemScript.key == false)
+        {
+            Text.gameObject.SetActive(true);
+        }
+        if (collision.gameObject.tag == "Reverse" && KeyItemScript.key == true)
+        {
+            DoorRotate.RotateReverseFlag = true;
+        }
 
-        //    if (Input.GetKey("down") && WaterDown1_Flag == true)
-        //    {
-        //        this.aud.PlayOneShot(this.WaterDownSE);
-        //        WaterDown1 = true;
-        //    }
-        //    if (Input.GetKey("up") && WaterUp1_Flag == true)
-        //    {
-        //        this.aud.PlayOneShot(this.WaterUpSE);
-        //        WaterUp1 = true;
-        //    }
-        //}
 
-        ////水増し機2との判定
-        //if (collision.gameObject.tag == "Water2")
-        //{
-        //    if (WaterHight2 == 0.0f || WaterHight2 == -0.1f)
-        //    {
-        //        WaterUp2_Flag = true;
-        //        UIUp_Flag = true;
-        //    }
-        //    if (WaterHight2 == 0.1f)
-        //    {
-        //        WaterDown2_Flag = true;
-        //        UIDown_Flag = true;
-        //    }
 
-        //    if (Input.GetKey("down") && WaterDown2_Flag == true)
-        //    {
-        //        this.aud.PlayOneShot(this.WaterDownSE);
-        //        WaterDown2 = true;
-        //    }
-        //    if (Input.GetKey("up") && WaterUp2_Flag == true)
-        //    {
-        //        this.aud.PlayOneShot(this.WaterUpSE);
-        //        WaterUp2 = true;
-        //    }
-        //}
+        if (collision.gameObject.tag == "Normal1" && KeyItemScript1.key == false)
+        {
+            Text.gameObject.SetActive(true);
+        }
+        if (collision.gameObject.tag == "Normal1" && KeyItemScript1.key == true)
+        {
+            DoorRotate1.RotateFlag = true;
+        }
 
-        ////水増し機3との判定
-        //if (collision.gameObject.tag == "Water3")
-        //{
-        //    if (WaterHight3 == 0.0f || WaterHight3 == -0.1f)
-        //    {
-        //        WaterUp3_Flag = true;
-        //        UIUp_Flag = true;
-        //    }
-        //    if (WaterHight3 == 0.1f)
-        //    {
-        //        WaterDown3_Flag = true;
-        //        UIDown_Flag = true;
-        //    }
+        if (collision.gameObject.tag == "Reverse1" && KeyItemScript1.key == false)
+        {
+            Text.gameObject.SetActive(true);
+        }
+        if (collision.gameObject.tag == "Reverse1" && KeyItemScript1.key == true)
+        {
+            DoorRotate1.RotateReverseFlag = true;
+        }
 
-        //    if (Input.GetKey("down") && WaterDown3_Flag == true)
-        //    {
-        //        this.aud.PlayOneShot(this.WaterDownSE);
-        //        WaterDown3 = true;
-        //    }
-        //    if (Input.GetKey("up") && WaterUp3_Flag == true)
-        //    {
-        //        this.aud.PlayOneShot(this.WaterUpSE);
-        //        WaterUp3 = true;
-        //    }
-        //}
+
+        if (collision.gameObject.tag == "Normal2" && KeyItemScript2.key == false)
+        {
+            Text.gameObject.SetActive(true);
+        }
+        if (collision.gameObject.tag == "Normal2" && KeyItemScript2.key == true)
+        {
+            DoorRotate2.RotateFlag = true;
+        }
+
+        if (collision.gameObject.tag == "Reverse2" && KeyItemScript2.key == false)
+        {
+            Text.gameObject.SetActive(true);
+        }
+        if (collision.gameObject.tag == "Reverse2" && KeyItemScript2.key == true)
+        {
+            DoorRotate2.RotateReverseFlag = true;
+        }
 
     }
 
@@ -465,12 +492,11 @@ public class PlayerMove : MonoBehaviour
     //コリジョン当たり判定
     void OnCollisionEnter(Collision collision)
     {
-
-        if ((collision.gameObject.tag == "Enemy2" || collision.gameObject.tag == "Wall") && PlayerDirection == 1)
+        if ((collision.gameObject.tag == "Enemy2" || collision.gameObject.tag == "Wall" || collision.gameObject.tag == "Door") && PlayerDirection == 1)
         {
             Enemy2_Collision_Left = true;
         }
-        if ((collision.gameObject.tag == "Enemy2" || collision.gameObject.tag == "Wall") && PlayerDirection == -1)
+        if ((collision.gameObject.tag == "Enemy2" || collision.gameObject.tag == "Wall" || collision.gameObject.tag == "Door") && PlayerDirection == -1)
         {
             Enemy2_Collision_Right = true;
         }
@@ -503,6 +529,7 @@ public class PlayerMove : MonoBehaviour
     {
         Enemy2_Collision_Left = false;
         Enemy2_Collision_Right = false;
+        Text.gameObject.SetActive(false);
     }
 
     void OnCollisionStayExit(Collision collision)
@@ -517,7 +544,7 @@ public class PlayerMove : MonoBehaviour
         if (up < 0.36f && ClassUp_Flag == true)
         {
 
-            up += 0.04f;
+            up += 0.06f;
             transform.position = new Vector3(transform.position.x, transform.position.y + up, transform.position.z);
 
             if (radian != 90.0f && radian == 180.0f)
@@ -553,7 +580,7 @@ public class PlayerMove : MonoBehaviour
         if (Down > 0.12f)
         {
 
-            Down -= 0.04f;
+            Down -= 0.06f;
 
 
             if (radian != 90.0f && radian == 180.0f)

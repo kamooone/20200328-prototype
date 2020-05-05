@@ -9,6 +9,9 @@ public class FireGenerated3 : MonoBehaviour//炎パーティクル生成と消�
 
     public static float speed = 4.0f;
 
+    // アニメーション再生速度設定
+    public static float AnimSpeed = 1.0f;
+
     //水の高さ取得
     float WaterHight;
 
@@ -52,6 +55,8 @@ public class FireGenerated3 : MonoBehaviour//炎パーティクル生成と消�
 
                 speed = 10.0f;
 
+                AnimSpeed = 4.0f;
+
                 /*直接代入(追加)*/
                 ChildObj.transform.localPosition = new Vector3(0.0f, 0.03f, 0.0f);
                 Vector3 rotationVector = new Vector3(-90, 0, 0);
@@ -71,6 +76,7 @@ public class FireGenerated3 : MonoBehaviour//炎パーティクル生成と消�
 
                 speed = 6.0f;
 
+                AnimSpeed = 1.0f;
             }
         }
 

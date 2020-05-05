@@ -3,8 +3,27 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+// 必要なコンポーネントの列記
+[RequireComponent(typeof(Animator))]
+
 public class Enemy1Move : MonoBehaviour
 {
+    // キャラにアタッチされるアニメーターへの参照
+    private Animator anim;
+
+    // base layerで使われる、アニメーターの現在の状態の参照
+    private AnimatorStateInfo currentBaseState;
+
+
+    // アニメーター各ステートへの参照
+    //static int locoState = Animator.StringToHash("Base Layer.walk");
+    //static int jumpState = Animator.StringToHash("Base Layer.climb");
+    //static int restState = Animator.StringToHash("Base Layer.Rest");
+
+    // アニメーション再生速度設定
+    //float FastSpeed = 4.0f;
+    //float SlowSpeed = 1.0f;
+
     public Transform target;
 
     GameObject Enemy;
@@ -22,12 +41,18 @@ public class Enemy1Move : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        // Animatorコンポーネントを取得する
+        anim = GetComponent<Animator>();
 
+        // Animatorのモーション再生速度に animSpeedを設定する
+        anim.speed = 1.0f;
     }
 
     // Update is called once per frame
     void Update()
     {
+        anim.speed = FireGenerated1.AnimSpeed;
+
         /*移動処理*/
         if (direction == 1)
         {
@@ -92,7 +117,7 @@ public class Enemy1Move : MonoBehaviour
             direction *= -1;
         }
 
-        if (collision.gameObject.tag == "Wall")
+        if (collision.gameObject.tag == "Wall" || collision.gameObject.tag == "Door")
         {
             direction *= -1;
         }
