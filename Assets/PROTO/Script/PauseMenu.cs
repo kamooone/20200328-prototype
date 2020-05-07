@@ -22,7 +22,9 @@ public class PauseMenu : MonoBehaviour
     public AudioClip DecidedSE;
     AudioSource aud;
 
-
+    //　ポーズした時に表示するUI
+    [SerializeField]
+    private GameObject pauseUI;
 
     void Start()
     {
@@ -113,41 +115,46 @@ public class PauseMenu : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.Space) && Pause.PauseMenuNo == 1)
             {
-                //ポーズ解除
-                Time.timeScale = 1f;
+
+                //　ポーズUIのアクティブ、非アクティブを切り替え
+                pauseUI.SetActive(!pauseUI.activeSelf);
+
                 this.aud.PlayOneShot(this.DecidedSE);
 
-                if (Menu.NowStageNo == 1)
-                {
-                    SceneManager.LoadScene("GameScene1");
-                }
+                //if (Menu.NowStageNo == 1)
+                //{
+                //    SceneManager.LoadScene("GameScene1");
+                //}
+                //
+                //if (Menu.NowStageNo == 2)
+                //{
+                //    SceneManager.LoadScene("GameScene2");
+                //}
+                //
+                //if (Menu.NowStageNo == 3)
+                //{
+                //    SceneManager.LoadScene("GameScene3");
+                //}
+                //
+                //if (Menu.NowStageNo == 4)
+                //{
+                //    SceneManager.LoadScene("GameScene4");
+                //}
+                //
+                //if (Menu.NowStageNo == 5)
+                //{
+                //    SceneManager.LoadScene("GameScene5");
+                //}
 
-                if (Menu.NowStageNo == 2)
-                {
-                    SceneManager.LoadScene("GameScene2");
-                }
-
-                if (Menu.NowStageNo == 3)
-                {
-                    SceneManager.LoadScene("GameScene3");
-                }
-
-                if (Menu.NowStageNo == 4)
-                {
-                    SceneManager.LoadScene("GameScene4");
-                }
-
-                if (Menu.NowStageNo == 5)
-                {
-                    SceneManager.LoadScene("GameScene5");
-                }
+                //フェードインフェードアウト処理
+                Menu.TitleFadeFlag = true;
             }
             if (Input.GetKeyDown(KeyCode.Space) && Pause.PauseMenuNo == 2)
             {
                 //ポーズ解除
                 Time.timeScale = 1f;
                 this.aud.PlayOneShot(this.DecidedSE);
-                SceneManager.LoadScene("SelectScene");
+                SceneManager.LoadScene("NewSelectScene");
             }
             if (Input.GetKeyDown(KeyCode.Space) && Pause.PauseMenuNo == 3)
             {

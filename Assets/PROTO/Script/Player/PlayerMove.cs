@@ -41,10 +41,10 @@ public class PlayerMove : MonoBehaviour
     public Transform target;//中心となるオブジェクト
 
     bool ClassUp_Flag = false;
-    float up = 0.12f;
+    float up = 0.0f;
 
     bool ClassDown_Flag = false;
-    float Down = 0.36f;
+    float Down = 0.0f;
 
     public bool UIUp_Flag = false;
     public bool UIDown_Flag = false;
@@ -113,6 +113,20 @@ public class PlayerMove : MonoBehaviour
         WaterAction = false;
         WaterTime = 0;
         Water = false;
+
+
+
+        WaterHight1 = 0.11f;
+        
+        W_Machine1.transform.position = new Vector3(W_Machine1.transform.position.x, W_Machine1.transform.position.y + WaterHight1, W_Machine1.transform.position.z);
+        
+        WaterHight2 = 0.11f;
+        
+        W_Machine2.transform.position = new Vector3(W_Machine2.transform.position.x, W_Machine2.transform.position.y + WaterHight2, W_Machine2.transform.position.z);
+        
+        WaterHight3 = 0.11f;
+        
+        W_Machine3.transform.position = new Vector3(W_Machine3.transform.position.x, W_Machine3.transform.position.y + WaterHight3, W_Machine3.transform.position.z);
     }
 
 
@@ -378,7 +392,7 @@ public class PlayerMove : MonoBehaviour
             UIUp_Flag = true;
             //NoWaterMove = true;
 
-            if (Input.GetKey("up") && ClassUp_Flag == false && GroundCollision == true)
+            if (Input.GetKey("up") && ClassUp_Flag == false && GroundCollision == true && WaterAction == false)
             {
                 this.aud.PlayOneShot(this.StageUpSE);
                 ClassUp_Flag = true;
@@ -391,7 +405,7 @@ public class PlayerMove : MonoBehaviour
             UIDown_Flag = true;
             //NoWaterMove = true;
 
-            if (Input.GetKey("down") && ClassDown_Flag == false && GroundCollision == true)
+            if (Input.GetKey("down") && ClassDown_Flag == false && GroundCollision == true && WaterAction == false)
             {
                 this.aud.PlayOneShot(this.StageDownSE);
                 ClassDown_Flag = true;
@@ -526,10 +540,10 @@ public class PlayerMove : MonoBehaviour
     {
         Debug.Log("階層アップ");
 
-        if (up < 0.36f && ClassUp_Flag == true)
+        if (ClassUp_Flag == true)
         {
 
-            up += 0.06f;
+            up += 2.0f;
             transform.position = new Vector3(transform.position.x, transform.position.y + up, transform.position.z);
 
             if (radian != 90.0f && radian == 180.0f)
@@ -543,16 +557,16 @@ public class PlayerMove : MonoBehaviour
                 radian = -90.0f;
                 transform.Rotate(new Vector3(0f, radian, 0f));
             }
-            anim.SetBool("climb", true);     // Animatorにジャンプに切り替えるフラグを送る
+            //anim.SetBool("climb", true);     // Animatorにジャンプに切り替えるフラグを送る
         }
 
-        if (up >= 0.36f)
+        if (up == 2.0f)
         {
-            up = 0.12f;
+            up = 0.0f;
             ClassUp_Flag = false;
             UIUp_Flag = false;
 
-            anim.SetBool("climb", false);     // Animatorにジャンプに切り替えるフラグを送る
+           // anim.SetBool("climb", false);     // Animatorにジャンプに切り替えるフラグを送る
         }
     }
 
@@ -560,12 +574,11 @@ public class PlayerMove : MonoBehaviour
     {
         Debug.Log("階層ダウン");
 
-        transform.position = new Vector3(transform.position.x, transform.position.y - Down, transform.position.z);
-
-        if (Down > 0.12f)
+        if (ClassDown_Flag == true)
         {
 
-            Down -= 0.06f;
+            Down -= 2.0f;
+            transform.position = new Vector3(transform.position.x, transform.position.y + Down, transform.position.z);
 
 
             if (radian != 90.0f && radian == 180.0f)
@@ -579,17 +592,17 @@ public class PlayerMove : MonoBehaviour
                 radian = -90.0f;
                 transform.Rotate(new Vector3(0f, radian, 0f));
             }
-            anim.SetBool("climb", true);     // Animatorにジャンプに切り替えるフラグを送る
+            //anim.SetBool("climb", true);     // Animatorにジャンプに切り替えるフラグを送る
         }
 
 
-        if (Down <= 0.12f)
+        if (Down == -2.0f)
         {
-            Down = 0.36f;
+            Down = 0.0f;
             ClassDown_Flag = false;
             UIDown_Flag = false;
 
-            anim.SetBool("climb", false);     // Animatorにジャンプに切り替えるフラグを送る
+           // anim.SetBool("climb", false);     // Animatorにジャンプに切り替えるフラグを送る
         }
     }
 

@@ -5,18 +5,22 @@ using UnityEngine.SceneManagement;
 
 public class Menu : MonoBehaviour
 {
+    GameObject FadeObject;
+    SelectFade SelectFadeScript;
+
     Button stage1;
     Button stage2;
     Button stage3;
     Button stage4;
     Button stage5;
     Button sound;
+    Button title;
 
     GameObject SoundPanel;
     Slider BGMSlider;
     Slider SESlider;
 
-    int StageNo = 1;
+    public static int StageNo = 1;
     public static int NowStageNo = 1;
 
     public bool SoundControll = false;
@@ -26,8 +30,15 @@ public class Menu : MonoBehaviour
     public AudioClip DecidedSE;
     AudioSource aud;
 
+    public static bool FadeFlag = false;
+    public static bool TitleFadeFlag = false;
+
     void Start()
     {
+        FadeObject = GameObject.Find("Fadeout");
+        SelectFadeScript = FadeObject.GetComponent<SelectFade>();
+
+
         // ボタンコンポーネントの取得
         stage1 = GameObject.Find("StageSelectCanvas/stage/stage1").GetComponent<Button>();
         stage2 = GameObject.Find("StageSelectCanvas/stage/stage2").GetComponent<Button>();
@@ -40,21 +51,27 @@ public class Menu : MonoBehaviour
         BGMSlider = GameObject.Find("StageSelectCanvas/stage/SoundPanel/BGMSlider").GetComponent<Slider>();
         SESlider = GameObject.Find("StageSelectCanvas/stage/SoundPanel/SESlider").GetComponent<Slider>();
 
+        title = GameObject.Find("StageSelectCanvas/stage/title").GetComponent<Button>();
+
         // 最初に選択状態にしたいボタンの設定
         stage1.Select();
 
         this.aud = GetComponent<AudioSource>();
+
+        FadeFlag = false;
+        TitleFadeFlag = false;
     }
 
 
     void Update()
     {
+        
         //ステージを選択
-        if (SoundControll == false)
+        if (SoundControll == false && FadeFlag == false && TitleFadeFlag == false)
         {
             if (Input.GetKeyDown("right"))
             {
-                if (StageNo < 6)
+                if (StageNo < 7)
                 {
                     StageNo++;
                     this.aud.PlayOneShot(this.CursorSE);
@@ -71,7 +88,7 @@ public class Menu : MonoBehaviour
         }
 
         //BGMかSEかを選択
-        if (SoundControll == true)
+        if (SoundControll == true && FadeFlag == false && TitleFadeFlag == false)
         {
             if (Input.GetKeyDown("down"))
             {
@@ -92,7 +109,7 @@ public class Menu : MonoBehaviour
         }
 
         //サウンド画面消去
-        if (Input.GetKeyDown("o") && SoundControll == true)
+        if (Input.GetKeyDown("o") && SoundControll == true && FadeFlag == false && TitleFadeFlag == false)
         {
             this.aud.PlayOneShot(this.DecidedSE);
             SoundControll = false;
@@ -107,36 +124,16 @@ public class Menu : MonoBehaviour
         //シーン遷移
         if (SoundControll == false)
         {
-            if (Input.GetKeyDown(KeyCode.Space) && StageNo == 1)
+            if (Input.GetKeyDown(KeyCode.Space) && StageNo <= 5)
             {
                 this.aud.PlayOneShot(this.DecidedSE);
-                SceneManager.LoadScene("GameScene1");
-                NowStageNo = 1;
+
+                //フェードインフェードアウト処理
+                FadeFlag = true;
             }
-            if (Input.GetKeyDown(KeyCode.Space) && StageNo == 2)
-            {
-                this.aud.PlayOneShot(this.DecidedSE);
-                SceneManager.LoadScene("GameScene2");
-                NowStageNo = 2;
-            }
-            if (Input.GetKeyDown(KeyCode.Space) && StageNo == 3)
-            {
-                this.aud.PlayOneShot(this.DecidedSE);
-                SceneManager.LoadScene("GameScene3");
-                NowStageNo = 3;
-            }
-            if (Input.GetKeyDown(KeyCode.Space) && StageNo == 4)
-            {
-                this.aud.PlayOneShot(this.DecidedSE);
-                SceneManager.LoadScene("GameScene4");
-                NowStageNo = 4;
-            }
-            if (Input.GetKeyDown(KeyCode.Space) && StageNo == 5)
-            {
-                this.aud.PlayOneShot(this.DecidedSE);
-                SceneManager.LoadScene("GameScene5");
-                NowStageNo = 5;
-            }
+
+
+
             if (Input.GetKeyDown(KeyCode.Space) && StageNo == 6)
             {
                 this.aud.PlayOneShot(this.DecidedSE);
@@ -149,6 +146,15 @@ public class Menu : MonoBehaviour
 
                 //サウンド処理表示
                 SoundPanel.gameObject.SetActive(true);
+            }
+
+
+            if (Input.GetKeyDown(KeyCode.Space) && StageNo == 7)
+            {
+                this.aud.PlayOneShot(this.DecidedSE);
+
+                //フェードインフェードアウト処理
+                TitleFadeFlag = true;
             }
         }
 
@@ -177,6 +183,10 @@ public class Menu : MonoBehaviour
         if (StageNo == 6)
         {
             sound.Select();
+        }
+        if (StageNo == 7)
+        {
+            title.Select();
         }
     }
 }
