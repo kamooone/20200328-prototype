@@ -54,8 +54,41 @@ public class GameOverMenu : MonoBehaviour
         {
             //ポーズ解除
             Time.timeScale = 1f;
-            this.aud.PlayOneShot(this.DecidedSE);
-            SceneManager.LoadScene("GameScene1");
+            
+            if (Menu.StageNo == 1)
+            {
+                this.aud.PlayOneShot(this.DecidedSE);
+                SceneManager.LoadScene("GameScene1");
+                Menu.NowStageNo = 1;
+            }
+
+            if (Menu.StageNo == 2)
+            {
+                this.aud.PlayOneShot(this.DecidedSE);
+                SceneManager.LoadScene("GameScene2");
+                Menu.NowStageNo = 2;
+            }
+
+            if (Menu.StageNo == 3)
+            {
+                this.aud.PlayOneShot(this.DecidedSE);
+                SceneManager.LoadScene("GameScene3");
+                Menu.NowStageNo = 3;
+            }
+
+            if (Menu.StageNo == 4)
+            {
+                this.aud.PlayOneShot(this.DecidedSE);
+                SceneManager.LoadScene("GameScene4");
+                Menu.NowStageNo = 4;
+            }
+
+            if (Menu.StageNo == 5)
+            {
+                this.aud.PlayOneShot(this.DecidedSE);
+                SceneManager.LoadScene("GameScene5");
+                Menu.NowStageNo = 5;
+            }
         }
         if (Input.GetKeyDown(KeyCode.Space) && PauseMenuNo == 2)
         {

@@ -7,6 +7,10 @@ public class FireGenerated1 : MonoBehaviour//炎パーティクル生成と消�
     GameObject PlayerObject;
     PlayerMove PlayerScript;
 
+    public AudioClip WalkSE;
+    AudioSource aud;
+    int SETime = 0;
+
     public static float speed = 4.0f;
 
     // アニメーション再生速度設定
@@ -34,11 +38,20 @@ public class FireGenerated1 : MonoBehaviour//炎パーティクル生成と消�
 
         PlayerObject = GameObject.Find("player");
         PlayerScript = PlayerObject.GetComponent<PlayerMove>();
+
+        this.aud = GetComponent<AudioSource>();
+        SETime = 0;
     }
 
     // Update is called once per frame
     void Update()
     {
+        //ポーズ画面になるとUpdate以外の処理も止める
+        if (Mathf.Approximately(Time.timeScale, 0f))
+        {
+            return;
+        }
+
         //二階の水の高さ取得
         WaterHight = PlayerScript.WaterHight1;
 
@@ -54,8 +67,12 @@ public class FireGenerated1 : MonoBehaviour//炎パーティクル生成と消�
                 Generated = true;//出現している
 
                 speed = 10.0f;
-
+                
                 AnimSpeed = 4.0f;
+
+                //speed = 6.0f;
+                //
+                //AnimSpeed = 1.0f;
 
                 /*直接代入(追加)*/
                 ChildObj.transform.localPosition = new Vector3(0.0f, 0.03f, 0.0f);
@@ -77,6 +94,23 @@ public class FireGenerated1 : MonoBehaviour//炎パーティクル生成と消�
                 speed = 6.0f;
 
                 AnimSpeed = 1.0f;
+
+                //speed = 10.0f;
+                //
+                //AnimSpeed = 4.0f;
+            }
+
+            if (SETime == 0)
+            {
+                this.aud.PlayOneShot(this.WalkSE);
+            }
+            if (SETime < 102)
+            {
+                SETime++;
+            }
+            if (SETime == 102)
+            {
+                SETime = 0;
             }
         }
 

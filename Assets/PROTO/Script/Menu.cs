@@ -16,7 +16,7 @@ public class Menu : MonoBehaviour
     Slider BGMSlider;
     Slider SESlider;
 
-    int StageNo = 1;
+    public static int StageNo = 1;
     public static int NowStageNo = 1;
 
     public bool SoundControll = false;
@@ -49,6 +49,7 @@ public class Menu : MonoBehaviour
 
     void Update()
     {
+        
         //ステージを選択
         if (SoundControll == false)
         {
