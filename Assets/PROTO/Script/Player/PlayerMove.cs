@@ -12,6 +12,8 @@ public class PlayerMove : MonoBehaviour
     GameObject W_Machine2;
     GameObject W_Machine3;
 
+    public GameObject Key;
+
     public AudioClip WaterUpSE;
     public AudioClip WaterDownSE;
     public AudioClip StageUpSE;
@@ -60,6 +62,10 @@ public class PlayerMove : MonoBehaviour
     int WaterTime = 0;
     bool Water = false;
 
+    //プレイヤー移動中かどうか
+    bool Move = false;
+
+    int WalkStopTime = 0;
 
     //水増し機1
     public float WaterHight1 = 0.0f;
@@ -96,6 +102,12 @@ public class PlayerMove : MonoBehaviour
     public bool Enemy2_Collision_Left = false;
     public bool Enemy2_Collision_Right = false;
 
+
+    //プレイヤー追従キー描画フラグ
+    public static bool PlayerKeyDraw = false;
+
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -114,7 +126,8 @@ public class PlayerMove : MonoBehaviour
         WaterTime = 0;
         Water = false;
 
-
+        PlayerKeyDraw = false;
+        WalkStopTime = 31;
 
         WaterHight1 = 0.11f;
         
@@ -149,7 +162,7 @@ public class PlayerMove : MonoBehaviour
 
 
         //水アクション
-        if (Input.GetKey("h") && WaterAction == false && GoalDoor.GoalFlag == false)
+        if (Input.GetKeyDown("h") && WaterAction == false && GoalDoor.GoalFlag == false && Move == false && WaterTime == 0 && WalkStopTime == 31)
         {
             anim.SetBool("water", true);     // Animatorにジャンプに切り替えるフラグを送る
             WaterAction = true;
@@ -160,28 +173,29 @@ public class PlayerMove : MonoBehaviour
             WaterTime++;
         }
 
-        if(WaterAction == true && WaterTime == 80)
+        if(WaterAction == true && WaterTime == 79)
         {
             Water = true;
         }
-        if(WaterAction == true && WaterTime == 81)
+        if(WaterAction == true && WaterTime == 80)
+        {
+            anim.SetBool("water", false);     // Animatorにジャンプに切り替えるフラグを送る
+            Water = false;
+        }
+        if (WaterAction == true && WaterTime == 100)
         {
             WaterAction = false;
             WaterTime = 0;
-            anim.SetBool("water", false);     // Animatorにジャンプに切り替えるフラグを送る
-            
-            Water = false;
+
         }
 
-
-
-
-
         
-        //左に移動
+        //左に移動  
         if (Input.GetKey("left") && Enemy2_Collision_Left == false && WaterAction == false && GoalDoor.GoalFlag == false)
         {
             PlayerDirection = 1;
+            Move = true;
+            WalkStopTime = 0;
             anim.SetBool("walk", true);     // Animatorにジャンプに切り替えるフラグを送る
 
             if (radian != 180.0f && radian != 90.0f && radian != -90.0f)
@@ -211,6 +225,8 @@ public class PlayerMove : MonoBehaviour
         if (Input.GetKey("right") && Enemy2_Collision_Right == false && WaterAction == false && GoalDoor.GoalFlag == false)
         {
             PlayerDirection = -1;
+            Move = true;
+            WalkStopTime = 0;
             anim.SetBool("walk", true);     // Animatorにジャンプに切り替えるフラグを送る
 
             if (radian != -180.0f && radian != 90.0f && radian != -90.0f)
@@ -239,6 +255,12 @@ public class PlayerMove : MonoBehaviour
         if (!(Input.GetKey("right")) && !(Input.GetKey("left")) || GoalDoor.GoalFlag == true)
         {
             anim.SetBool("walk", false);
+            Move = false;
+
+            if(WalkStopTime < 31)
+            {
+                WalkStopTime++;
+            }
         }
 
 
@@ -382,6 +404,19 @@ public class PlayerMove : MonoBehaviour
             //三階の水減
             WaterLoss3();
         }
+
+
+        //鍵追従
+        if (PlayerKeyDraw == true)
+        {
+            Key.gameObject.SetActive(true);
+        }
+        if (PlayerKeyDraw == false)
+        {
+            Key.gameObject.SetActive(false);
+        }
+
+
     }
 
 
@@ -428,6 +463,7 @@ public class PlayerMove : MonoBehaviour
         if (collision.gameObject.tag == "Normal" && KeyItemScript.key == true)
         {
             DoorRotate.RotateFlag = true;
+            PlayerKeyDraw = false;
         }
 
         if (collision.gameObject.tag == "Reverse" && KeyItemScript.key == false)
@@ -437,6 +473,7 @@ public class PlayerMove : MonoBehaviour
         if (collision.gameObject.tag == "Reverse" && KeyItemScript.key == true)
         {
             DoorRotate.RotateReverseFlag = true;
+            PlayerKeyDraw = false;
         }
 
 
@@ -448,6 +485,7 @@ public class PlayerMove : MonoBehaviour
         if (collision.gameObject.tag == "Normal1" && KeyItemScript1.key == true)
         {
             DoorRotate1.RotateFlag = true;
+            PlayerKeyDraw = false;
         }
 
         if (collision.gameObject.tag == "Reverse1" && KeyItemScript1.key == false)
@@ -457,6 +495,7 @@ public class PlayerMove : MonoBehaviour
         if (collision.gameObject.tag == "Reverse1" && KeyItemScript1.key == true)
         {
             DoorRotate1.RotateReverseFlag = true;
+            PlayerKeyDraw = false;
         }
 
 
@@ -467,6 +506,7 @@ public class PlayerMove : MonoBehaviour
         if (collision.gameObject.tag == "Normal2" && KeyItemScript2.key == true)
         {
             DoorRotate2.RotateFlag = true;
+            PlayerKeyDraw = false;
         }
 
         if (collision.gameObject.tag == "Reverse2" && KeyItemScript2.key == false)
@@ -476,6 +516,7 @@ public class PlayerMove : MonoBehaviour
         if (collision.gameObject.tag == "Reverse2" && KeyItemScript2.key == true)
         {
             DoorRotate2.RotateReverseFlag = true;
+            PlayerKeyDraw = false;
         }
 
     }

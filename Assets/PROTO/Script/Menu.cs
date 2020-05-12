@@ -170,7 +170,9 @@ public class Menu : MonoBehaviour
             //ゲーム終了
             if (Input.GetKeyDown(KeyCode.Space) && StageNo == 8)
             {
-                UnityEditor.EditorApplication.isPlaying = false;
+                //エディタ用
+                // UnityEditor.EditorApplication.isPlaying = false;
+                Application.Quit();
             }
         }
 
