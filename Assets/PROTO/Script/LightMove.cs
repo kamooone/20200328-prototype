@@ -25,13 +25,13 @@ public class LightMove : MonoBehaviour//カメラ移動処理
         transform.position = new Vector3(transform.position.x, PlayerScript.transform.position.y, transform.position.z);
 
         //プレイヤを軸に回転
-        if (Input.GetKey("left") && PlayerScript.Enemy2_Collision_Left == false && PlayerMove.WaterAction == false)
+        if (Input.GetKey("left") && PlayerScript.Enemy2_Collision_Left == false && PlayerMove.WaterAction == false && GoalDoor.GoalFlag == false)
         {
             Vector3 axis = PlayerScript.transform.TransformDirection(Vector3.up);
             transform.RotateAround(target.position, axis, PlayerScript.speed * Time.deltaTime);
         }
 
-        if (Input.GetKey("right") && PlayerScript.Enemy2_Collision_Right == false && PlayerMove.WaterAction == false)
+        if (Input.GetKey("right") && PlayerScript.Enemy2_Collision_Right == false && PlayerMove.WaterAction == false && GoalDoor.GoalFlag == false)
         {
             Vector3 axis = PlayerScript.transform.TransformDirection(Vector3.down);
             transform.RotateAround(target.position, axis, PlayerScript.speed * Time.deltaTime);

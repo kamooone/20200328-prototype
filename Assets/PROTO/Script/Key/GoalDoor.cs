@@ -22,9 +22,9 @@ public class GoalDoor : MonoBehaviour
         {
             if (rotate > -92.0f)
             {
-                transform.Rotate(new Vector3(0f, -0.2f, 0.0f));
+                transform.Rotate(new Vector3(0f, -0.25f, 0.0f));
             }
-            rotate -= 0.2f;
+            rotate -= 0.25f;
             if (rotate < -150.0f)
             {
                 SceneManager.LoadScene("ClearScene");

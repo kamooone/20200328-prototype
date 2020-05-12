@@ -85,5 +85,10 @@ public class Enemy2_1Move : MonoBehaviour//敵の移動処理(本来はまとめ
         {
             direction *= -1;
         }
+
+        if (collision.gameObject.tag == "Wall" || collision.gameObject.tag == "Door")
+        {
+            direction *= -1;
+        }
     }
 }

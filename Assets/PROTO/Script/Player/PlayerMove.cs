@@ -149,21 +149,22 @@ public class PlayerMove : MonoBehaviour
 
 
         //水アクション
-        if (Input.GetKey("h"))
+        if (Input.GetKey("h") && WaterAction == false && GoalDoor.GoalFlag == false)
         {
             anim.SetBool("water", true);     // Animatorにジャンプに切り替えるフラグを送る
             WaterAction = true;
+            WaterTime = 0;
         }
         if (WaterAction == true)
         {
             WaterTime++;
         }
 
-        if(WaterAction == true && WaterTime == 199)
+        if(WaterAction == true && WaterTime == 80)
         {
             Water = true;
         }
-        if(WaterAction == true && WaterTime == 200)
+        if(WaterAction == true && WaterTime == 81)
         {
             WaterAction = false;
             WaterTime = 0;
@@ -178,7 +179,7 @@ public class PlayerMove : MonoBehaviour
 
         
         //左に移動
-        if (Input.GetKey("left") && Enemy2_Collision_Left == false && WaterAction == false)
+        if (Input.GetKey("left") && Enemy2_Collision_Left == false && WaterAction == false && GoalDoor.GoalFlag == false)
         {
             PlayerDirection = 1;
             anim.SetBool("walk", true);     // Animatorにジャンプに切り替えるフラグを送る
@@ -207,7 +208,7 @@ public class PlayerMove : MonoBehaviour
         }
 
         //右に移動
-        if (Input.GetKey("right") && Enemy2_Collision_Right == false && WaterAction == false)
+        if (Input.GetKey("right") && Enemy2_Collision_Right == false && WaterAction == false && GoalDoor.GoalFlag == false)
         {
             PlayerDirection = -1;
             anim.SetBool("walk", true);     // Animatorにジャンプに切り替えるフラグを送る
@@ -235,7 +236,7 @@ public class PlayerMove : MonoBehaviour
             transform.RotateAround(target.position, axis, speed * Time.deltaTime);
         }
 
-        if (!(Input.GetKey("right")) && !(Input.GetKey("left")))
+        if (!(Input.GetKey("right")) && !(Input.GetKey("left")) || GoalDoor.GoalFlag == true)
         {
             anim.SetBool("walk", false);
         }
@@ -392,7 +393,7 @@ public class PlayerMove : MonoBehaviour
             UIUp_Flag = true;
             //NoWaterMove = true;
 
-            if (Input.GetKey("up") && ClassUp_Flag == false && GroundCollision == true)
+            if (Input.GetKey("up") && ClassUp_Flag == false && GroundCollision == true && WaterAction == false && GoalDoor.GoalFlag == false)
             {
                 this.aud.PlayOneShot(this.StageUpSE);
                 ClassUp_Flag = true;
@@ -405,7 +406,7 @@ public class PlayerMove : MonoBehaviour
             UIDown_Flag = true;
             //NoWaterMove = true;
 
-            if (Input.GetKey("down") && ClassDown_Flag == false && GroundCollision == true)
+            if (Input.GetKey("down") && ClassDown_Flag == false && GroundCollision == true && WaterAction == false && GoalDoor.GoalFlag == false)
             {
                 this.aud.PlayOneShot(this.StageDownSE);
                 ClassDown_Flag = true;

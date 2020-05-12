@@ -12,6 +12,8 @@ public class DoorRotate1 : MonoBehaviour
 
     public static bool KeyDestroy = false;
 
+    float speed = 1.0f;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -27,10 +29,13 @@ public class DoorRotate1 : MonoBehaviour
         {
             KeyDestroy = true;
 
+            //コライダー無効
+            GetComponent<BoxCollider>().enabled = false;
+
             if (rotate > -90.0f)
             {
-                transform.Rotate(new Vector3(0f, 0f, -0.5f));
-                rotate -= 0.5f;
+                transform.Rotate(new Vector3(0f, 0f, -speed));
+                rotate -= speed;
             }
         }
 
@@ -38,10 +43,13 @@ public class DoorRotate1 : MonoBehaviour
         {
             KeyDestroy = true;
 
+            //コライダー無効
+            GetComponent<BoxCollider>().enabled = false;
+
             if (rotate < 90.0f)
             {
-                transform.Rotate(new Vector3(0f, 0f, 0.5f));
-                rotate += 0.5f;
+                transform.Rotate(new Vector3(0f, 0f, speed));
+                rotate += speed;
             }
         }
     }
