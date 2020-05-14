@@ -8,9 +8,7 @@ public class KeyItemScript2 : MonoBehaviour
     public static bool key = false;
 
     public GameObject Player;
-
-    float position_x = 0.3f;
-    float position_z = 0.25f;
+    
 
     // Start is called before the first frame update
     void Start()

@@ -32,9 +32,9 @@ public class DoorRotate1 : MonoBehaviour
             //コライダー無効
             GetComponent<BoxCollider>().enabled = false;
 
-            if (rotate > -90.0f)
+            if (rotate > -100.0f)
             {
-                transform.Rotate(new Vector3(0f, 0f, -speed));
+                transform.Rotate(new Vector3(0f, -speed, 0f));
                 rotate -= speed;
             }
         }
@@ -46,9 +46,9 @@ public class DoorRotate1 : MonoBehaviour
             //コライダー無効
             GetComponent<BoxCollider>().enabled = false;
 
-            if (rotate < 90.0f)
+            if (rotate < 100.0f)
             {
-                transform.Rotate(new Vector3(0f, 0f, speed));
+                transform.Rotate(new Vector3(0f, speed, 0f));
                 rotate += speed;
             }
         }

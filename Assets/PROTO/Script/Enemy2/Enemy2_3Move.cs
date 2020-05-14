@@ -75,7 +75,7 @@ public class Enemy2_3Move : MonoBehaviour//敵の移動処理(本来はまとめ
 
     void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.tag == "Player" && WaterHight == 0.1f)
+        if (collision.gameObject.tag == "Player" && WaterHight == 0.11f)
         {
             SceneManager.LoadScene("GameOverScene");
         }

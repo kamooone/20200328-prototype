@@ -119,7 +119,7 @@ public class PauseMenu : MonoBehaviour
                 //　ポーズUIのアクティブ、非アクティブを切り替え
                 pauseUI.SetActive(!pauseUI.activeSelf);
 
-                this.aud.PlayOneShot(this.DecidedSE);
+                //this.aud.PlayOneShot(this.DecidedSE);
 
                 //if (Menu.NowStageNo == 1)
                 //{

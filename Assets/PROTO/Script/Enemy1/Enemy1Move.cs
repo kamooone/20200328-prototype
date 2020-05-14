@@ -109,6 +109,7 @@ public class Enemy1Move : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
+            Debug.Log("ゲームオーバー");
             SceneManager.LoadScene("GameOverScene");
         }
 

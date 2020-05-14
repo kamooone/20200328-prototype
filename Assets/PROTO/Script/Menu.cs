@@ -13,6 +13,13 @@ public class Menu : MonoBehaviour
     Button stage3;
     Button stage4;
     Button stage5;
+    Button stage6;
+    Button stage7;
+    Button stage8;
+    Button stage9;
+    Button stage10;
+
+
     Button sound;
     Button title;
     Button GameEnd;
@@ -46,6 +53,13 @@ public class Menu : MonoBehaviour
         stage3 = GameObject.Find("StageSelectCanvas/stage/World1/stage3").GetComponent<Button>();
         stage4 = GameObject.Find("StageSelectCanvas/stage/World1/stage4").GetComponent<Button>();
         stage5 = GameObject.Find("StageSelectCanvas/stage/World1/stage5").GetComponent<Button>();
+        stage6 = GameObject.Find("StageSelectCanvas/stage/World2/stage1").GetComponent<Button>();
+        stage7 = GameObject.Find("StageSelectCanvas/stage/World2/stage2").GetComponent<Button>();
+        stage8 = GameObject.Find("StageSelectCanvas/stage/World2/stage3").GetComponent<Button>();
+        stage9 = GameObject.Find("StageSelectCanvas/stage/World2/stage4").GetComponent<Button>();
+        stage10 = GameObject.Find("StageSelectCanvas/stage/World2/stage5").GetComponent<Button>();
+
+
         sound = GameObject.Find("StageSelectCanvas/stage/sound").GetComponent<Button>(); ;
 
         SoundPanel = GameObject.Find("StageSelectCanvas/stage/SoundPanel");
@@ -73,7 +87,7 @@ public class Menu : MonoBehaviour
         {
             if (Input.GetKeyDown("right"))
             {
-                if (StageNo < 8)
+                if (StageNo < 13)
                 {
                     StageNo++;
                     this.aud.PlayOneShot(this.CursorSE);
@@ -121,6 +135,12 @@ public class Menu : MonoBehaviour
             stage3.gameObject.SetActive(true);
             stage4.gameObject.SetActive(true);
             stage5.gameObject.SetActive(true);
+            stage6.gameObject.SetActive(true);
+            stage7.gameObject.SetActive(true);
+            stage8.gameObject.SetActive(true);
+            stage9.gameObject.SetActive(true);
+            stage10.gameObject.SetActive(true);
+
             sound.gameObject.SetActive(true);
             title.gameObject.SetActive(true);
             GameEnd.gameObject.SetActive(true);
@@ -130,7 +150,7 @@ public class Menu : MonoBehaviour
         //シーン遷移
         if (SoundControll == false && FadeFlag == false && TitleFadeFlag == false)
         {
-            if (Input.GetKeyDown(KeyCode.Space) && StageNo <= 5)
+            if (Input.GetKeyDown(KeyCode.Space) && StageNo <= 10)
             {
                 this.aud.PlayOneShot(this.DecidedSE);
 
@@ -140,7 +160,7 @@ public class Menu : MonoBehaviour
 
 
 
-            if (Input.GetKeyDown(KeyCode.Space) && StageNo == 6)
+            if (Input.GetKeyDown(KeyCode.Space) && StageNo == 11)
             {
                 this.aud.PlayOneShot(this.DecidedSE);
                 SoundControll = true;
@@ -150,6 +170,12 @@ public class Menu : MonoBehaviour
                 stage3.gameObject.SetActive(false);
                 stage4.gameObject.SetActive(false);
                 stage5.gameObject.SetActive(false);
+                stage6.gameObject.SetActive(false);
+                stage7.gameObject.SetActive(false);
+                stage8.gameObject.SetActive(false);
+                stage9.gameObject.SetActive(false);
+                stage10.gameObject.SetActive(false);
+
                 sound.gameObject.SetActive(false);
                 title.gameObject.SetActive(false);
                 GameEnd.gameObject.SetActive(false);
@@ -159,7 +185,7 @@ public class Menu : MonoBehaviour
             }
 
 
-            if (Input.GetKeyDown(KeyCode.Space) && StageNo == 7)
+            if (Input.GetKeyDown(KeyCode.Space) && StageNo == 12)
             {
                 this.aud.PlayOneShot(this.DecidedSE);
 
@@ -168,7 +194,7 @@ public class Menu : MonoBehaviour
             }
 
             //ゲーム終了
-            if (Input.GetKeyDown(KeyCode.Space) && StageNo == 8)
+            if (Input.GetKeyDown(KeyCode.Space) && StageNo == 13)
             {
                 //エディタ用
                 // UnityEditor.EditorApplication.isPlaying = false;
@@ -200,9 +226,31 @@ public class Menu : MonoBehaviour
         }
         if (StageNo == 6)
         {
-            sound.Select();
+            stage6.Select();
         }
         if (StageNo == 7)
+        {
+            stage7.Select();
+        }
+        if (StageNo == 8)
+        {
+            stage8.Select();
+        }
+        if (StageNo == 9)
+        {
+            stage9.Select();
+        }
+        if (StageNo == 10)
+        {
+            stage10.Select();
+        }
+
+
+        if (StageNo == 11)
+        {
+            sound.Select();
+        }
+        if (StageNo == 12)
         {
             title.Select();
         }

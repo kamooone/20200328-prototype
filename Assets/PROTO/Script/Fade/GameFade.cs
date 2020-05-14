@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class GameFade : MonoBehaviour
 {
-    float speed = 0.05f;//透明化の速さ
+    float speed = 0.02f;//透明化の速さ
     float alfa = 0;//A値を操作するための変数(スクリプトでは0～1の範囲)
     float red = 0.0f, green = 0.0f, blue = 0.0f;//RGBを操作するための変数
 

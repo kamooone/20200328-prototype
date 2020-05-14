@@ -47,28 +47,53 @@ public class SelectFade : MonoBehaviour
 
                 if (Menu.StageNo == 1)
                 {
-                    SceneManager.LoadScene("GameScene1");
+                    SceneManager.LoadScene("GameScene1_1");
                     Menu.NowStageNo = 1;
                 }
                 if (Menu.StageNo == 2)
                 {
-                    SceneManager.LoadScene("GameScene2");
+                    SceneManager.LoadScene("GameScene1_2");
                     Menu.NowStageNo = 2;
                 }
                 if (Menu.StageNo == 3)
                 {
-                    SceneManager.LoadScene("GameScene3");
+                    SceneManager.LoadScene("GameScene1_3");
                     Menu.NowStageNo = 3;
                 }
                 if (Menu.StageNo == 4)
                 {
-                    SceneManager.LoadScene("GameScene4");
+                    SceneManager.LoadScene("GameScene1_4");
                     Menu.NowStageNo = 4;
                 }
                 if (Menu.StageNo == 5)
                 {
-                    SceneManager.LoadScene("GameScene5");
+                    SceneManager.LoadScene("GameScene1_5");
                     Menu.NowStageNo = 5;
+                }
+                if (Menu.StageNo == 6)
+                {
+                    SceneManager.LoadScene("GameScene2_1");
+                    Menu.NowStageNo = 6;
+                }
+                if (Menu.StageNo == 7)
+                {
+                    SceneManager.LoadScene("GameScene2_2");
+                    Menu.NowStageNo = 7;
+                }
+                if (Menu.StageNo == 8)
+                {
+                    SceneManager.LoadScene("GameScene2_3");
+                    Menu.NowStageNo = 8;
+                }
+                if (Menu.StageNo == 9)
+                {
+                    SceneManager.LoadScene("GameScene2_4");
+                    Menu.NowStageNo = 9;
+                }
+                if (Menu.StageNo == 10)
+                {
+                    SceneManager.LoadScene("GameScene2_5");
+                    Menu.NowStageNo = 10;
                 }
             }
         }

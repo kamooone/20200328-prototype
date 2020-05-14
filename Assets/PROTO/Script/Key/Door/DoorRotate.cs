@@ -26,20 +26,6 @@ public class DoorRotate : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (RotateFlag == true)
-        {
-            KeyDestroy = true;
-
-            //コライダー無効
-            GetComponent<BoxCollider>().enabled = false;
-
-            if (rotate > -90.0f)
-            {
-                transform.Rotate(new Vector3(0f, 0f, -speed));
-                rotate -= speed;
-            }
-        }
-
         if (RotateReverseFlag == true)
         {
             KeyDestroy = true;
@@ -47,9 +33,23 @@ public class DoorRotate : MonoBehaviour
             //コライダー無効
             GetComponent<BoxCollider>().enabled = false;
 
-            if (rotate < 90.0f)
+            if (rotate > -100.0f)
             {
-                transform.Rotate(new Vector3(0f, 0f, speed));
+                transform.Rotate(new Vector3(0f, -speed, 0f));
+                rotate -= speed;
+            }
+        }
+
+        if (RotateFlag == true)
+        {
+            KeyDestroy = true;
+
+            //コライダー無効
+            GetComponent<BoxCollider>().enabled = false;
+
+            if (rotate < 100.0f)
+            {
+                transform.Rotate(new Vector3(0f, speed, 0f));
                 rotate += speed;
             }
         }

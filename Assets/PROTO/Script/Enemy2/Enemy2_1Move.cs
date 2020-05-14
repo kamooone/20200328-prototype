@@ -76,7 +76,7 @@ public class Enemy2_1Move : MonoBehaviour//敵の移動処理(本来はまとめ
     void OnCollisionEnter(Collision collision)
     {
         //水がある時だけ判定
-        if (collision.gameObject.tag == "Player" && WaterHight == 0.1f)
+        if (collision.gameObject.tag == "Player" && WaterHight == 0.11f)
         {
             SceneManager.LoadScene("GameOverScene");
         }

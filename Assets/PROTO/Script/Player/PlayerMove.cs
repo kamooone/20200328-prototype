@@ -127,7 +127,7 @@ public class PlayerMove : MonoBehaviour
         Water = false;
 
         PlayerKeyDraw = false;
-        WalkStopTime = 31;
+        WalkStopTime = 11;
 
         WaterHight1 = 0.11f;
         
@@ -162,7 +162,7 @@ public class PlayerMove : MonoBehaviour
 
 
         //水アクション
-        if (Input.GetKeyDown("h") && WaterAction == false && GoalDoor.GoalFlag == false && Move == false && WaterTime == 0 && WalkStopTime == 31)
+        if (Input.GetKeyDown("h") && WaterAction == false && GoalDoor.GoalFlag == false && Move == false && WaterTime == 0 && WalkStopTime == 11)
         {
             anim.SetBool("water", true);     // Animatorにジャンプに切り替えるフラグを送る
             WaterAction = true;
@@ -257,7 +257,7 @@ public class PlayerMove : MonoBehaviour
             anim.SetBool("walk", false);
             Move = false;
 
-            if(WalkStopTime < 31)
+            if(WalkStopTime < 11)
             {
                 WalkStopTime++;
             }
