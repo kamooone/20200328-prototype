@@ -115,7 +115,7 @@ public class GameOverMenu : MonoBehaviour
             //SceneManager.LoadScene("TitleScene");
 
             //フェードインフェードアウト処理
-            Menu.StageNo = 7;
+            Menu.StageNo = 17;
             Menu.TitleFadeFlag = true;
         }
 

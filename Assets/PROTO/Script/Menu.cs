@@ -18,6 +18,11 @@ public class Menu : MonoBehaviour
     Button stage8;
     Button stage9;
     Button stage10;
+    Button stage11;
+    Button stage12;
+    Button stage13;
+    Button stage14;
+    Button stage15;
 
 
     Button sound;
@@ -58,6 +63,11 @@ public class Menu : MonoBehaviour
         stage8 = GameObject.Find("StageSelectCanvas/stage/World2/stage3").GetComponent<Button>();
         stage9 = GameObject.Find("StageSelectCanvas/stage/World2/stage4").GetComponent<Button>();
         stage10 = GameObject.Find("StageSelectCanvas/stage/World2/stage5").GetComponent<Button>();
+        stage11 = GameObject.Find("StageSelectCanvas/stage/World3/stage1").GetComponent<Button>();
+        stage12 = GameObject.Find("StageSelectCanvas/stage/World3/stage2").GetComponent<Button>();
+        stage13 = GameObject.Find("StageSelectCanvas/stage/World3/stage3").GetComponent<Button>();
+        stage14 = GameObject.Find("StageSelectCanvas/stage/World3/stage4").GetComponent<Button>();
+        stage15 = GameObject.Find("StageSelectCanvas/stage/World3/stage5").GetComponent<Button>();
 
 
         sound = GameObject.Find("StageSelectCanvas/stage/sound").GetComponent<Button>(); ;
@@ -87,7 +97,7 @@ public class Menu : MonoBehaviour
         {
             if (Input.GetKeyDown("right"))
             {
-                if (StageNo < 13)
+                if (StageNo < 18)
                 {
                     StageNo++;
                     this.aud.PlayOneShot(this.CursorSE);
@@ -150,7 +160,7 @@ public class Menu : MonoBehaviour
         //シーン遷移
         if (SoundControll == false && FadeFlag == false && TitleFadeFlag == false)
         {
-            if (Input.GetKeyDown(KeyCode.Space) && StageNo <= 10)
+            if (Input.GetKeyDown(KeyCode.Space) && StageNo <= 12)
             {
                 this.aud.PlayOneShot(this.DecidedSE);
 
@@ -160,7 +170,7 @@ public class Menu : MonoBehaviour
 
 
 
-            if (Input.GetKeyDown(KeyCode.Space) && StageNo == 11)
+            if (Input.GetKeyDown(KeyCode.Space) && StageNo == 16)
             {
                 this.aud.PlayOneShot(this.DecidedSE);
                 SoundControll = true;
@@ -185,7 +195,7 @@ public class Menu : MonoBehaviour
             }
 
 
-            if (Input.GetKeyDown(KeyCode.Space) && StageNo == 12)
+            if (Input.GetKeyDown(KeyCode.Space) && StageNo == 17)
             {
                 this.aud.PlayOneShot(this.DecidedSE);
 
@@ -194,7 +204,7 @@ public class Menu : MonoBehaviour
             }
 
             //ゲーム終了
-            if (Input.GetKeyDown(KeyCode.Space) && StageNo == 13)
+            if (Input.GetKeyDown(KeyCode.Space) && StageNo == 18)
             {
                 //エディタ用
                 // UnityEditor.EditorApplication.isPlaying = false;
@@ -244,13 +254,33 @@ public class Menu : MonoBehaviour
         {
             stage10.Select();
         }
-
-
         if (StageNo == 11)
+        {
+            stage11.Select();
+        }
+        if (StageNo == 12)
+        {
+            stage12.Select();
+        }
+        if (StageNo == 13)
+        {
+            stage13.Select();
+        }
+        if (StageNo == 14)
+        {
+            stage14.Select();
+        }
+        if (StageNo == 15)
+        {
+            stage15.Select();
+        }
+
+
+        if (StageNo == 16)
         {
             sound.Select();
         }
-        if (StageNo == 12)
+        if (StageNo == 17)
         {
             title.Select();
         }

@@ -95,6 +95,17 @@ public class SelectFade : MonoBehaviour
                     SceneManager.LoadScene("GameScene2_5");
                     Menu.NowStageNo = 10;
                 }
+
+                if (Menu.StageNo == 11)
+                {
+                    SceneManager.LoadScene("GameScene3_1");
+                    Menu.NowStageNo = 11;
+                }
+                if (Menu.StageNo == 12)
+                {
+                    SceneManager.LoadScene("GameScene3_2");
+                    Menu.NowStageNo = 12;
+                }
             }
         }
     }

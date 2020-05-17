@@ -95,15 +95,15 @@ public class Enemy2Move : MonoBehaviour
     //当たり判定当たっている間
     void OnTriggerStay(Collider collision)
     {
-        if (collision.gameObject.tag == "Fall")
-        {
-            Debug.Log("階層ダウン");
-
-            transform.position = new Vector3(transform.position.x, transform.position.y + Down, transform.position.z);
-
-            Down -= 0.01f; 
-            
-        }
+        //if (collision.gameObject.tag == "Fall")
+        //{
+        //    Debug.Log("階層ダウン");
+        //
+        //    transform.position = new Vector3(transform.position.x, transform.position.y + Down, transform.position.z);
+        //
+        //    Down -= 0.01f; 
+        //    
+        //}
     }
 
 

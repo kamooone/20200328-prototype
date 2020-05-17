@@ -47,6 +47,7 @@ public class PlayerMove : MonoBehaviour
 
     bool ClassDown_Flag = false;
     float Down = 0.0f;
+    float FallDown = 0.0f;
 
     public bool UIUp_Flag = false;
     public bool UIDown_Flag = false;
@@ -129,17 +130,36 @@ public class PlayerMove : MonoBehaviour
         PlayerKeyDraw = false;
         WalkStopTime = 11;
 
-        WaterHight1 = 0.11f;
-        
-        W_Machine1.transform.position = new Vector3(W_Machine1.transform.position.x, W_Machine1.transform.position.y + WaterHight1, W_Machine1.transform.position.z);
-        
-        WaterHight2 = 0.11f;
-        
-        W_Machine2.transform.position = new Vector3(W_Machine2.transform.position.x, W_Machine2.transform.position.y + WaterHight2, W_Machine2.transform.position.z);
-        
-        WaterHight3 = 0.11f;
-        
-        W_Machine3.transform.position = new Vector3(W_Machine3.transform.position.x, W_Machine3.transform.position.y + WaterHight3, W_Machine3.transform.position.z);
+
+        if (Menu.StageNo <=10)
+        {
+            WaterHight1 = 0.11f;
+
+            W_Machine1.transform.position = new Vector3(W_Machine1.transform.position.x, W_Machine1.transform.position.y + WaterHight1, W_Machine1.transform.position.z);
+
+            WaterHight2 = 0.11f;
+
+            W_Machine2.transform.position = new Vector3(W_Machine2.transform.position.x, W_Machine2.transform.position.y + WaterHight2, W_Machine2.transform.position.z);
+
+            WaterHight3 = 0.11f;
+
+            W_Machine3.transform.position = new Vector3(W_Machine3.transform.position.x, W_Machine3.transform.position.y + WaterHight3, W_Machine3.transform.position.z);
+        }
+
+        if (Menu.StageNo >= 11)
+        {
+            WaterHight1 = 0.0f;
+
+            W_Machine1.transform.position = new Vector3(W_Machine1.transform.position.x, W_Machine1.transform.position.y + WaterHight1, W_Machine1.transform.position.z);
+
+            WaterHight2 = 0.0f;
+
+            W_Machine2.transform.position = new Vector3(W_Machine2.transform.position.x, W_Machine2.transform.position.y + WaterHight2, W_Machine2.transform.position.z);
+
+            WaterHight3 = 0.0f;
+
+            W_Machine3.transform.position = new Vector3(W_Machine3.transform.position.x, W_Machine3.transform.position.y + WaterHight3, W_Machine3.transform.position.z);
+        }
     }
 
 
@@ -521,6 +541,18 @@ public class PlayerMove : MonoBehaviour
 
     }
 
+
+    //当たり判定トリガー
+    void OnTriggerEnter(Collider collision)
+    {
+        if (collision.gameObject.tag == "Fall")
+        {
+            FallDown -= 0.6f;
+            transform.position = new Vector3(transform.position.x, transform.position.y + FallDown, transform.position.z);
+        }
+    }
+
+
     //ノット当たり判定トリガー
     void OnTriggerExit(Collider collision)
     {
@@ -528,6 +560,7 @@ public class PlayerMove : MonoBehaviour
         UIDown_Flag = false;
         NoWaterMove = false;
         Text.gameObject.SetActive(false);
+        FallDown = 0.0f;
     }
 
     //コリジョン当たり判定
