@@ -443,102 +443,444 @@ public class PlayerMove : MonoBehaviour
     //当たり判定トリガー
     void OnTriggerStay(Collider collision)
     {
-        if (collision.gameObject.tag == "StageUp" && (StageNow != 3))
+        if (Move == false)
         {
-            UIUp_Flag = true;
-            //NoWaterMove = true;
-
-            if (Input.GetKey("up") && ClassUp_Flag == false && GroundCollision == true && WaterAction == false && GoalDoor.GoalFlag == false)
+            //================================================================================================================================================================================================
+            if (collision.gameObject.tag == "Up")
             {
-                this.aud.PlayOneShot(this.StageUpSE);
-                ClassUp_Flag = true;
-                StageNow++;
+                UIUp_Flag = true;
+
+                if (Input.GetKey("up") && ClassUp_Flag == false && GroundCollision == true && WaterAction == false && GoalDoor.GoalFlag == false &&
+                    Enemy2Move.hasigocollisionDown == false && Enemy2_2Move.hasigocollisionDown == false)
+                {
+                    this.aud.PlayOneShot(this.StageUpSE);
+                    ClassUp_Flag = true;
+                    StageNow++;
+                }
+            }
+            if (collision.gameObject.tag == "Up_1")
+            {
+                UIUp_Flag = true;
+
+                if (Input.GetKey("up") && ClassUp_Flag == false && GroundCollision == true && WaterAction == false && GoalDoor.GoalFlag == false &&
+                    Enemy2Move.hasigocollisionDown1 == false && Enemy2_2Move.hasigocollisionDown == false)
+                {
+                    this.aud.PlayOneShot(this.StageUpSE);
+                    ClassUp_Flag = true;
+                    StageNow++;
+                }
+            }
+            if (collision.gameObject.tag == "Up_2")
+            {
+                UIUp_Flag = true;
+
+                if (Input.GetKey("up") && ClassUp_Flag == false && GroundCollision == true && WaterAction == false && GoalDoor.GoalFlag == false &&
+                    Enemy2Move.hasigocollisionDown2 == false && Enemy2_2Move.hasigocollisionDown2 == false)
+                {
+                    this.aud.PlayOneShot(this.StageUpSE);
+                    ClassUp_Flag = true;
+                    StageNow++;
+                }
+            }
+            if (collision.gameObject.tag == "Up_3")
+            {
+                UIUp_Flag = true;
+
+                if (Input.GetKey("up") && ClassUp_Flag == false && GroundCollision == true && WaterAction == false && GoalDoor.GoalFlag == false &&
+                    Enemy2Move.hasigocollisionDown3 == false && Enemy2_2Move.hasigocollisionDown3 == false)
+                {
+                    this.aud.PlayOneShot(this.StageUpSE);
+                    ClassUp_Flag = true;
+                    StageNow++;
+                }
+            }
+            if (collision.gameObject.tag == "Up_4")
+            {
+                UIUp_Flag = true;
+
+                if (Input.GetKey("up") && ClassUp_Flag == false && GroundCollision == true && WaterAction == false && GoalDoor.GoalFlag == false &&
+                    Enemy2Move.hasigocollisionDown4 == false && Enemy2_2Move.hasigocollisionDown4 == false)
+                {
+                    this.aud.PlayOneShot(this.StageUpSE);
+                    ClassUp_Flag = true;
+                    StageNow++;
+                }
+            }
+            if (collision.gameObject.tag == "Up_5")
+            {
+                UIUp_Flag = true;
+
+                if (Input.GetKey("up") && ClassUp_Flag == false && GroundCollision == true && WaterAction == false && GoalDoor.GoalFlag == false &&
+                    Enemy2Move.hasigocollisionDown5 == false && Enemy2_2Move.hasigocollisionDown5 == false)
+                {
+                    this.aud.PlayOneShot(this.StageUpSE);
+                    ClassUp_Flag = true;
+                    StageNow++;
+                }
+            }
+            if (collision.gameObject.tag == "Up_6")
+            {
+                UIUp_Flag = true;
+
+                if (Input.GetKey("up") && ClassUp_Flag == false && GroundCollision == true && WaterAction == false && GoalDoor.GoalFlag == false &&
+                    Enemy2Move.hasigocollisionDown6 == false && Enemy2_2Move.hasigocollisionDown6 == false)
+                {
+                    this.aud.PlayOneShot(this.StageUpSE);
+                    ClassUp_Flag = true;
+                    StageNow++;
+                }
+            }
+            //================================================================================================================================================================================================
+
+
+
+
+
+
+
+            if (collision.gameObject.tag == "Up1")
+            {
+                UIUp_Flag = true;
+
+                if (Input.GetKey("up") && ClassUp_Flag == false && GroundCollision == true && WaterAction == false && GoalDoor.GoalFlag == false &&
+                    Enemy3Move.hasigocollision == false && Enemy2_3Move.hasigocollision == false)
+                {
+                    this.aud.PlayOneShot(this.StageUpSE);
+                    ClassUp_Flag = true;
+                    StageNow++;
+                }
+            }
+            if (collision.gameObject.tag == "Up1_1")
+            {
+                UIUp_Flag = true;
+
+                if (Input.GetKey("up") && ClassUp_Flag == false && GroundCollision == true && WaterAction == false && GoalDoor.GoalFlag == false &&
+                    Enemy3Move.hasigocollision1 == false && Enemy2_3Move.hasigocollision1 == false)
+                {
+                    this.aud.PlayOneShot(this.StageUpSE);
+                    ClassUp_Flag = true;
+                    StageNow++;
+                }
+            }
+            if (collision.gameObject.tag == "Up1_2")
+            {
+                UIUp_Flag = true;
+
+                if (Input.GetKey("up") && ClassUp_Flag == false && GroundCollision == true && WaterAction == false && GoalDoor.GoalFlag == false &&
+                    Enemy3Move.hasigocollision2 == false && Enemy2_3Move.hasigocollision2 == false)
+                {
+                    this.aud.PlayOneShot(this.StageUpSE);
+                    ClassUp_Flag = true;
+                    StageNow++;
+                }
+            }
+            if (collision.gameObject.tag == "Up1_3")
+            {
+                UIUp_Flag = true;
+
+                if (Input.GetKey("up") && ClassUp_Flag == false && GroundCollision == true && WaterAction == false && GoalDoor.GoalFlag == false &&
+                    Enemy3Move.hasigocollision3 == false && Enemy2_3Move.hasigocollision3 == false)
+                {
+                    this.aud.PlayOneShot(this.StageUpSE);
+                    ClassUp_Flag = true;
+                    StageNow++;
+                }
+            }
+            if (collision.gameObject.tag == "Up1_4")
+            {
+                UIUp_Flag = true;
+
+                if (Input.GetKey("up") && ClassUp_Flag == false && GroundCollision == true && WaterAction == false && GoalDoor.GoalFlag == false &&
+                    Enemy3Move.hasigocollision4 == false && Enemy2_3Move.hasigocollision4 == false)
+                {
+                    this.aud.PlayOneShot(this.StageUpSE);
+                    ClassUp_Flag = true;
+                    StageNow++;
+                }
+            }
+            if (collision.gameObject.tag == "Up1_5")
+            {
+                UIUp_Flag = true;
+
+                if (Input.GetKey("up") && ClassUp_Flag == false && GroundCollision == true && WaterAction == false && GoalDoor.GoalFlag == false &&
+                    Enemy3Move.hasigocollision5 == false && Enemy2_3Move.hasigocollision5 == false)
+                {
+                    this.aud.PlayOneShot(this.StageUpSE);
+                    ClassUp_Flag = true;
+                    StageNow++;
+                }
+            }
+            if (collision.gameObject.tag == "Up1_6")
+            {
+                UIUp_Flag = true;
+
+                if (Input.GetKey("up") && ClassUp_Flag == false && GroundCollision == true && WaterAction == false && GoalDoor.GoalFlag == false &&
+                    Enemy3Move.hasigocollision5 == false && Enemy2_3Move.hasigocollision6 == false)
+                {
+                    this.aud.PlayOneShot(this.StageUpSE);
+                    ClassUp_Flag = true;
+                    StageNow++;
+                }
+            }
+
+
+
+
+
+
+
+            //================================================================================================================================================================================================
+            if (collision.gameObject.tag == "Down1")
+            {
+                UIDown_Flag = true;
+
+                if (Input.GetKey("down") && ClassDown_Flag == false && GroundCollision == true && WaterAction == false && GoalDoor.GoalFlag == false &&
+                    Enemy1Move.hasigocollision == false && Enemy2_1Move.hasigocollision == false)
+                {
+                    this.aud.PlayOneShot(this.StageDownSE);
+                    ClassDown_Flag = true;
+                    StageNow--;
+                }
+            }
+            if (collision.gameObject.tag == "Down1_1")
+            {
+                UIDown_Flag = true;
+
+                if (Input.GetKey("down") && ClassDown_Flag == false && GroundCollision == true && WaterAction == false && GoalDoor.GoalFlag == false &&
+                    Enemy1Move.hasigocollision1 == false && Enemy2_1Move.hasigocollision1 == false)
+                {
+                    this.aud.PlayOneShot(this.StageDownSE);
+                    ClassDown_Flag = true;
+                    StageNow--;
+                }
+            }
+            if (collision.gameObject.tag == "Down1_2")
+            {
+                UIDown_Flag = true;
+
+                if (Input.GetKey("down") && ClassDown_Flag == false && GroundCollision == true && WaterAction == false && GoalDoor.GoalFlag == false &&
+                    Enemy1Move.hasigocollision2 == false && Enemy2_1Move.hasigocollision2 == false)
+                {
+                    this.aud.PlayOneShot(this.StageDownSE);
+                    ClassDown_Flag = true;
+                    StageNow--;
+                }
+            }
+            if (collision.gameObject.tag == "Down1_3")
+            {
+                UIDown_Flag = true;
+
+                if (Input.GetKey("down") && ClassDown_Flag == false && GroundCollision == true && WaterAction == false && GoalDoor.GoalFlag == false &&
+                    Enemy1Move.hasigocollision3 == false && Enemy2_1Move.hasigocollision3 == false)
+                {
+                    this.aud.PlayOneShot(this.StageDownSE);
+                    ClassDown_Flag = true;
+                    StageNow--;
+                }
+            }
+            if (collision.gameObject.tag == "Down1_4")
+            {
+                UIDown_Flag = true;
+
+                if (Input.GetKey("down") && ClassDown_Flag == false && GroundCollision == true && WaterAction == false && GoalDoor.GoalFlag == false &&
+                    Enemy1Move.hasigocollision4 == false && Enemy2_1Move.hasigocollision4 == false)
+                {
+                    this.aud.PlayOneShot(this.StageDownSE);
+                    ClassDown_Flag = true;
+                    StageNow--;
+                }
+            }
+            if (collision.gameObject.tag == "Down1_5")
+            {
+                UIDown_Flag = true;
+
+                if (Input.GetKey("down") && ClassDown_Flag == false && GroundCollision == true && WaterAction == false && GoalDoor.GoalFlag == false &&
+                    Enemy1Move.hasigocollision5 == false && Enemy2_1Move.hasigocollision5 == false)
+                {
+                    this.aud.PlayOneShot(this.StageDownSE);
+                    ClassDown_Flag = true;
+                    StageNow--;
+                }
+            }
+            if (collision.gameObject.tag == "Down1_6")
+            {
+                UIDown_Flag = true;
+
+                if (Input.GetKey("down") && ClassDown_Flag == false && GroundCollision == true && WaterAction == false && GoalDoor.GoalFlag == false &&
+                    Enemy1Move.hasigocollision5 == false && Enemy2_1Move.hasigocollision6 == false)
+                {
+                    this.aud.PlayOneShot(this.StageDownSE);
+                    ClassDown_Flag = true;
+                    StageNow--;
+                }
+            }
+
+            //================================================================================================================================================================================================
+
+
+
+
+
+            if (collision.gameObject.tag == "Down2")
+            {
+                UIDown_Flag = true;
+
+                if (Input.GetKey("down") && ClassDown_Flag == false && GroundCollision == true && WaterAction == false && GoalDoor.GoalFlag == false &&
+                    Enemy2Move.hasigocollisionUp == false && Enemy2_2Move.hasigocollisionUp == false)
+                {
+                    this.aud.PlayOneShot(this.StageDownSE);
+                    ClassDown_Flag = true;
+                    StageNow--;
+                }
+            }
+            if (collision.gameObject.tag == "Down2_1")
+            {
+                UIDown_Flag = true;
+
+                if (Input.GetKey("down") && ClassDown_Flag == false && GroundCollision == true && WaterAction == false && GoalDoor.GoalFlag == false &&
+                    Enemy2Move.hasigocollisionUp1 == false && Enemy2_2Move.hasigocollisionUp1 == false)
+                {
+                    this.aud.PlayOneShot(this.StageDownSE);
+                    ClassDown_Flag = true;
+                    StageNow--;
+                }
+            }
+            if (collision.gameObject.tag == "Down2_2")
+            {
+                UIDown_Flag = true;
+
+                if (Input.GetKey("down") && ClassDown_Flag == false && GroundCollision == true && WaterAction == false && GoalDoor.GoalFlag == false &&
+                    Enemy2Move.hasigocollisionUp2 == false && Enemy2_2Move.hasigocollisionUp2 == false)
+                {
+                    this.aud.PlayOneShot(this.StageDownSE);
+                    ClassDown_Flag = true;
+                    StageNow--;
+                }
+            }
+            if (collision.gameObject.tag == "Down2_3")
+            {
+                UIDown_Flag = true;
+
+                if (Input.GetKey("down") && ClassDown_Flag == false && GroundCollision == true && WaterAction == false && GoalDoor.GoalFlag == false &&
+                    Enemy2Move.hasigocollisionUp3 == false && Enemy2_2Move.hasigocollisionUp3 == false)
+                {
+                    this.aud.PlayOneShot(this.StageDownSE);
+                    ClassDown_Flag = true;
+                    StageNow--;
+                }
+            }
+            if (collision.gameObject.tag == "Down2_4")
+            {
+                UIDown_Flag = true;
+
+                if (Input.GetKey("down") && ClassDown_Flag == false && GroundCollision == true && WaterAction == false && GoalDoor.GoalFlag == false &&
+                    Enemy2Move.hasigocollisionUp4 == false && Enemy2_2Move.hasigocollisionUp4 == false)
+                {
+                    this.aud.PlayOneShot(this.StageDownSE);
+                    ClassDown_Flag = true;
+                    StageNow--;
+                }
+            }
+            if (collision.gameObject.tag == "Down2_5")
+            {
+                UIDown_Flag = true;
+
+                if (Input.GetKey("down") && ClassDown_Flag == false && GroundCollision == true && WaterAction == false && GoalDoor.GoalFlag == false &&
+                    Enemy2Move.hasigocollisionUp5 == false && Enemy2_2Move.hasigocollisionUp5 == false)
+                {
+                    this.aud.PlayOneShot(this.StageDownSE);
+                    ClassDown_Flag = true;
+                    StageNow--;
+                }
+            }
+            if (collision.gameObject.tag == "Down2_6")
+            {
+                UIDown_Flag = true;
+
+                if (Input.GetKey("down") && ClassDown_Flag == false && GroundCollision == true && WaterAction == false && GoalDoor.GoalFlag == false &&
+                    Enemy2Move.hasigocollisionUp5 == false && Enemy2_2Move.hasigocollisionUp6 == false)
+                {
+                    this.aud.PlayOneShot(this.StageDownSE);
+                    ClassDown_Flag = true;
+                    StageNow--;
+                }
             }
         }
 
-        if (collision.gameObject.tag == "StageDown")
-        {
-            UIDown_Flag = true;
-            //NoWaterMove = true;
 
-            if (Input.GetKey("down") && ClassDown_Flag == false && GroundCollision == true && WaterAction == false && GoalDoor.GoalFlag == false)
+
+
+
+            if (collision.gameObject.tag == "Goal")
             {
-                this.aud.PlayOneShot(this.StageDownSE);
-                ClassDown_Flag = true;
-                StageNow--;
+                GoalDoor.GoalFlag = true;
             }
-        }
-
-        if (collision.gameObject.tag == "Goal")
-        {
-            GoalDoor.GoalFlag = true;
-        }
 
 
 
-        if (collision.gameObject.tag == "Normal" && KeyItemScript.key == false)
-        {
-            Text.gameObject.SetActive(true);
-        }
-        if (collision.gameObject.tag == "Normal" && KeyItemScript.key == true)
-        {
-            DoorRotate.RotateFlag = true;
-            PlayerKeyDraw = false;
-        }
+            if (collision.gameObject.tag == "Normal" && KeyItemScript.key == false)
+            {
+                Text.gameObject.SetActive(true);
+            }
+            if (collision.gameObject.tag == "Normal" && KeyItemScript.key == true)
+            {
+                DoorRotate.RotateFlag = true;
+                PlayerKeyDraw = false;
+            }
 
-        if (collision.gameObject.tag == "Reverse" && KeyItemScript.key == false)
-        {
-            Text.gameObject.SetActive(true);
-        }
-        if (collision.gameObject.tag == "Reverse" && KeyItemScript.key == true)
-        {
-            DoorRotate.RotateReverseFlag = true;
-            PlayerKeyDraw = false;
-        }
-
-
-
-        if (collision.gameObject.tag == "Normal1" && KeyItemScript1.key == false)
-        {
-            Text.gameObject.SetActive(true);
-        }
-        if (collision.gameObject.tag == "Normal1" && KeyItemScript1.key == true)
-        {
-            DoorRotate1.RotateFlag = true;
-            PlayerKeyDraw = false;
-        }
-
-        if (collision.gameObject.tag == "Reverse1" && KeyItemScript1.key == false)
-        {
-            Text.gameObject.SetActive(true);
-        }
-        if (collision.gameObject.tag == "Reverse1" && KeyItemScript1.key == true)
-        {
-            DoorRotate1.RotateReverseFlag = true;
-            PlayerKeyDraw = false;
-        }
+            if (collision.gameObject.tag == "Reverse" && KeyItemScript.key == false)
+            {
+                Text.gameObject.SetActive(true);
+            }
+            if (collision.gameObject.tag == "Reverse" && KeyItemScript.key == true)
+            {
+                DoorRotate.RotateReverseFlag = true;
+                PlayerKeyDraw = false;
+            }
 
 
-        if (collision.gameObject.tag == "Normal2" && KeyItemScript2.key == false)
-        {
-            Text.gameObject.SetActive(true);
-        }
-        if (collision.gameObject.tag == "Normal2" && KeyItemScript2.key == true)
-        {
-            DoorRotate2.RotateFlag = true;
-            PlayerKeyDraw = false;
-        }
 
-        if (collision.gameObject.tag == "Reverse2" && KeyItemScript2.key == false)
-        {
-            Text.gameObject.SetActive(true);
-        }
-        if (collision.gameObject.tag == "Reverse2" && KeyItemScript2.key == true)
-        {
-            DoorRotate2.RotateReverseFlag = true;
-            PlayerKeyDraw = false;
-        }
+            if (collision.gameObject.tag == "Normal1" && KeyItemScript1.key == false)
+            {
+                Text.gameObject.SetActive(true);
+            }
+            if (collision.gameObject.tag == "Normal1" && KeyItemScript1.key == true)
+            {
+                DoorRotate1.RotateFlag = true;
+                PlayerKeyDraw = false;
+            }
 
+            if (collision.gameObject.tag == "Reverse1" && KeyItemScript1.key == false)
+            {
+                Text.gameObject.SetActive(true);
+            }
+            if (collision.gameObject.tag == "Reverse1" && KeyItemScript1.key == true)
+            {
+                DoorRotate1.RotateReverseFlag = true;
+                PlayerKeyDraw = false;
+            }
+
+
+            if (collision.gameObject.tag == "Normal2" && KeyItemScript2.key == false)
+            {
+                Text.gameObject.SetActive(true);
+            }
+            if (collision.gameObject.tag == "Normal2" && KeyItemScript2.key == true)
+            {
+                DoorRotate2.RotateFlag = true;
+                PlayerKeyDraw = false;
+            }
+
+            if (collision.gameObject.tag == "Reverse2" && KeyItemScript2.key == false)
+            {
+                Text.gameObject.SetActive(true);
+            }
+            if (collision.gameObject.tag == "Reverse2" && KeyItemScript2.key == true)
+            {
+                DoorRotate2.RotateReverseFlag = true;
+                PlayerKeyDraw = false;
+            }
+        
     }
 
 

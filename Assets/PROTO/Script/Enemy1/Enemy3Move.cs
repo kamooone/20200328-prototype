@@ -38,6 +38,14 @@ public class Enemy3Move : MonoBehaviour
     //方向チェンジ時の角度
     float radian = 180.0f;
 
+    public static bool hasigocollision = false;
+    public static bool hasigocollision1 = false;
+    public static bool hasigocollision2 = false;
+    public static bool hasigocollision3 = false;
+    public static bool hasigocollision4 = false;
+    public static bool hasigocollision5 = false;
+    public static bool hasigocollision6 = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -79,30 +87,52 @@ public class Enemy3Move : MonoBehaviour
         }
     }
 
-    //当たり判定トリガー
-    void OnTriggerEnter(Collider collision)
-    {
-        if (collision.gameObject.tag == "Flip")
-        {
-            direction *= -1;
-        }
-    }
-
-
+    
     //当たり判定当たっている間
     void OnTriggerStay(Collider collision)
     {
-        //if (collision.gameObject.tag == "Fall")
-        //{
-        //    Debug.Log("階層ダウン");
-        //
-        //    transform.position = new Vector3(transform.position.x, transform.position.y + Down, transform.position.z);
-        //
-        //    Down -= 0.01f; 
-        //    
-        //}
+
+        if (collision.gameObject.tag == "StageDown2" || collision.gameObject.tag == "Down2")
+        {
+            hasigocollision = true;
+        }
+        if (collision.gameObject.tag == "StageDown2_1" || collision.gameObject.tag == "Down2_1")
+        {
+            hasigocollision1 = true;
+        }
+        if (collision.gameObject.tag == "StageDown2_2" || collision.gameObject.tag == "Down2_2")
+        {
+            hasigocollision2 = true;
+        }
+        if (collision.gameObject.tag == "StageDown2_3" || collision.gameObject.tag == "Down2_3")
+        {
+            hasigocollision3 = true;
+        }
+        if (collision.gameObject.tag == "StageDown2_4" || collision.gameObject.tag == "Down2_4")
+        {
+            hasigocollision4 = true;
+        }
+        if (collision.gameObject.tag == "StageDown2_5" || collision.gameObject.tag == "Down2_5")
+        {
+            hasigocollision5 = true;
+        }
+        if (collision.gameObject.tag == "StageDown2_6" || collision.gameObject.tag == "Down2_6")
+        {
+            hasigocollision6 = true;
+        }
     }
 
+    //ノット当たり判定トリガー
+    void OnTriggerExit(Collider collision)
+    {
+        hasigocollision = false;
+        hasigocollision1 = false;
+        hasigocollision2 = false;
+        hasigocollision3 = false;
+        hasigocollision4 = false;
+        hasigocollision5 = false;
+        hasigocollision6 = false;
+    }
 
 
     void OnCollisionEnter(Collision collision)
