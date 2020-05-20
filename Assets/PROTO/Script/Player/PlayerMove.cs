@@ -40,6 +40,9 @@ public class PlayerMove : MonoBehaviour
 
     public float speed = 10.0f;
 
+    //プレイヤー速度管理用
+    public bool PlayerSpeed_Flag = false;
+
     public Transform target;//中心となるオブジェクト
 
     bool ClassUp_Flag = false;
@@ -166,6 +169,7 @@ public class PlayerMove : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
         // Animatorのモーション再生速度に animSpeedを設定する
         anim.speed = animSpeed;
 
@@ -437,8 +441,19 @@ public class PlayerMove : MonoBehaviour
         }
 
 
+        //プレイヤー速度管理
+        if (PlayerSpeed_Flag == true)
+        {
+            Invoke("PlayerSpeed_cnt", 5);
+        }
+
     }
 
+    void PlayerSpeed_cnt()
+    {
+        speed = 10.0f;
+        PlayerSpeed_Flag = false;
+    }
 
     //当たり判定トリガー
     void OnTriggerStay(Collider collision)
@@ -538,7 +553,6 @@ public class PlayerMove : MonoBehaviour
             DoorRotate2.RotateReverseFlag = true;
             PlayerKeyDraw = false;
         }
-
     }
 
 
@@ -550,6 +564,17 @@ public class PlayerMove : MonoBehaviour
             FallDown -= 0.6f;
             transform.position = new Vector3(transform.position.x, transform.position.y + FallDown, transform.position.z);
         }
+
+        //エネミー3に当たったらプレイヤーの速度低下
+        if (collision.gameObject.tag == "Enemy3")
+        {
+            if (PlayerSpeed_Flag == false)
+            {
+                speed = 0.1f;
+                PlayerSpeed_Flag = true;
+            }
+        }
+
     }
 
 
@@ -574,6 +599,7 @@ public class PlayerMove : MonoBehaviour
         {
             Enemy2_Collision_Right = true;
         }
+
     }
 
 

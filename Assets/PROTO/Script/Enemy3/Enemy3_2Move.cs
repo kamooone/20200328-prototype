@@ -32,17 +32,18 @@ public class Enemy3_2Move : MonoBehaviour
         /*移動処理*/
         if (direction == 1)
         {
+            /*
             if (radian != 180.0f)
             {
                 radian = 180.0f;
                 transform.Rotate(new Vector3(0f, radian, 0f));
-            }
+            }*/
 
             Vector3 axis = transform.TransformDirection(Vector3.up);
             transform.RotateAround(target.position, axis, FireGenerated2.speed * Time.deltaTime);
         }
 
-        
+        /*
         if (direction == -1)
         {
             if (radian != -180.0f)
@@ -54,6 +55,7 @@ public class Enemy3_2Move : MonoBehaviour
             Vector3 axis = transform.TransformDirection(Vector3.down);
             transform.RotateAround(target.position, axis, FireGenerated2.speed * Time.deltaTime);
         }
+        */
     }
 
     //当たり判定トリガー
@@ -81,7 +83,7 @@ public class Enemy3_2Move : MonoBehaviour
     }
 
 
-
+    /*
     void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.tag == "Player")
@@ -90,6 +92,7 @@ public class Enemy3_2Move : MonoBehaviour
             SceneManager.LoadScene("GameOverScene");
         }
 
+        
         if (collision.gameObject.tag == "Enemy2" || collision.gameObject.tag == "Enemy")
         {
             direction *= -1;
@@ -99,7 +102,8 @@ public class Enemy3_2Move : MonoBehaviour
         {
             direction *= -1;
         }
-    }
+        
+    }*/
 
 }
 
