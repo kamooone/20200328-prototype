@@ -9,12 +9,15 @@ public class Enemy3_2Move : MonoBehaviour
 
     GameObject Enemy;
 
-    //float speed = 10.0f;
+    //エネミー3の追加速度
+    public float Enemy_Speed = 0.0f;
+
+    //public float speed;
 
     float Down = 0.0f;
 
-    //エネミーの向き
-    int direction = 1;
+    //エネミーの向き(左:0 右:1)
+    public int direction = 0;
 
     //方向チェンジ時の角度
     float radian = 180.0f;
@@ -30,21 +33,21 @@ public class Enemy3_2Move : MonoBehaviour
     {
 
         /*移動処理*/
-        if (direction == 1)
+        if (direction == 0) //左
         {
-            /*
+            
             if (radian != 180.0f)
             {
                 radian = 180.0f;
                 transform.Rotate(new Vector3(0f, radian, 0f));
-            }*/
+            }
 
             Vector3 axis = transform.TransformDirection(Vector3.up);
-            transform.RotateAround(target.position, axis, FireGenerated2.speed * Time.deltaTime);
+            transform.RotateAround(target.position, axis, FireGenerated2.speed*Enemy_Speed * Time.deltaTime);
         }
 
-        /*
-        if (direction == -1)
+        
+        if (direction == 1) //右
         {
             if (radian != -180.0f)
             {
@@ -53,19 +56,19 @@ public class Enemy3_2Move : MonoBehaviour
             }
 
             Vector3 axis = transform.TransformDirection(Vector3.down);
-            transform.RotateAround(target.position, axis, FireGenerated2.speed * Time.deltaTime);
+            transform.RotateAround(target.position, axis, FireGenerated2.speed*Enemy_Speed * Time.deltaTime);
         }
-        */
+        
     }
 
     //当たり判定トリガー
-    void OnTriggerEnter(Collider collision)
+    /*void OnTriggerEnter(Collider collision)
     {
         if (collision.gameObject.tag == "Flip")
         {
             direction *= -1;
         }
-    }
+    }*/
 
 
     //当たり判定当たっている間

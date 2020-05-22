@@ -110,6 +110,9 @@ public class PlayerMove : MonoBehaviour
     //プレイヤー追従キー描画フラグ
     public static bool PlayerKeyDraw = false;
 
+    public float Minus_PlayerSpeed = 0.0f;
+
+    public float PlayerDelay_Time = 0.0f;
 
 
     // Start is called before the first frame update
@@ -444,7 +447,7 @@ public class PlayerMove : MonoBehaviour
         //プレイヤー速度管理
         if (PlayerSpeed_Flag == true)
         {
-            Invoke("PlayerSpeed_cnt", 5);
+            Invoke("PlayerSpeed_cnt", PlayerDelay_Time);
         }
 
     }
@@ -570,7 +573,7 @@ public class PlayerMove : MonoBehaviour
         {
             if (PlayerSpeed_Flag == false)
             {
-                speed = 0.1f;
+                speed = speed - Minus_PlayerSpeed;
                 PlayerSpeed_Flag = true;
             }
         }
