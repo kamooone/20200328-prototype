@@ -15,6 +15,11 @@ public class GameOverMenu : MonoBehaviour
     public AudioClip DecidedSE;
     AudioSource aud;
 
+    //チャタリング防止
+    bool LeftFlag = false;
+    bool RightFlag = false;
+    bool stick = false;
+
     void Start()
     {
         // ボタンコンポーネントの取得
@@ -31,28 +36,60 @@ public class GameOverMenu : MonoBehaviour
 
     void Update()
     {
+        //L Stick
+        float Left = Input.GetAxis("L");
+        float Right = Input.GetAxis("R");
+
+        //チャタリング防止
+        if (Left == 1 && stick == false)
+        {
+            LeftFlag = true;
+            stick = true;
+        }
+        if (Right == 1 && stick == false)
+        {
+            RightFlag = true;
+            stick = true;
+        }
+
 
 
         //ステージを選択
-        if (Input.GetKeyDown("right"))
+        if (RightFlag == true || Input.GetKeyDown("right"))
         {
             if (PauseMenuNo < 3)
             {
                 PauseMenuNo++;
                 this.aud.PlayOneShot(this.CursorSE);
             }
+            RightFlag = false;
         }
-        if (Input.GetKeyDown("left"))
+        if (LeftFlag == true || Input.GetKeyDown("left"))
         {
             if (PauseMenuNo > 1)
             {
                 PauseMenuNo--;
                 this.aud.PlayOneShot(this.CursorSE);
             }
+            LeftFlag = false;
         }
 
+
+        //チャタリング防止
+        if (Left == 0)
+        {
+            stick = false;
+        }
+        if (Right == 0)
+        {
+            stick = false;
+        }
+
+
+
+
         //シーン遷移
-        if (Input.GetKeyDown(KeyCode.Space) && PauseMenuNo == 1)
+        if ((Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown("joystick button 0"))  && PauseMenuNo == 1)
         {
             //ポーズ解除
             Time.timeScale = 1f;
@@ -98,14 +135,14 @@ public class GameOverMenu : MonoBehaviour
             //フェードインフェードアウト処理
             Menu.TitleFadeFlag = true;
         }
-        if (Input.GetKeyDown(KeyCode.Space) && PauseMenuNo == 2)
+        if ((Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown("joystick button 0"))  && PauseMenuNo == 2)
         {
             //ポーズ解除
             Time.timeScale = 1f;
             this.aud.PlayOneShot(this.DecidedSE);
             SceneManager.LoadScene("NewSelectScene");
         }
-        if (Input.GetKeyDown(KeyCode.Space) && PauseMenuNo == 3)
+        if ((Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown("joystick button 0"))  && PauseMenuNo == 3)
         {
             //ポーズ解除
             Time.timeScale = 1f;
