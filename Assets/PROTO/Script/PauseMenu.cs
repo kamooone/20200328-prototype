@@ -97,7 +97,7 @@ public class PauseMenu : MonoBehaviour
 
             if (RightFlag == true || Input.GetKeyDown("right"))
             {
-                if (Pause.PauseMenuNo < 5)
+                if (Pause.PauseMenuNo < 3)
                 {
                     Pause.PauseMenuNo++;
                     this.aud.PlayOneShot(this.CursorSE);

@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+// 必要なコンポーネントの列記
+[RequireComponent(typeof(Animator))]
+
 public class Enemy2_2Move : MonoBehaviour//敵の移動処理(本来はまとめてやる)
 {
     GameObject PlayerObject;
@@ -17,6 +20,24 @@ public class Enemy2_2Move : MonoBehaviour//敵の移動処理(本来はまとめ
 
     //方向チェンジ時の角度
     float radian = -180.0f;
+
+
+    // キャラにアタッチされるアニメーターへの参照
+    private Animator anim;
+
+    // base layerで使われる、アニメーターの現在の状態の参照
+    private AnimatorStateInfo currentBaseState;
+
+
+    // アニメーター各ステートへの参照
+    static int locoState = Animator.StringToHash("Base Layer.up");
+    static int jumpState = Animator.StringToHash("Base Layer.down");
+
+    // アニメーション再生速度設定
+    float animSpeed = 1.0f;
+
+    bool walkflag = true;
+    int walkflagTime = 0;
 
     //各層の水の高さ取得
     float WaterHight;
@@ -63,16 +84,40 @@ public class Enemy2_2Move : MonoBehaviour//敵の移動処理(本来はまとめ
         hasigocollisionDown4 = false;
         hasigocollisionDown5 = false;
         hasigocollisionDown6 = false;
+
+        // Animatorコンポーネントを取得する
+        anim = GetComponent<Animator>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        // Animatorのモーション再生速度に animSpeedを設定する
+        anim.speed = animSpeed;
+
+        // 参照用のステート変数にBase Layer (0)の現在のステートを設定する
+        currentBaseState = anim.GetCurrentAnimatorStateInfo(0);
+
+
+
         //二階の水の高さ取得
         WaterHight = PlayerScript.WaterHight2;
 
         //水の判定
-        if (WaterHight == 0.11f)
+        if (WaterHight == 0.11f && walkflag == false)
+        {
+            anim.SetBool("up", true);
+            if (walkflagTime == 600)
+            {
+                walkflag = true;
+                walkflagTime = 0;
+                anim.SetBool("up", false);
+                anim.SetBool("down", false);
+            }
+            walkflagTime++;
+        }
+
+        if (walkflag == true)
         {
             /*移動処理*/
             if (direction == 1)
@@ -98,6 +143,13 @@ public class Enemy2_2Move : MonoBehaviour//敵の移動処理(本来はまとめ
                 Vector3 axis = transform.TransformDirection(Vector3.down);
                 transform.RotateAround(target.position, axis, speed * Time.deltaTime);
             }
+        }
+
+        if (WaterHight == 0.0f || WaterHight == -0.11f)
+        {
+            walkflag = false;
+            anim.SetBool("up", false);
+            anim.SetBool("down", true);     // Animatorにジャンプに切り替えるフラグを送る
         }
     }
 
@@ -190,7 +242,7 @@ public class Enemy2_2Move : MonoBehaviour//敵の移動処理(本来はまとめ
 
     void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.tag == "Player" && WaterHight == 0.11f)
+        if (collision.gameObject.tag == "Player" && walkflag == true)
         {
             SceneManager.LoadScene("GameOverScene");
         }
