@@ -41,6 +41,10 @@ public class FireGenerated2 : MonoBehaviour//炎パーティクル生成と消�
 
         this.aud = GetComponent<AudioSource>();
         SETime = 0;
+
+        speed = 6.0f;
+
+        AnimSpeed = 1.0f;
     }
 
     // Update is called once per frame

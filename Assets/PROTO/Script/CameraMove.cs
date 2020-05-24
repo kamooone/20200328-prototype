@@ -22,14 +22,20 @@ public class CameraMove : MonoBehaviour//カメラ移動処理
     // Update is called once per frame
     void Update()
     {
+
+        //L Stick
+        float Left = Input.GetAxis("L");
+        float Right = Input.GetAxis("R");
+
+
         //プレイヤを軸に回転
-        if (Input.GetKey("left") && PlayerScript.Enemy2_Collision_Left == false && PlayerMove.WaterAction == false)
+        if ((Left > 0 || Input.GetKey("left")) && PlayerScript.Enemy2_Collision_Left == false && PlayerMove.WaterAction == false && GoalDoor.GoalFlag == false)
         {
             Vector3 axis = PlayerScript.transform.TransformDirection(Vector3.up);
             transform.RotateAround(target.position, axis, PlayerScript.speed * Time.deltaTime);
         }
 
-        if (Input.GetKey("right") && PlayerScript.Enemy2_Collision_Right == false && PlayerMove.WaterAction == false)
+        if ((Right > 0 || Input.GetKey("right")) && PlayerScript.Enemy2_Collision_Right == false && PlayerMove.WaterAction == false && GoalDoor.GoalFlag == false)
         {
             Vector3 axis = PlayerScript.transform.TransformDirection(Vector3.down);
             transform.RotateAround(target.position, axis, PlayerScript.speed * Time.deltaTime);
