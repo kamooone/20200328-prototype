@@ -46,6 +46,14 @@ public class Menu : MonoBehaviour
     public static bool FadeFlag = false;
     public static bool TitleFadeFlag = false;
 
+    //チャタリング防止
+    bool LeftFlag = false;
+    bool RightFlag = false;
+    bool UpFlag = false;
+    bool DownFlag = false;
+    bool stick = false;
+    bool Upstick = false;
+
     void Start()
     {
         FadeObject = GameObject.Find("Fadeout");
@@ -91,51 +99,110 @@ public class Menu : MonoBehaviour
 
     void Update()
     {
-        
+        //L Stick
+        float Left = Input.GetAxis("L");
+        float Right = Input.GetAxis("R");
+        float Up = Input.GetAxis("W");
+        float Down = Input.GetAxis("S");
+
+        //チャタリング防止
+        if (Left == 1 && stick == false)
+        {
+            LeftFlag = true;
+            stick = true;
+        }
+        if (Right == 1 && stick == false)
+        {
+            RightFlag = true;
+            stick = true;
+        }
+       
+
+
         //ステージを選択
         if (SoundControll == false && FadeFlag == false && TitleFadeFlag == false)
         {
-            if (Input.GetKeyDown("right"))
+            if (RightFlag == true || Input.GetKeyDown("right"))
             {
                 if (StageNo < 18)
                 {
                     StageNo++;
                     this.aud.PlayOneShot(this.CursorSE);
                 }
+                RightFlag = false;
             }
-            if (Input.GetKeyDown("left"))
+            if (LeftFlag == true || Input.GetKeyDown("left"))
             {
                 if (StageNo > 1)
                 {
                     StageNo--;
                     this.aud.PlayOneShot(this.CursorSE);
                 }
+                LeftFlag = false;
             }
         }
+
+        //チャタリング防止
+        if (Left == 0)
+        {
+            stick = false;
+        }
+        if (Right == 0)
+        {
+            stick = false;
+        }
+
+
+
+        if (Up == 1 && Upstick == false)
+        {
+            UpFlag = true;
+            stick = true;
+        }
+        if (Down == 1 && Upstick == false)
+        {
+            DownFlag = true;
+            stick = true;
+        }
+
 
         //BGMかSEかを選択
         if (SoundControll == true && FadeFlag == false && TitleFadeFlag == false)
         {
-            if (Input.GetKeyDown("down"))
+            if (DownFlag == true || Input.GetKeyDown("down"))
             {
                 if (SoundVolume < 1)
                 {
                     Debug.Log("BGM音量アップ");
                     SoundVolume++;
                 }
+                DownFlag = false;
             }
-            if (Input.GetKeyDown("up"))
+            if (UpFlag == true || Input.GetKeyDown("up"))
             {
                 if (SoundVolume > 0)
                 {
                     Debug.Log("BGM音量daun");
                     SoundVolume--;
                 }
+                UpFlag = false;
             }
         }
 
+        //チャタリング防止
+        if (Up == 0)
+        {
+            Upstick = false;
+        }
+        if (Down == 0)
+        {
+            Upstick = false;
+        }
+
+
+
         //サウンド画面消去
-        if (Input.GetKeyDown("o") && SoundControll == true && FadeFlag == false && TitleFadeFlag == false)
+        if ((Input.GetKeyDown("o") || Input.GetKeyDown("joystick button 1")) && SoundControll == true && FadeFlag == false && TitleFadeFlag == false)
         {
             this.aud.PlayOneShot(this.DecidedSE);
             SoundControll = false;
@@ -160,7 +227,7 @@ public class Menu : MonoBehaviour
         //シーン遷移
         if (SoundControll == false && FadeFlag == false && TitleFadeFlag == false)
         {
-            if (Input.GetKeyDown(KeyCode.Space) && StageNo <= 12)
+            if ((Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown("joystick button 0"))  && StageNo <= 12)
             {
                 this.aud.PlayOneShot(this.DecidedSE);
 
@@ -170,7 +237,7 @@ public class Menu : MonoBehaviour
 
 
 
-            if (Input.GetKeyDown(KeyCode.Space) && StageNo == 16)
+            if ((Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown("joystick button 0"))  && StageNo == 16)
             {
                 this.aud.PlayOneShot(this.DecidedSE);
                 SoundControll = true;
@@ -195,7 +262,7 @@ public class Menu : MonoBehaviour
             }
 
 
-            if (Input.GetKeyDown(KeyCode.Space) && StageNo == 17)
+            if ((Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown("joystick button 0"))  && StageNo == 17)
             {
                 this.aud.PlayOneShot(this.DecidedSE);
 
@@ -204,7 +271,7 @@ public class Menu : MonoBehaviour
             }
 
             //ゲーム終了
-            if (Input.GetKeyDown(KeyCode.Space) && StageNo == 18)
+            if ((Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown("joystick button 0"))  && StageNo == 18)
             {
                 //エディタ用
                 // UnityEditor.EditorApplication.isPlaying = false;
@@ -283,6 +350,10 @@ public class Menu : MonoBehaviour
         if (StageNo == 17)
         {
             title.Select();
+        }
+        if (StageNo == 18)
+        {
+            GameEnd.Select();
         }
     }
 }

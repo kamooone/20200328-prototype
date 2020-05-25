@@ -5,6 +5,11 @@ public class SESliderScript : MonoBehaviour
 {
     Slider slider;
 
+    //チャタリング防止
+    bool LeftFlag = false;
+    bool RightFlag = false;
+    bool stick = false;
+
     void Start()
     {
         //slider = GameObject.Find("PauseUI/SoundPanel/SESlider").GetComponent<Slider>();
@@ -15,6 +20,22 @@ public class SESliderScript : MonoBehaviour
 
     void Update()
     {
+        //L Stick
+        float Left = Input.GetAxis("L");
+        float Right = Input.GetAxis("R");
+
+        //チャタリング防止
+        if (Left == 1 && stick == false)
+        {
+            LeftFlag = true;
+            stick = true;
+        }
+        if (Right == 1 && stick == false)
+        {
+            RightFlag = true;
+            stick = true;
+        }
+
         //BGMの音量調節
         if (PauseMenu.SoundControll == true)
         {
@@ -28,7 +49,7 @@ public class SESliderScript : MonoBehaviour
                 slider.Select();
 
                 Debug.Log("さらにここに入った");
-                if (Input.GetKeyDown("right"))
+                if (RightFlag == true || Input.GetKeyDown("right"))
                 {
                     if (slider.value < 1.0f)
                     {
@@ -36,8 +57,9 @@ public class SESliderScript : MonoBehaviour
                         slider.value += 0.1f;
                         SE.volume = slider.value;
                     }
+                    RightFlag = false;
                 }
-                if (Input.GetKeyDown("left"))
+                if (LeftFlag == true || Input.GetKeyDown("left"))
                 {
                     if (slider.value > 0.0f)
                     {
@@ -45,7 +67,18 @@ public class SESliderScript : MonoBehaviour
                         slider.value -= 0.1f;
                         SE.volume = slider.value;
                     }
+                    LeftFlag = false;
                 }
+            }
+
+            //チャタリング防止
+            if (Left == 0)
+            {
+                stick = false;
+            }
+            if (Right == 0)
+            {
+                stick = false;
             }
         }
     }

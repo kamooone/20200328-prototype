@@ -20,7 +20,7 @@ public class PauseScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown("p"))
+        if ((Input.GetKeyDown("p") || Input.GetKeyDown("joystick button 7")) && PauseMenuNo != 3) 
         {
             this.aud.PlayOneShot(this.DecidedSE);
 
