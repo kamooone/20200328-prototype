@@ -32,6 +32,10 @@ public class Enemy1Move : MonoBehaviour
 
     float Down = 0.0f;
 
+    public static bool TuiFlag = false;
+    bool walkFlag_Left = false;
+    bool walkFlag_Right = false;
+
     //エネミーの向き
     int direction = 1;
 
@@ -55,6 +59,14 @@ public class Enemy1Move : MonoBehaviour
 
         // Animatorのモーション再生速度に animSpeedを設定する
         anim.speed = 1.0f;
+
+        hasigocollision = false;
+        hasigocollision1 = false;
+        hasigocollision2 = false;
+        hasigocollision3 = false;
+        hasigocollision4 = false;
+        hasigocollision5 = false;
+        hasigocollision6 = false;
     }
 
     // Update is called once per frame
@@ -63,28 +75,62 @@ public class Enemy1Move : MonoBehaviour
         anim.speed = FireGenerated1.AnimSpeed;
 
         /*移動処理*/
-        if (direction == 1)
+        if (TuiFlag == true)
         {
-            if (radian != 180.0f)
+            if (walkFlag_Right == true)
             {
-                radian = 180.0f;
-                transform.Rotate(new Vector3(0f, radian, 0f));
+                direction = -1;
+                if (radian != -180.0f)
+                {
+                    radian = -180.0f;
+                    transform.Rotate(new Vector3(0f, radian, 0f));
+                }
+
+                Vector3 axis = transform.TransformDirection(Vector3.down);
+                transform.RotateAround(target.position, axis, FireGenerated1.speed * Time.deltaTime);
             }
 
-            Vector3 axis = transform.TransformDirection(Vector3.up);
-            transform.RotateAround(target.position, axis, FireGenerated1.speed * Time.deltaTime);
+            if (walkFlag_Left == true)
+            {
+                direction = 1;
+                if (radian != 180.0f)
+                {
+                    radian = 180.0f;
+                    transform.Rotate(new Vector3(0f, radian, 0f));
+                }
+
+                Vector3 axis = transform.TransformDirection(Vector3.up);
+                transform.RotateAround(target.position, axis, FireGenerated1.speed * Time.deltaTime);
+            }
         }
 
-        if (direction == -1)
+
+
+        if (TuiFlag == false)
         {
-            if (radian != -180.0f)
+            if (direction == -1)
             {
-                radian = -180.0f;
-                transform.Rotate(new Vector3(0f, radian, 0f));
+                if (radian != -180.0f)
+                {
+                    radian = -180.0f;
+                    transform.Rotate(new Vector3(0f, radian, 0f));
+                }
+
+                Vector3 axis = transform.TransformDirection(Vector3.down);
+                transform.RotateAround(target.position, axis, FireGenerated1.speed * Time.deltaTime);
             }
 
-            Vector3 axis = transform.TransformDirection(Vector3.down);
-            transform.RotateAround(target.position, axis, FireGenerated1.speed * Time.deltaTime);
+            if (direction == 1)
+            {
+                if (radian != 180.0f)
+                {
+                    radian = 180.0f;
+                    transform.Rotate(new Vector3(0f, radian, 0f));
+                }
+
+                Vector3 axis = transform.TransformDirection(Vector3.up);
+                transform.RotateAround(target.position, axis, FireGenerated1.speed * Time.deltaTime);
+            }
         }
     }
 
@@ -120,6 +166,18 @@ public class Enemy1Move : MonoBehaviour
         {
             hasigocollision6 = true;
         }
+
+        if (collision.gameObject.tag == "Tui_L")
+        {
+            walkFlag_Left = true;
+            TuiFlag = true;
+        }
+
+        if (collision.gameObject.tag == "Tui_R")
+        {
+            walkFlag_Right = true;
+            TuiFlag = true;
+        }
     }
 
 
@@ -133,6 +191,10 @@ public class Enemy1Move : MonoBehaviour
         hasigocollision4 = false;
         hasigocollision5 = false;
         hasigocollision6 = false;
+
+        walkFlag_Left = false;
+        walkFlag_Right = false;
+        TuiFlag = false;
     }
 
 

@@ -42,7 +42,7 @@ public class FireGenerated1 : MonoBehaviour//炎パーティクル生成と消�
         this.aud = GetComponent<AudioSource>();
         SETime = 0;
 
-        speed = 6.0f;
+        speed = 1.5f;
 
         AnimSpeed = 1.0f;
     }
@@ -70,13 +70,9 @@ public class FireGenerated1 : MonoBehaviour//炎パーティクル生成と消�
 
                 Generated = true;//出現している
 
-                speed = 10.0f;
-                
-                AnimSpeed = 4.0f;
+                speed = 3.0f;
 
-                //speed = 6.0f;
-                //
-                //AnimSpeed = 1.0f;
+                AnimSpeed = 2.0f;
 
                 /*直接代入(追加)*/
                 ChildObj.transform.localPosition = new Vector3(0.0f, 0.03f, 0.0f);
@@ -95,13 +91,9 @@ public class FireGenerated1 : MonoBehaviour//炎パーティクル生成と消�
                 Destroy(gameObject.transform.Find("Fire(Clone)").gameObject);//Fireという子オブジェクトを削除(なぜかFire(clone)になる)
                 Generated = false;//出現していない
 
-                speed = 6.0f;
+                speed = 1.5f;
 
                 AnimSpeed = 1.0f;
-
-                //speed = 10.0f;
-                //
-                //AnimSpeed = 4.0f;
             }
 
             if (SETime == 0)
@@ -117,6 +109,17 @@ public class FireGenerated1 : MonoBehaviour//炎パーティクル生成と消�
                 SETime = 0;
             }
         }
+        if (Enemy1Move.TuiFlag == false)
+        {
+            speed = 6.0f;
 
+            AnimSpeed = 4.0f;
+        }
+        if (Enemy1Move.TuiFlag == true)
+        {
+            speed = 10.0f;
+
+            AnimSpeed = 8.0f;
+        }
     }
 }

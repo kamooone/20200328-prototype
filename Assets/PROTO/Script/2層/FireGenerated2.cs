@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FireGenerated3 : MonoBehaviour//炎パーティクル生成と消滅
+public class FireGenerated2 : MonoBehaviour//炎パーティクル生成と消滅
 {
     GameObject PlayerObject;
     PlayerMove PlayerScript;
@@ -11,10 +11,10 @@ public class FireGenerated3 : MonoBehaviour//炎パーティクル生成と消�
     AudioSource aud;
     int SETime = 0;
 
-    public static float speed = 4.0f;
+    public static float speed;
 
     // アニメーション再生速度設定
-    public static float AnimSpeed = 1.0f;
+    public static float AnimSpeed;
 
     //水の高さ取得
     float WaterHight;
@@ -42,7 +42,7 @@ public class FireGenerated3 : MonoBehaviour//炎パーティクル生成と消�
         this.aud = GetComponent<AudioSource>();
         SETime = 0;
 
-        speed = 6.0f;
+        speed = 1.5f;
 
         AnimSpeed = 1.0f;
     }
@@ -57,7 +57,7 @@ public class FireGenerated3 : MonoBehaviour//炎パーティクル生成と消�
         }
 
         //二階の水の高さ取得
-        WaterHight = PlayerScript.WaterHight3;
+        WaterHight = PlayerScript.WaterHight2;
 
         //水の判定
         if (WaterHight == 0.0f || WaterHight == -0.11f)
@@ -70,52 +70,58 @@ public class FireGenerated3 : MonoBehaviour//炎パーティクル生成と消�
 
                 Generated = true;//出現している
 
-                speed = 10.0f;
-                
-                AnimSpeed = 4.0f;
+                speed = 0.0f;
 
-                //speed = 6.0f;
-                //
-                //AnimSpeed = 1.0f;
+                AnimSpeed = 0.0f;
 
                 /*直接代入(追加)*/
                 ChildObj.transform.localPosition = new Vector3(0.0f, 0.03f, 0.0f);
                 Vector3 rotationVector = new Vector3(-90, 0, 0);
                 ChildObj.transform.rotation = Quaternion.Euler(rotationVector);
                 ChildObj.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
-
             }
         }
 
         //水の判定
         if (WaterHight == 0.11f)
         {
-            if (Generated)
+            if (Generated)//出現していたら消す
             {
                 Destroy(gameObject.transform.Find("Fire(Clone)").gameObject);//Fireという子オブジェクトを削除(なぜかFire(clone)になる)
                 Generated = false;//出現していない
 
-                //speed = 10.0f;
-                //
-                //AnimSpeed = 4.0f;
+                speed = 0.0f;
 
-                speed = 6.0f;
-                
-                AnimSpeed = 1.0f;
+                AnimSpeed = 0.0f;
+
             }
 
             if (SETime == 0)
             {
                 this.aud.PlayOneShot(this.WalkSE);
             }
-            if (SETime < 102)
+            if(SETime < 102)
             {
                 SETime++;
             }
             if (SETime == 102)
             {
-                SETime = 0;
+                SETime=0;
             }
+        }
+
+
+        if(Enemy2Move.TuiFlag == false)
+        {
+            speed = 6.0f;
+
+            AnimSpeed = 4.0f;
+        }
+        if (Enemy2Move.TuiFlag == true)
+        {
+            speed = 10.0f;
+
+            AnimSpeed = 8.0f;
         }
 
     }
