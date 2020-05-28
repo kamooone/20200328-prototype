@@ -5,6 +5,13 @@ using UnityEngine;
 public class DoorRotate : MonoBehaviour
 {
     float rotate = 0.0f;
+    float scalerotate = 0.0f;
+
+    public AudioClip Rotate;
+
+    AudioSource aud;
+
+    bool soundflag = false;
 
     public static bool RotateFlag = false;
 
@@ -12,21 +19,27 @@ public class DoorRotate : MonoBehaviour
 
     public static bool KeyDestroy = false;
 
-    public float speed = 0.5f;
+    float speed = 1.0f;
+    float scalespeed = 0.006f;
+
 
     // Start is called before the first frame update
     void Start()
     {
         rotate = 0.0f;
+        scalerotate = 0.0f;
         RotateFlag = false;
         RotateReverseFlag = false;
         KeyDestroy = false;
+
+        this.aud = GetComponent<AudioSource>();
+        soundflag = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (RotateFlag == true)
+        if (RotateReverseFlag == true)
         {
             KeyDestroy = true;
 
@@ -35,12 +48,19 @@ public class DoorRotate : MonoBehaviour
 
             if (rotate > -90.0f)
             {
-                transform.Rotate(new Vector3(0f, 0f, -speed));
+                if (soundflag == false)
+                {
+                    this.aud.PlayOneShot(this.Rotate);
+                    soundflag = true;
+                }
+                transform.Rotate(new Vector3(0f, -speed, 0f));
                 rotate -= speed;
+                transform.localScale = new Vector3(1f - scalerotate, 1f, 1f);
+                scalerotate += scalespeed;
             }
         }
 
-        if (RotateReverseFlag == true)
+        if (RotateFlag == true)
         {
             KeyDestroy = true;
 
@@ -49,8 +69,15 @@ public class DoorRotate : MonoBehaviour
 
             if (rotate < 90.0f)
             {
-                transform.Rotate(new Vector3(0f, 0f, speed));
+                if (soundflag == false)
+                {
+                    this.aud.PlayOneShot(this.Rotate);
+                    soundflag = true;
+                }
+                transform.Rotate(new Vector3(0f, speed, 0f));
                 rotate += speed;
+                transform.localScale = new Vector3(1f- scalerotate, 1f, 1f);
+                scalerotate += scalespeed;
             }
         }
     }

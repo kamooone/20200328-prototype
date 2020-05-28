@@ -26,6 +26,14 @@ public class PauseMenu : MonoBehaviour
     [SerializeField]
     private GameObject pauseUI;
 
+    //チャタリング防止
+    bool LeftFlag = false;
+    bool RightFlag = false;
+    bool UpFlag = false;
+    bool DownFlag = false;
+    bool stick = false;
+    bool Upstick = false;
+
     void Start()
     {
         // ボタンコンポーネントの取得
@@ -48,7 +56,26 @@ public class PauseMenu : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown("o") && SoundControll == true)
+        //L Stick
+        float Left = Input.GetAxis("L");
+        float Right = Input.GetAxis("R");
+        float Up = Input.GetAxis("W");
+        float Down = Input.GetAxis("S");
+
+        //チャタリング防止
+        if (Left == 1 && stick == false)
+        {
+            LeftFlag = true;
+            stick = true;
+        }
+        if (Right == 1 && stick == false)
+        {
+            RightFlag = true;
+            stick = true;
+        }
+
+
+        if ((Input.GetKeyDown("o") || Input.GetKeyDown("joystick button 1")) && SoundControll == true)
         {
             //this.aud.PlayOneShot(this.DecidedSE);
 
@@ -68,58 +95,95 @@ public class PauseMenu : MonoBehaviour
             SoundVolume = 0;
             SoundPanel.gameObject.SetActive(false);
 
-            if (Input.GetKeyDown("right"))
+            if (RightFlag == true || Input.GetKeyDown("right"))
             {
-                if (Pause.PauseMenuNo < 5)
+                if (Pause.PauseMenuNo < 3)
                 {
                     Pause.PauseMenuNo++;
                     this.aud.PlayOneShot(this.CursorSE);
                 }
+                RightFlag = false;
             }
-            if (Input.GetKeyDown("left"))
+            if (LeftFlag == true || Input.GetKeyDown("left"))
             {
                 if (Pause.PauseMenuNo > 1)
                 {
                     Pause.PauseMenuNo--;
                     this.aud.PlayOneShot(this.CursorSE);
                 }
+                LeftFlag = false;
             }
+        }
+
+
+        //チャタリング防止
+        if (Left == 0)
+        {
+            stick = false;
+        }
+        if (Right == 0)
+        {
+            stick = false;
+        }
+
+
+        if (Up == 1 && Upstick == false)
+        {
+            UpFlag = true;
+            stick = true;
+        }
+        if (Down == 1 && Upstick == false)
+        {
+            DownFlag = true;
+            stick = true;
         }
 
 
         //BGMかSEかを選択
         if (SoundControll == true)
         {
-            if (Input.GetKeyDown("down"))
+            if (DownFlag == true || Input.GetKeyDown("down"))
             {
                 if (SoundVolume < 1)
                 {
                     Debug.Log("BGM音量アップ");
                     SoundVolume++;
                 }
+                DownFlag = false;
             }
-            if (Input.GetKeyDown("up"))
+            if (UpFlag == true || Input.GetKeyDown("up"))
             {
                 if (SoundVolume > 0)
                 {
                     Debug.Log("BGM音量daun");
                     SoundVolume--;
                 }
+                UpFlag = false;
             }
         }
 
+
+        //チャタリング防止
+        if (Up == 0)
+        {
+            Upstick = false;
+        }
+        if (Down == 0)
+        {
+            Upstick = false;
+        }
 
 
         //シーン遷移
         if (SoundControll == false)
         {
-            if (Input.GetKeyDown(KeyCode.Space) && Pause.PauseMenuNo == 1)
+            if ((Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown("joystick button 0")) && Pause.PauseMenuNo == 1)
             {
 
                 //　ポーズUIのアクティブ、非アクティブを切り替え
                 pauseUI.SetActive(!pauseUI.activeSelf);
 
-                this.aud.PlayOneShot(this.DecidedSE);
+                //this.aud.PlayOneShot(this.DecidedSE);
 
                 //if (Menu.NowStageNo == 1)
                 //{
@@ -149,14 +213,14 @@ public class PauseMenu : MonoBehaviour
                 //フェードインフェードアウト処理
                 Menu.TitleFadeFlag = true;
             }
-            if (Input.GetKeyDown(KeyCode.Space) && Pause.PauseMenuNo == 2)
+            if ((Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown("joystick button 0")) && Pause.PauseMenuNo == 2)
             {
                 //ポーズ解除
                 Time.timeScale = 1f;
                 this.aud.PlayOneShot(this.DecidedSE);
                 SceneManager.LoadScene("NewSelectScene");
             }
-            if (Input.GetKeyDown(KeyCode.Space) && Pause.PauseMenuNo == 3)
+            if ((Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown("joystick button 0")) && Pause.PauseMenuNo == 3)
             {
                 this.aud.PlayOneShot(this.DecidedSE);
                 

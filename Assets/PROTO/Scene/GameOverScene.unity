@@ -155,7 +155,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 287, y: -332}
+  m_AnchoredPosition: {x: 45, y: -184}
   m_SizeDelta: {x: 300, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &366105397
@@ -189,7 +189,9 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u2190\u2192\u3000\u79FB\u52D5\u3000\n\u30B9\u30DA\u30FC\u30B9\u3000\u6C7A\u5B9A"
+  m_Text: "[\u30AD\u30FC\u30DC\u30FC\u30C9\u64CD\u4F5C]             [PS4\u30B3\u30F3\u64CD\u4F5C]\n\u2190\u2192\u3000\u79FB\u52D5\u3000\u3000\u3000\u3000 
+    \u5DE6\u30B9\u30C6\u30A3\u30C3\u30AF\u3000\u79FB\u52D5\n\u30B9\u30DA\u30FC\u30B9\u3000\u6C7A\u5B9A             
+    \u25A1\u3000\u6C7A\u5B9A"
 --- !u!222 &366105398
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1133,7 +1135,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 0.5
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -1249,7 +1251,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25d7dbe434bd6c94d9a6cd54d6c84341, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0.01
 --- !u!114 &1617918064
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1296,6 +1297,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1657916507}
   - component: {fileID: 1657916506}
+  - component: {fileID: 1657916508}
   m_Layer: 0
   m_Name: Directional Light
   m_TagString: Untagged
@@ -1378,6 +1380,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!114 &1657916508
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1657916505}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11ed9b35b4601a14792cd1a40c9c66be, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1684771674
 GameObject:
   m_ObjectHideFlags: 0
