@@ -39,7 +39,7 @@ public class MaterialChange1 : MonoBehaviour//マテリアル変換
         //水の判定
         if (WaterHight == 0.0f || WaterHight == -0.11f)
         {
-            No = 0;
+            No =01;
         }
 
         this.GetComponent<Renderer>().sharedMaterial = material[No];//割り当てのマテリアルを表現(0は普通,1は透明)
