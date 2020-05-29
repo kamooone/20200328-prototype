@@ -323,7 +323,8 @@ public class Enemy1Move : MonoBehaviour
         }
 
         if (collision.gameObject.tag == "Wall" || collision.gameObject.tag == "Door" || collision.gameObject.tag == "MoveWall" || collision.gameObject.tag == "MoveWall1"
-             || collision.gameObject.tag == "MoveWall2" || collision.gameObject.tag == "MoveWall3" || collision.gameObject.tag == "MoveWall4" || collision.gameObject.tag == "MoveWall5")
+             || collision.gameObject.tag == "MoveWall2" || collision.gameObject.tag == "MoveWall3" || collision.gameObject.tag == "MoveWall4" || collision.gameObject.tag == "MoveWall5"
+              || collision.gameObject.tag == "MoveWall6" || collision.gameObject.tag == "MoveWall7" || collision.gameObject.tag == "MoveWall8")
         {
             direction *= -1;
             doorcollision = true;

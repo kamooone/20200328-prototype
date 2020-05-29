@@ -102,6 +102,21 @@ public class PlayerMove : MonoBehaviour
     public static bool WallNo5 = false;
 
 
+    public static bool WallFlag6 = false;
+    public static bool Wall_Move6 = false;
+    public static bool WallNo6 = false;
+
+
+    public static bool WallFlag7 = false;
+    public static bool Wall_Move7 = false;
+    public static bool WallNo7 = false;
+
+
+    public static bool WallFlag8 = false;
+    public static bool Wall_Move8 = false;
+    public static bool WallNo8 = false;
+
+
 
     //水増し機1
     public float WaterHight1 = 0.0f;
@@ -323,14 +338,14 @@ public class PlayerMove : MonoBehaviour
 
 
         //壁を動かす================================================================================================
-        if (Input.GetKey("t") && WallFlag0 == true && Wall.wallcollision0 == false && WaterHight2 == 0.11f && Enemy1Move.TuiFlag == false && Enemy1Move.doorcollision == false
+        if ((Input.GetKey("t") || Input.GetKeyDown("joystick button 0")) && WallFlag0 == true && Wall.wallcollision0 == false && WaterHight2 == 0.11f && Enemy1Move.TuiFlag == false && Enemy1Move.doorcollision == false
             && Enemy2Move.TuiFlag == false && Enemy2Move.doorcollision == false && Enemy3Move.TuiFlag == false && Enemy3Move.doorcollision == false &&
             Enemy2_1Move.TuiFlag == false && Enemy2_1Move.doorcollision == false && Enemy2_2Move.TuiFlag == false && Enemy2_2Move.doorcollision == false && Enemy2_3Move.TuiFlag == false && Enemy2_3Move.doorcollision == false)
         {
             anim.SetBool("wall", true);
             Wall_Move0 = true;
         }
-        if (Input.GetKeyUp("t"))
+        if (Input.GetKeyUp("t") || Input.GetKeyUp("joystick button 0"))
         {
             anim.SetBool("wall", false);
             Wall_Move0 = false;
@@ -357,14 +372,14 @@ public class PlayerMove : MonoBehaviour
 
 
         //壁を動かす================================================================================================
-        if (Input.GetKey("t") && WallFlag1 == true && Wall1.wallcollision1 == false && WaterHight2 == 0.11f && Enemy1Move.TuiFlag == false && Enemy1Move.doorcollision == false
+        if ((Input.GetKey("t") || Input.GetKeyDown("joystick button 0")) && WallFlag1 == true && Wall1.wallcollision1 == false && WaterHight2 == 0.11f && Enemy1Move.TuiFlag == false && Enemy1Move.doorcollision == false
             && Enemy2Move.TuiFlag == false && Enemy2Move.doorcollision == false && Enemy3Move.TuiFlag == false && Enemy3Move.doorcollision == false &&
             Enemy2_1Move.TuiFlag == false && Enemy2_1Move.doorcollision == false && Enemy2_2Move.TuiFlag == false && Enemy2_2Move.doorcollision == false && Enemy2_3Move.TuiFlag == false && Enemy2_3Move.doorcollision == false)
         {
             anim.SetBool("wall", true);
             Wall_Move1 = true;
         }
-        if (Input.GetKeyUp("t"))
+        if (Input.GetKeyUp("t") || Input.GetKeyUp("joystick button 0"))
         {
             anim.SetBool("wall", false);
             Wall_Move1 = false;
@@ -391,14 +406,14 @@ public class PlayerMove : MonoBehaviour
 
 
         //壁を動かす================================================================================================
-        if (Input.GetKey("t") && WallFlag2 == true && Wall2.wallcollision2 == false && WaterHight1 == 0.11f && Enemy1Move.TuiFlag == false && Enemy1Move.doorcollision == false
+        if ((Input.GetKey("t") || Input.GetKeyDown("joystick button 0")) && WallFlag2 == true && Wall2.wallcollision2 == false && WaterHight1 == 0.11f && Enemy1Move.TuiFlag == false && Enemy1Move.doorcollision == false
             && Enemy2Move.TuiFlag == false && Enemy2Move.doorcollision == false && Enemy3Move.TuiFlag == false && Enemy3Move.doorcollision == false &&
             Enemy2_1Move.TuiFlag == false && Enemy2_1Move.doorcollision == false && Enemy2_2Move.TuiFlag == false && Enemy2_2Move.doorcollision == false && Enemy2_3Move.TuiFlag == false && Enemy2_3Move.doorcollision == false)
         {
             anim.SetBool("wall", true);
             Wall_Move2 = true;
         }
-        if (Input.GetKeyUp("t"))
+        if (Input.GetKeyUp("t") || Input.GetKeyUp("joystick button 0"))
         {
             anim.SetBool("wall", false);
             Wall_Move2 = false;
@@ -425,14 +440,14 @@ public class PlayerMove : MonoBehaviour
 
 
         //壁を動かす================================================================================================
-        if (Input.GetKey("t") && WallFlag3 == true && Wall3.wallcollision3 == false && WaterHight3 == 0.11f && Enemy1Move.TuiFlag == false && Enemy1Move.doorcollision == false
+        if ((Input.GetKey("t") || Input.GetKeyDown("joystick button 0")) && WallFlag3 == true && Wall3.wallcollision3 == false && WaterHight3 == 0.11f && Enemy1Move.TuiFlag == false && Enemy1Move.doorcollision == false
             && Enemy2Move.TuiFlag == false && Enemy2Move.doorcollision == false && Enemy3Move.TuiFlag == false && Enemy3Move.doorcollision == false &&
             Enemy2_1Move.TuiFlag == false && Enemy2_1Move.doorcollision == false && Enemy2_2Move.TuiFlag == false && Enemy2_2Move.doorcollision == false && Enemy2_3Move.TuiFlag == false && Enemy2_3Move.doorcollision == false)
         {
             anim.SetBool("wall", true);
             Wall_Move3 = true;
         }
-        if (Input.GetKeyUp("t"))
+        if (Input.GetKeyUp("t") || Input.GetKeyUp("joystick button 0"))
         {
             anim.SetBool("wall", false);
             Wall_Move3 = false;
@@ -459,14 +474,14 @@ public class PlayerMove : MonoBehaviour
 
 
         //壁を動かす================================================================================================
-        if (Input.GetKey("t") && WallFlag4 == true && Wall4.wallcollision4 == false && WaterHight3 == 0.11f && Enemy1Move.TuiFlag == false && Enemy1Move.doorcollision == false
+        if ((Input.GetKey("t") || Input.GetKeyDown("joystick button 0")) && WallFlag4 == true && Wall4.wallcollision4 == false && WaterHight3 == 0.11f && Enemy1Move.TuiFlag == false && Enemy1Move.doorcollision == false
             && Enemy2Move.TuiFlag == false && Enemy2Move.doorcollision == false && Enemy3Move.TuiFlag == false && Enemy3Move.doorcollision == false &&
             Enemy2_1Move.TuiFlag == false && Enemy2_1Move.doorcollision == false && Enemy2_2Move.TuiFlag == false && Enemy2_2Move.doorcollision == false && Enemy2_3Move.TuiFlag == false && Enemy2_3Move.doorcollision == false)
         {
             anim.SetBool("wall", true);
             Wall_Move4 = true;
         }
-        if (Input.GetKeyUp("t"))
+        if (Input.GetKeyUp("t") || Input.GetKeyUp("joystick button 0"))
         {
             anim.SetBool("wall", false);
             Wall_Move4 = false;
@@ -493,14 +508,14 @@ public class PlayerMove : MonoBehaviour
 
 
         //壁を動かす================================================================================================
-        if (Input.GetKey("t") && WallFlag5 == true && Wall5.wallcollision5 == false && WaterHight1 == 0.11f && Enemy1Move.TuiFlag == false && Enemy1Move.doorcollision == false
+        if ((Input.GetKey("t") || Input.GetKeyDown("joystick button 0")) && WallFlag5 == true && Wall5.wallcollision5 == false && WaterHight1 == 0.11f && Enemy1Move.TuiFlag == false && Enemy1Move.doorcollision == false
              && Enemy2Move.TuiFlag == false && Enemy2Move.doorcollision == false && Enemy3Move.TuiFlag == false && Enemy3Move.doorcollision == false &&
             Enemy2_1Move.TuiFlag == false && Enemy2_1Move.doorcollision == false && Enemy2_2Move.TuiFlag == false && Enemy2_2Move.doorcollision == false && Enemy2_3Move.TuiFlag == false && Enemy2_3Move.doorcollision == false)
         {
             anim.SetBool("wall", true);
             Wall_Move5 = true;
         }
-        if (Input.GetKeyUp("t"))
+        if (Input.GetKeyUp("t") || Input.GetKeyUp("joystick button 0"))
         {
             anim.SetBool("wall", false);
             Wall_Move5 = false;
@@ -521,6 +536,109 @@ public class PlayerMove : MonoBehaviour
         if (Wall5.wallcollision5 == true)
         {
             Wall_Move5 = false;
+            anim.SetBool("wall", false);
+        }
+
+
+
+        //壁を動かす================================================================================================
+        if ((Input.GetKey("t") || Input.GetKeyDown("joystick button 0")) && WallFlag6 == true && Wall6.wallcollision6 == false && WaterHight1 == 0.11f && Enemy1Move.TuiFlag == false && Enemy1Move.doorcollision == false
+             && Enemy2Move.TuiFlag == false && Enemy2Move.doorcollision == false && Enemy3Move.TuiFlag == false && Enemy3Move.doorcollision == false &&
+            Enemy2_1Move.TuiFlag == false && Enemy2_1Move.doorcollision == false && Enemy2_2Move.TuiFlag == false && Enemy2_2Move.doorcollision == false && Enemy2_3Move.TuiFlag == false && Enemy2_3Move.doorcollision == false)
+        {
+            anim.SetBool("wall", true);
+            Wall_Move6 = true;
+        }
+        if (Input.GetKeyUp("t") || Input.GetKeyUp("joystick button 0"))
+        {
+            anim.SetBool("wall", false);
+            Wall_Move6 = false;
+        }
+        //左に移動  
+        if ((Left > 0 || Input.GetKey("left")) && Wall_Move6 == true && PlayerDirection == 1)
+        {
+            Vector3 axis = transform.TransformDirection(Vector3.up);
+            transform.RotateAround(target.position, axis, wallspeed * Time.deltaTime);
+        }
+
+        //右に移動
+        if ((Right > 0 || Input.GetKey("right")) && Wall_Move6 == true && PlayerDirection == -1)
+        {
+            Vector3 axis = transform.TransformDirection(Vector3.down);
+            transform.RotateAround(target.position, axis, wallspeed * Time.deltaTime);
+        }
+        if (Wall6.wallcollision6 == true)
+        {
+            Wall_Move6 = false;
+            anim.SetBool("wall", false);
+        }
+
+
+
+
+        //壁を動かす================================================================================================
+        if ((Input.GetKey("t") || Input.GetKeyDown("joystick button 0")) && WallFlag7 == true && Wall7.wallcollision7 == false && WaterHight2 == 0.11f && Enemy1Move.TuiFlag == false && Enemy1Move.doorcollision == false
+             && Enemy2Move.TuiFlag == false && Enemy2Move.doorcollision == false && Enemy3Move.TuiFlag == false && Enemy3Move.doorcollision == false &&
+            Enemy2_1Move.TuiFlag == false && Enemy2_1Move.doorcollision == false && Enemy2_2Move.TuiFlag == false && Enemy2_2Move.doorcollision == false && Enemy2_3Move.TuiFlag == false && Enemy2_3Move.doorcollision == false)
+        {
+            anim.SetBool("wall", true);
+            Wall_Move7 = true;
+        }
+        if (Input.GetKeyUp("t") || Input.GetKeyUp("joystick button 0"))
+        {
+            anim.SetBool("wall", false);
+            Wall_Move7 = false;
+        }
+        //左に移動  
+        if ((Left > 0 || Input.GetKey("left")) && Wall_Move7 == true && PlayerDirection == 1)
+        {
+            Vector3 axis = transform.TransformDirection(Vector3.up);
+            transform.RotateAround(target.position, axis, wallspeed * Time.deltaTime);
+        }
+
+        //右に移動
+        if ((Right > 0 || Input.GetKey("right")) && Wall_Move7 == true && PlayerDirection == -1)
+        {
+            Vector3 axis = transform.TransformDirection(Vector3.down);
+            transform.RotateAround(target.position, axis, wallspeed * Time.deltaTime);
+        }
+        if (Wall7.wallcollision7 == true)
+        {
+            Wall_Move7 = false;
+            anim.SetBool("wall", false);
+        }
+
+
+
+        //壁を動かす================================================================================================
+        if ((Input.GetKey("t") || Input.GetKeyDown("joystick button 0")) && WallFlag8 == true && Wall8.wallcollision8 == false && WaterHight3 == 0.11f && Enemy1Move.TuiFlag == false && Enemy1Move.doorcollision == false
+             && Enemy2Move.TuiFlag == false && Enemy2Move.doorcollision == false && Enemy3Move.TuiFlag == false && Enemy3Move.doorcollision == false &&
+            Enemy2_1Move.TuiFlag == false && Enemy2_1Move.doorcollision == false && Enemy2_2Move.TuiFlag == false && Enemy2_2Move.doorcollision == false && Enemy2_3Move.TuiFlag == false && Enemy2_3Move.doorcollision == false)
+        {
+            anim.SetBool("wall", true);
+            Wall_Move8 = true;
+        }
+        if (Input.GetKeyUp("t") || Input.GetKeyUp("joystick button 0"))
+        {
+            anim.SetBool("wall", false);
+            Wall_Move8 = false;
+        }
+        //左に移動  
+        if ((Left > 0 || Input.GetKey("left")) && Wall_Move8 == true && PlayerDirection == 1)
+        {
+            Vector3 axis = transform.TransformDirection(Vector3.up);
+            transform.RotateAround(target.position, axis, wallspeed * Time.deltaTime);
+        }
+
+        //右に移動
+        if ((Right > 0 || Input.GetKey("right")) && Wall_Move8 == true && PlayerDirection == -1)
+        {
+            Vector3 axis = transform.TransformDirection(Vector3.down);
+            transform.RotateAround(target.position, axis, wallspeed * Time.deltaTime);
+        }
+        if (Wall8.wallcollision8 == true)
+        {
+            Wall_Move8 = false;
             anim.SetBool("wall", false);
         }
 
@@ -1258,6 +1376,52 @@ public class PlayerMove : MonoBehaviour
             WallFlag5 = true;
             WallNo5 = true;
         }
+
+
+        //MoveWall
+        if ((collision.gameObject.tag == "MoveWall6" && WallFlag6 == false) && PlayerDirection == 1)
+        {
+            Enemy2_Collision_Left = true;
+            WallFlag6 = true;
+            WallNo6 = true;
+        }
+        if ((collision.gameObject.tag == "MoveWall6" && WallFlag6 == false) && PlayerDirection == -1)
+        {
+            Enemy2_Collision_Right = true;
+            WallFlag6 = true;
+            WallNo6 = true;
+        }
+
+
+        //MoveWall
+        if ((collision.gameObject.tag == "MoveWall7" && WallFlag7 == false) && PlayerDirection == 1)
+        {
+            Enemy2_Collision_Left = true;
+            WallFlag7 = true;
+            WallNo7 = true;
+        }
+        if ((collision.gameObject.tag == "MoveWall7" && WallFlag7 == false) && PlayerDirection == -1)
+        {
+            Enemy2_Collision_Right = true;
+            WallFlag7 = true;
+            WallNo7 = true;
+        }
+
+
+
+        //MoveWall
+        if ((collision.gameObject.tag == "MoveWall8" && WallFlag8 == false) && PlayerDirection == 1)
+        {
+            Enemy2_Collision_Left = true;
+            WallFlag8 = true;
+            WallNo8 = true;
+        }
+        if ((collision.gameObject.tag == "MoveWall8" && WallFlag8 == false) && PlayerDirection == -1)
+        {
+            Enemy2_Collision_Right = true;
+            WallFlag8 = true;
+            WallNo8 = true;
+        }
     }
 
 
@@ -1307,6 +1471,18 @@ public class PlayerMove : MonoBehaviour
 
         WallFlag5 = false;
         WallNo5 = false;
+
+
+        WallFlag6 = false;
+        WallNo6 = false;
+
+
+        WallFlag7 = false;
+        WallNo7 = false;
+
+
+        WallFlag8 = false;
+        WallNo8 = false;
     }
 
     void OnCollisionStayExit(Collision collision)
