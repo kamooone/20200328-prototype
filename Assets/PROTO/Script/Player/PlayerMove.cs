@@ -59,11 +59,11 @@ public class PlayerMove : MonoBehaviour
 
     bool GroundCollision = true;
 
-    int StageNow = 1;
+    public static int StageNow = 1;
 
     bool NoWaterMove = false;
 
-
+    bool sprinklercollision = false;
     public static bool WaterAction = false;
     int WaterTime = 0;
     bool Water = false;
@@ -220,33 +220,47 @@ public class PlayerMove : MonoBehaviour
 
 
         //水アクション
-        if ((Input.GetKeyDown("h") || Input.GetKeyDown("joystick button 2")) && WaterAction == false && GoalDoor.GoalFlag == false && Move == false && WaterTime == 0 && WalkStopTime == 11
-             && Wall_Move0 == false && Wall_Move1 == false && Wall_Move2 == false && Wall_Move3 == false && Wall_Move4 == false && Wall_Move5 == false)
+        if (sprinklercollision == true)
         {
-            anim.SetBool("water", true);     // Animatorにジャンプに切り替えるフラグを送る
-            WaterAction = true;
-            WaterTime = 0;
-        }
-        if (WaterAction == true)
-        {
-            WaterTime++;
-        }
+            if ((Input.GetKeyDown("h") || Input.GetKeyDown("joystick button 2")) && WaterAction == false && GoalDoor.GoalFlag == false && Move == false && WaterTime == 0 && WalkStopTime == 11
+                 && Wall_Move0 == false && Wall_Move1 == false && Wall_Move2 == false && Wall_Move3 == false && Wall_Move4 == false && Wall_Move5 == false)
+            {
+                if (radian != 90.0f && radian == 180.0f)
+                {
+                    radian = 90.0f;
+                    transform.Rotate(new Vector3(0f, radian, 0f));
+                }
 
-        if (WaterAction == true && WaterTime == 79)
-        {
-            Water = true;
-        }
-        if (WaterAction == true && WaterTime == 80)
-        {
-            anim.SetBool("water", false);     // Animatorにジャンプに切り替えるフラグを送る
-            Water = false;
-        }
-        if (WaterAction == true && WaterTime == 100)
-        {
-            WaterAction = false;
-            WaterTime = 0;
-        }
+                if (radian != 90.0f && radian == -180.0f)
+                {
+                    radian = -90.0f;
+                    transform.Rotate(new Vector3(0f, radian, 0f));
+                }
 
+                anim.SetBool("water", true);     // Animatorにジャンプに切り替えるフラグを送る
+                WaterAction = true;
+                WaterTime = 0;
+            }
+            if (WaterAction == true)
+            {
+                WaterTime++;
+            }
+
+            if (WaterAction == true && WaterTime == 79)
+            {
+                Water = true;
+            }
+            if (WaterAction == true && WaterTime == 80)
+            {
+                anim.SetBool("water", false);     // Animatorにジャンプに切り替えるフラグを送る
+                Water = false;
+            }
+            if (WaterAction == true && WaterTime == 100)
+            {
+                WaterAction = false;
+                WaterTime = 0;
+            }
+        }
 
         //L Stick
         float Left = Input.GetAxis("L");
@@ -816,6 +830,12 @@ public class PlayerMove : MonoBehaviour
     //当たり判定トリガー
     void OnTriggerStay(Collider collision)
     {
+        if (collision.gameObject.tag == "Water")
+        {
+            sprinklercollision = true;
+        }
+
+
         if (Move == false)
         {
             //================================================================================================================================================================================================
@@ -1273,6 +1293,7 @@ public class PlayerMove : MonoBehaviour
         Text.gameObject.SetActive(false);
         FallDown = 0.0f;
         NotCloseSE_Flag = false;
+        sprinklercollision = false;
     }
 
     //コリジョン当たり判定
