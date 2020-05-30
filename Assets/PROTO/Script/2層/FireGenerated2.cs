@@ -59,20 +59,38 @@ public class FireGenerated2 : MonoBehaviour//炎パーティクル生成と消�
         //二階の水の高さ取得
         WaterHight = PlayerScript.WaterHight2;
 
-        //水の判定
+
+
+        //水の判定(水ないときの処理)
         if (WaterHight == 0.0f || WaterHight == -0.11f)
         {
-            if (Generated == false)//出現していなかったら生成する
+            if (Generated == false)
             {
                 ChildObj = Instantiate(Particle, this.transform.position, Quaternion.identity); //パーティクル用ゲームオブジェクト生成
                 //ChildObj = (GameObject)Instantiate(Particle);
                 ChildObj.transform.parent = EnemyObj.transform;//指定したオブジェクトと親子関係
 
-                Generated = true;//出現している
+                Generated = true;
 
-                speed = 0.0f;
 
-                AnimSpeed = 0.0f;
+                //==============================================================================================================
+                //水ないとき、普通時のエネミーのスピード
+                if (Enemy2Move.TuiFlag == false)
+                {
+                    speed = 6.0f;
+
+                    AnimSpeed = 4.0f;
+                }
+
+                //水ないとき、追従時のエネミーのスピード
+                if (Enemy2Move.TuiFlag == true)
+                {
+                    speed = 10.0f;
+
+                    AnimSpeed = 8.0f;
+                }
+                //==============================================================================================================
+
 
                 /*直接代入(追加)*/
                 ChildObj.transform.localPosition = new Vector3(0.0f, 0.03f, 0.0f);
@@ -82,7 +100,7 @@ public class FireGenerated2 : MonoBehaviour//炎パーティクル生成と消�
             }
         }
 
-        //水の判定
+        //水の判定(水ある時の処理)
         if (WaterHight == 0.11f)
         {
             if (Generated)//出現していたら消す
@@ -90,9 +108,24 @@ public class FireGenerated2 : MonoBehaviour//炎パーティクル生成と消�
                 Destroy(gameObject.transform.Find("Fire(Clone)").gameObject);//Fireという子オブジェクトを削除(なぜかFire(clone)になる)
                 Generated = false;//出現していない
 
-                speed = 0.0f;
 
-                AnimSpeed = 0.0f;
+                //==============================================================================================================
+                //水あるとき、普通時のエネミーのスピード
+                if (Enemy2Move.TuiFlag == false)
+                {
+                    speed = 0.0f;
+
+                    AnimSpeed = 0.0f;
+                }
+
+                //水あるとき、追従時のエネミーのスピード
+                if (Enemy2Move.TuiFlag == true)
+                {
+                    speed = 0.0f;
+
+                    AnimSpeed = 0.0f;
+                }
+                //==============================================================================================================
 
             }
 
@@ -111,18 +144,7 @@ public class FireGenerated2 : MonoBehaviour//炎パーティクル生成と消�
         }
 
 
-        if(Enemy2Move.TuiFlag == false)
-        {
-            speed = 6.0f;
-
-            AnimSpeed = 4.0f;
-        }
-        if (Enemy2Move.TuiFlag == true)
-        {
-            speed = 10.0f;
-
-            AnimSpeed = 8.0f;
-        }
+        
 
     }
 }
