@@ -139,7 +139,7 @@ public class PlayerMove : MonoBehaviour
 
         
 
-        if (Menu.StageNo >= 0)
+        if (Menu.ButtonNo >= 0)
         {
             WaterHight1 = 0.0f;
 

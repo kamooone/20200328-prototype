@@ -185,27 +185,27 @@ public class PauseMenu : MonoBehaviour
 
                 //this.aud.PlayOneShot(this.DecidedSE);
 
-                //if (Menu.NowStageNo == 1)
+                //if (Menu.NowButtonNo == 1)
                 //{
                 //    SceneManager.LoadScene("GameScene1");
                 //}
                 //
-                //if (Menu.NowStageNo == 2)
+                //if (Menu.NowButtonNo == 2)
                 //{
                 //    SceneManager.LoadScene("GameScene2");
                 //}
                 //
-                //if (Menu.NowStageNo == 3)
+                //if (Menu.NowButtonNo == 3)
                 //{
                 //    SceneManager.LoadScene("GameScene3");
                 //}
                 //
-                //if (Menu.NowStageNo == 4)
+                //if (Menu.NowButtonNo == 4)
                 //{
                 //    SceneManager.LoadScene("GameScene4");
                 //}
                 //
-                //if (Menu.NowStageNo == 5)
+                //if (Menu.NowButtonNo == 5)
                 //{
                 //    SceneManager.LoadScene("GameScene5");
                 //}

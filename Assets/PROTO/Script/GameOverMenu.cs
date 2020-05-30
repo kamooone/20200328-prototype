@@ -97,39 +97,39 @@ public class GameOverMenu : MonoBehaviour
             this.aud.PlayOneShot(this.DecidedSE);
 
             //リトライ遷移
-            //if (Menu.StageNo == 1)
+            //if (Menu.ButtonNo == 1)
             //{
             //    this.aud.PlayOneShot(this.DecidedSE);
             //    SceneManager.LoadScene("GameScene1");
-            //    Menu.NowStageNo = 1;
+            //    Menu.NowButtonNo = 1;
             //}
 
-            //if (Menu.StageNo == 2)
+            //if (Menu.ButtonNo == 2)
             //{
             //    this.aud.PlayOneShot(this.DecidedSE);
             //    SceneManager.LoadScene("GameScene2");
-            //    Menu.NowStageNo = 2;
+            //    Menu.NowButtonNo = 2;
             //}
 
-            //if (Menu.StageNo == 3)
+            //if (Menu.ButtonNo == 3)
             //{
             //    this.aud.PlayOneShot(this.DecidedSE);
             //    SceneManager.LoadScene("GameScene3");
-            //    Menu.NowStageNo = 3;
+            //    Menu.NowButtonNo = 3;
             //}
 
-            //if (Menu.StageNo == 4)
+            //if (Menu.ButtonNo == 4)
             //{
             //    this.aud.PlayOneShot(this.DecidedSE);
             //    SceneManager.LoadScene("GameScene4");
-            //    Menu.NowStageNo = 4;
+            //    Menu.NowButtonNo = 4;
             //}
 
-            //if (Menu.StageNo == 5)
+            //if (Menu.ButtonNo == 5)
             //{
             //    this.aud.PlayOneShot(this.DecidedSE);
             //    SceneManager.LoadScene("GameScene5");
-            //    Menu.NowStageNo = 5;
+            //    Menu.NowButtonNo = 5;
             //}
 
             //フェードインフェードアウト処理
@@ -152,7 +152,7 @@ public class GameOverMenu : MonoBehaviour
             //SceneManager.LoadScene("TitleScene");
 
             //フェードインフェードアウト処理
-            Menu.StageNo = 17;
+            Menu.ButtonNo = 17;
             Menu.TitleFadeFlag = true;
         }
 
