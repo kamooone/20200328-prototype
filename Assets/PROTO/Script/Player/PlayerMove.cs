@@ -56,6 +56,8 @@ public class PlayerMove : MonoBehaviour
 
     public bool UIUp_Flag = false;
     public bool UIDown_Flag = false;
+    public bool UI_B_Flag = false;
+    public bool UI_X_Flag = false;
 
     bool GroundCollision = true;
 
@@ -833,11 +835,12 @@ public class PlayerMove : MonoBehaviour
         if (collision.gameObject.tag == "Water")
         {
             sprinklercollision = true;
+            UI_B_Flag = true;
         }
 
 
-        if (Move == false)
-        {
+        //if (Move == false)
+        //{
             //================================================================================================================================================================================================
             if (collision.gameObject.tag == "Up")
             {
@@ -1170,7 +1173,7 @@ public class PlayerMove : MonoBehaviour
                     StageNow--;
                 }
             }
-        }
+        //}
 
 
 
@@ -1294,6 +1297,7 @@ public class PlayerMove : MonoBehaviour
         FallDown = 0.0f;
         NotCloseSE_Flag = false;
         sprinklercollision = false;
+        UI_B_Flag = false;
     }
 
     //コリジョン当たり判定
@@ -1443,6 +1447,110 @@ public class PlayerMove : MonoBehaviour
             WallFlag8 = true;
             WallNo8 = true;
         }
+
+
+
+
+        //MoveWall
+        if ((collision.gameObject.tag == "MoveWall") && PlayerDirection == 1 && WaterHight2 == 0.11f)
+        {
+            UI_X_Flag = true;
+        }
+        if ((collision.gameObject.tag == "MoveWall") && PlayerDirection == -1 && WaterHight2 == 0.11f)
+        {
+            UI_X_Flag = true;
+        }
+
+        //MoveWall
+        if ((collision.gameObject.tag == "MoveWall1") && PlayerDirection == 1 && WaterHight2 == 0.11f)
+        {
+            UI_X_Flag = true;
+        }
+        if ((collision.gameObject.tag == "MoveWall1") && PlayerDirection == -1 && WaterHight2 == 0.11f)
+        {
+            UI_X_Flag = true;
+        }
+
+        //MoveWall
+        if ((collision.gameObject.tag == "MoveWall2") && PlayerDirection == 1 && WaterHight1 == 0.11f)
+        {
+            Enemy2_Collision_Left = true;
+            WallFlag2 = true;
+            WallNo2 = true;
+            UI_X_Flag = true;
+        }
+        if ((collision.gameObject.tag == "MoveWall2") && PlayerDirection == -1 && WaterHight1 == 0.11f)
+        {
+            UI_X_Flag = true;
+        }
+
+
+        //MoveWall
+        if ((collision.gameObject.tag == "MoveWall3") && PlayerDirection == 1 && WaterHight3 == 0.11f)
+        {
+            UI_X_Flag = true;
+        }
+        if ((collision.gameObject.tag == "MoveWall3") && PlayerDirection == -1 && WaterHight3 == 0.11f)
+        {
+            UI_X_Flag = true;
+        }
+
+
+        //MoveWall
+        if ((collision.gameObject.tag == "MoveWall4") && PlayerDirection == 1 && WaterHight3 == 0.11f)
+        {
+            UI_X_Flag = true;
+        }
+        if ((collision.gameObject.tag == "MoveWall4") && PlayerDirection == -1 && WaterHight3 == 0.11f)
+        {
+            UI_X_Flag = true;
+        }
+
+
+
+        //MoveWall
+        if ((collision.gameObject.tag == "MoveWall5") && PlayerDirection == 1 && WaterHight1 == 0.11f)
+        {
+            UI_X_Flag = true;
+        }
+        if ((collision.gameObject.tag == "MoveWall5") && PlayerDirection == -1 && WaterHight1 == 0.11f)
+        {
+            UI_X_Flag = true;
+        }
+
+
+        //MoveWall
+        if ((collision.gameObject.tag == "MoveWall6") && PlayerDirection == 1 && WaterHight1 == 0.11f)
+        {
+            UI_X_Flag = true;
+        }
+        if ((collision.gameObject.tag == "MoveWall6") && PlayerDirection == -1 && WaterHight1 == 0.11f)
+        {
+            UI_X_Flag = true;
+        }
+
+
+        //MoveWall
+        if ((collision.gameObject.tag == "MoveWall7") && PlayerDirection == 1 && WaterHight2 == 0.11f)
+        {
+            UI_X_Flag = true;
+        }
+        if ((collision.gameObject.tag == "MoveWall7") && PlayerDirection == -1 && WaterHight2 == 0.11f)
+        {
+            UI_X_Flag = true;
+        }
+
+
+
+        //MoveWall
+        if ((collision.gameObject.tag == "MoveWall8") && PlayerDirection == 1 && WaterHight3 == 0.11f)
+        {
+            UI_X_Flag = true;
+        }
+        if ((collision.gameObject.tag == "MoveWall8") && PlayerDirection == -1 && WaterHight3 == 0.11f)
+        {
+            UI_X_Flag = true;
+        }
     }
 
 
@@ -1504,6 +1612,8 @@ public class PlayerMove : MonoBehaviour
 
         WallFlag8 = false;
         WallNo8 = false;
+
+        UI_X_Flag = false;
     }
 
     void OnCollisionStayExit(Collision collision)
