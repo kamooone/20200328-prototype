@@ -34,12 +34,12 @@ public class SE : MonoBehaviour
         float Right = Input.GetAxis("R");
 
         //チャタリング防止
-        if (Left == 1 && stick == false)
+        if (Left >= 0.5 && stick == false)
         {
             LeftFlag = true;
             stick = true;
         }
-        if (Right == 1 && stick == false)
+        if (Right >= 0.5 && stick == false)
         {
             RightFlag = true;
             stick = true;

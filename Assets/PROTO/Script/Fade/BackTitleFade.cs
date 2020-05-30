@@ -123,12 +123,44 @@ public class BackTitleFade : MonoBehaviour
                     SceneManager.LoadScene("GameScene3_4");
                     Menu.NowStageNo = 14;
                 }
+                if (Menu.StageNo == 15)
+                {
+                    SceneManager.LoadScene("GameScene3_5");
+                    Menu.NowStageNo = 15;
+                }
 
 
+                if (Menu.StageNo == 16)
+                {
+                    SceneManager.LoadScene("GameScene4_1");
+                    Menu.NowStageNo = 16;
+                }
                 if (Menu.StageNo == 17)
                 {
-                    SceneManager.LoadScene("TitleScene");
+                    SceneManager.LoadScene("GameScene4_2");
                     Menu.NowStageNo = 17;
+                }
+                if (Menu.StageNo == 18)
+                {
+                    SceneManager.LoadScene("GameScene4_3");
+                    Menu.NowStageNo = 18;
+                }
+                if (Menu.StageNo == 19)
+                {
+                    SceneManager.LoadScene("GameScene4_4");
+                    Menu.NowStageNo = 19;
+                }
+                if (Menu.StageNo == 20)
+                {
+                    SceneManager.LoadScene("GameScene4_5");
+                    Menu.NowStageNo = 20;
+                }
+
+
+                if (Menu.StageNo == 22)
+                {
+                    SceneManager.LoadScene("TitleScene");
+                    Menu.NowStageNo = 22;
                 }
             }
         }

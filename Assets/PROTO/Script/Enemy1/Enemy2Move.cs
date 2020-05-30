@@ -30,13 +30,16 @@ public class Enemy2Move : MonoBehaviour
 
     GameObject Enemy;
 
-    //float speed = 10.0f;
+    float speed = 6.0f;
+    float  AnimSpeed = 4.0f;
 
     float Down = 0.0f;
 
     public static bool TuiFlag = false;
     bool walkFlag_Left = false;
     bool walkFlag_Right = false;
+
+    public static bool doorcollision = false;
 
     //エネミーの向き
     int direction = 1;
@@ -64,6 +67,11 @@ public class Enemy2Move : MonoBehaviour
 
     public static bool hasigocollisionUp6 = false;
     public static bool hasigocollisionDown6 = false;
+
+
+    public AudioClip WalkSE;
+    AudioSource aud;
+    int SETime = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -94,17 +102,65 @@ public class Enemy2Move : MonoBehaviour
 
         hasigocollisionUp6 = false;
         hasigocollisionDown6 = false;
+
+        this.aud = GetComponent<AudioSource>();
+        SETime = 0;
     }
 
     // Update is called once per frame
     void Update()
     {
-        anim.speed = FireGenerated2.AnimSpeed;
+        anim.speed = AnimSpeed;
 
 
         /*移動処理*/
-        if (TuiFlag == true)
+        if (TuiFlag == true && doorcollision == false)
         {
+            //==============================================================================================================
+            //水ないとき、追従時のエネミーのスピード
+            if (FireGenerated2.WaterHight == 0.0f || FireGenerated2.WaterHight == -0.11f)
+            {
+                speed = 10.0f;
+
+                AnimSpeed = 8.0f;
+
+                if (SETime == 0)
+                {
+                    this.aud.PlayOneShot(this.WalkSE);
+                }
+                if(SETime < 30)
+                {
+                    SETime++;
+                }
+                if (SETime == 30)
+                {
+                    SETime=0;
+                }
+            }
+
+
+            //水あるとき、追従時のエネミーのスピード
+            if (FireGenerated2.WaterHight == 0.11f)
+            {
+                speed = 6.0f;
+
+                AnimSpeed = 4.0f;
+
+                if (SETime == 0)
+                {
+                    this.aud.PlayOneShot(this.WalkSE);
+                }
+                if (SETime < 15)
+                {
+                    SETime++;
+                }
+                if (SETime == 15)
+                {
+                    SETime = 0;
+                }
+            }
+            //==============================================================================================================
+
             if (walkFlag_Right == true)
             {
                 direction = -1;
@@ -115,7 +171,7 @@ public class Enemy2Move : MonoBehaviour
                 }
 
                 Vector3 axis = transform.TransformDirection(Vector3.down);
-                transform.RotateAround(target.position, axis, FireGenerated2.speed * Time.deltaTime);
+                transform.RotateAround(target.position, axis, speed * Time.deltaTime);
             }
 
             if (walkFlag_Left == true)
@@ -128,7 +184,7 @@ public class Enemy2Move : MonoBehaviour
                 }
 
                 Vector3 axis = transform.TransformDirection(Vector3.up);
-                transform.RotateAround(target.position, axis, FireGenerated2.speed * Time.deltaTime);
+                transform.RotateAround(target.position, axis, speed * Time.deltaTime);
             }
         }
 
@@ -136,6 +192,28 @@ public class Enemy2Move : MonoBehaviour
 
         if (TuiFlag == false)
         {
+
+
+            //==============================================================================================================
+            //水ないとき、普通時のエネミーのスピード
+            if (FireGenerated2.WaterHight == 0.0f || FireGenerated2.WaterHight == -0.11f)
+            {
+                speed = 6.0f;
+
+                AnimSpeed = 4.0f;
+            }
+
+
+            //水あるとき、普通時のエネミーのスピード
+            if (FireGenerated2.WaterHight == 0.11f)
+            {
+                speed = 2.0f;
+
+                AnimSpeed = 1.0f;
+            }
+            //==============================================================================================================
+
+
             if (direction == -1)
             {
                 if (radian != -180.0f)
@@ -145,7 +223,7 @@ public class Enemy2Move : MonoBehaviour
                 }
 
                 Vector3 axis = transform.TransformDirection(Vector3.down);
-                transform.RotateAround(target.position, axis, FireGenerated2.speed * Time.deltaTime);
+                transform.RotateAround(target.position, axis, speed * Time.deltaTime);
             }
 
             if (direction == 1)
@@ -157,7 +235,7 @@ public class Enemy2Move : MonoBehaviour
                 }
 
                 Vector3 axis = transform.TransformDirection(Vector3.up);
-                transform.RotateAround(target.position, axis, FireGenerated2.speed * Time.deltaTime);
+                transform.RotateAround(target.position, axis, speed * Time.deltaTime);
             }
         }
     }
@@ -231,12 +309,14 @@ public class Enemy2Move : MonoBehaviour
         {
             walkFlag_Left = true;
             TuiFlag = true;
+            Debug.Log("Tui_L");
         }
 
         if (collision.gameObject.tag == "Tui_R")
         {
             walkFlag_Right = true;
             TuiFlag = true;
+            Debug.Log("Tui_R");
         }
     }
 
@@ -278,10 +358,19 @@ public class Enemy2Move : MonoBehaviour
             direction *= -1;
         }
 
-        if (collision.gameObject.tag == "Wall" || collision.gameObject.tag == "Door")
+        if (collision.gameObject.tag == "Wall" || collision.gameObject.tag == "Door" || collision.gameObject.tag == "MoveWall"
+             || collision.gameObject.tag == "MoveWall1" || collision.gameObject.tag == "MoveWall2" || collision.gameObject.tag == "MoveWall3" || collision.gameObject.tag == "MoveWall4"
+             || collision.gameObject.tag == "MoveWall5" || collision.gameObject.tag == "MoveWall6" || collision.gameObject.tag == "MoveWall7" || collision.gameObject.tag == "MoveWall8")
         {
             direction *= -1;
+            doorcollision = true;
         }
+    }
+
+
+    void OnCollisionExit(Collision collision)
+    {
+        doorcollision = false;
     }
 
 }

@@ -21,6 +21,11 @@ public class Enemy2_2Move : MonoBehaviour//敵の移動処理(本来はまとめ
     //方向チェンジ時の角度
     float radian = -180.0f;
 
+    public static bool TuiFlag = false;
+    bool walkFlag_Left = false;
+    bool walkFlag_Right = false;
+
+    public static bool doorcollision = false;
 
     // キャラにアタッチされるアニメーターへの参照
     private Animator anim;
@@ -63,6 +68,10 @@ public class Enemy2_2Move : MonoBehaviour//敵の移動処理(本来はまとめ
     public static bool hasigocollisionUp6 = false;
     public static bool hasigocollisionDown6 = false;
 
+    public AudioClip WalkSE;
+    AudioSource aud;
+    int SETime = 0;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -87,6 +96,9 @@ public class Enemy2_2Move : MonoBehaviour//敵の移動処理(本来はまとめ
 
         // Animatorコンポーネントを取得する
         anim = GetComponent<Animator>();
+
+        this.aud = GetComponent<AudioSource>();
+        SETime = 0;
     }
 
     // Update is called once per frame
@@ -119,29 +131,77 @@ public class Enemy2_2Move : MonoBehaviour//敵の移動処理(本来はまとめ
 
         if (walkflag == true)
         {
-            /*移動処理*/
-            if (direction == 1)
+            if (TuiFlag == false)
             {
-                if (radian != 180.0f)
+                /*移動処理*/
+                if (direction == 1)
                 {
-                    radian = 180.0f;
-                    transform.Rotate(new Vector3(0f, radian, 0f));
+                    if (radian != 180.0f)
+                    {
+                        radian = 180.0f;
+                        transform.Rotate(new Vector3(0f, radian, 0f));
+                    }
+
+                    Vector3 axis = transform.TransformDirection(Vector3.up);
+                    transform.RotateAround(target.position, axis, speed * Time.deltaTime);
                 }
 
-                Vector3 axis = transform.TransformDirection(Vector3.up);
-                transform.RotateAround(target.position, axis, speed * Time.deltaTime);
+                if (direction == -1)
+                {
+                    if (radian != -180.0f)
+                    {
+                        radian = -180.0f;
+                        transform.Rotate(new Vector3(0f, radian, 0f));
+                    }
+
+                    Vector3 axis = transform.TransformDirection(Vector3.down);
+                    transform.RotateAround(target.position, axis, speed * Time.deltaTime);
+                }
             }
 
-            if (direction == -1)
+            if (TuiFlag == true && doorcollision == false)
             {
-                if (radian != -180.0f)
+                if (SETime == 0)
                 {
-                    radian = -180.0f;
-                    transform.Rotate(new Vector3(0f, radian, 0f));
+                    this.aud.PlayOneShot(this.WalkSE);
+                }
+                if (SETime < 15)
+                {
+                    SETime++;
+                }
+                if (SETime == 15)
+                {
+                    SETime = 0;
                 }
 
-                Vector3 axis = transform.TransformDirection(Vector3.down);
-                transform.RotateAround(target.position, axis, speed * Time.deltaTime);
+                /*移動処理*/
+                if (walkFlag_Right == true)
+                {
+                    direction = -1;
+
+                    if (radian != -180.0f)
+                    {
+                        radian = -180.0f;
+                        transform.Rotate(new Vector3(0f, radian, 0f));
+                    }
+
+                    Vector3 axis = transform.TransformDirection(Vector3.down);
+                    transform.RotateAround(target.position, axis, speed * Time.deltaTime);
+                }
+
+                if (walkFlag_Left == true)
+                {
+                    direction = 1;
+
+                    if (radian != 180.0f)
+                    {
+                        radian = 180.0f;
+                        transform.Rotate(new Vector3(0f, radian, 0f));
+                    }
+
+                    Vector3 axis = transform.TransformDirection(Vector3.up);
+                    transform.RotateAround(target.position, axis, speed * Time.deltaTime);
+                }
             }
         }
 
@@ -217,6 +277,18 @@ public class Enemy2_2Move : MonoBehaviour//敵の移動処理(本来はまとめ
             hasigocollisionDown6 = true;
         }
 
+        if (collision.gameObject.tag == "Tui_L")
+        {
+            walkFlag_Left = true;
+            TuiFlag = true;
+        }
+
+        if (collision.gameObject.tag == "Tui_R")
+        {
+            walkFlag_Right = true;
+            TuiFlag = true;
+        }
+
     }
 
     //ノット当たり判定トリガー
@@ -237,6 +309,10 @@ public class Enemy2_2Move : MonoBehaviour//敵の移動処理(本来はまとめ
         hasigocollisionDown4 = false;
         hasigocollisionDown5 = false;
         hasigocollisionDown6 = false;
+
+        walkFlag_Left = false;
+        walkFlag_Right = false;
+        TuiFlag = false;
     }
 
 
@@ -252,9 +328,18 @@ public class Enemy2_2Move : MonoBehaviour//敵の移動処理(本来はまとめ
             direction *= -1;
         }
 
-        if (collision.gameObject.tag == "Wall" || collision.gameObject.tag == "Door" && WaterHight == 0.11f)
+        if (collision.gameObject.tag == "Wall" || collision.gameObject.tag == "Door" || collision.gameObject.tag == "MoveWall"
+             || collision.gameObject.tag == "MoveWall1" || collision.gameObject.tag == "MoveWall2" || collision.gameObject.tag == "MoveWall3"
+              || collision.gameObject.tag == "MoveWall4" || collision.gameObject.tag == "MoveWall5" || collision.gameObject.tag == "MoveWall6"
+               || collision.gameObject.tag == "MoveWall7" || collision.gameObject.tag == "MoveWall8" && WaterHight == 0.11f)
         {
             direction *= -1;
+            doorcollision = true;
         }
     }
+    void OnCollisionExit(Collision collision)
+    {
+        doorcollision = false;
+    }
+
 }
