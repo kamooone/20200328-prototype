@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+
 // 必要なコンポーネントの列記
 [RequireComponent(typeof(Animator))]
+
 
 public class Enemy1Move : MonoBehaviour
 {
@@ -28,7 +30,8 @@ public class Enemy1Move : MonoBehaviour
 
     GameObject Enemy;
 
-    //float speed = 10.0f;
+    float speed = 6.0f;
+    float AnimSpeed = 4.0f;
 
     float Down = 0.0f;
 
@@ -36,20 +39,38 @@ public class Enemy1Move : MonoBehaviour
     bool walkFlag_Left = false;
     bool walkFlag_Right = false;
 
+    public static bool doorcollision = false;
+
     //エネミーの向き
     int direction = 1;
 
     //方向チェンジ時の角度
     float radian = 180.0f;
 
-    public static bool hasigocollision = false;
-    public static bool hasigocollision1 = false;
-    public static bool hasigocollision2 = false;
-    public static bool hasigocollision3 = false;
-    public static bool hasigocollision4 = false;
-    public static bool hasigocollision5 = false;
-    public static bool hasigocollision6 = false;
+    public static bool hasigocollisionUp = false;
+    public static bool hasigocollisionDown = false;
 
+    public static bool hasigocollisionUp1 = false;
+    public static bool hasigocollisionDown1 = false;
+
+    public static bool hasigocollisionUp2 = false;
+    public static bool hasigocollisionDown2 = false;
+
+    public static bool hasigocollisionUp3 = false;
+    public static bool hasigocollisionDown3 = false;
+
+    public static bool hasigocollisionUp4 = false;
+    public static bool hasigocollisionDown4 = false;
+
+    public static bool hasigocollisionUp5 = false;
+    public static bool hasigocollisionDown5 = false;
+
+    public static bool hasigocollisionUp6 = false;
+    public static bool hasigocollisionDown6 = false;
+
+    public AudioClip WalkSE;
+    AudioSource aud;
+    int SETime = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -60,23 +81,85 @@ public class Enemy1Move : MonoBehaviour
         // Animatorのモーション再生速度に animSpeedを設定する
         anim.speed = 1.0f;
 
-        hasigocollision = false;
-        hasigocollision1 = false;
-        hasigocollision2 = false;
-        hasigocollision3 = false;
-        hasigocollision4 = false;
-        hasigocollision5 = false;
-        hasigocollision6 = false;
+        hasigocollisionUp = false;
+        hasigocollisionDown = false;
+
+        hasigocollisionUp1 = false;
+        hasigocollisionDown1 = false;
+
+        hasigocollisionUp2 = false;
+        hasigocollisionDown2 = false;
+
+        hasigocollisionUp3 = false;
+        hasigocollisionDown3 = false;
+
+        hasigocollisionUp4 = false;
+        hasigocollisionDown4 = false;
+
+        hasigocollisionUp5 = false;
+        hasigocollisionDown5 = false;
+
+        hasigocollisionUp6 = false;
+        hasigocollisionDown6 = false;
+
+        this.aud = GetComponent<AudioSource>();
+        SETime = 0;
     }
 
     // Update is called once per frame
     void Update()
     {
-        anim.speed = FireGenerated1.AnimSpeed;
+        anim.speed = AnimSpeed;
+
 
         /*移動処理*/
-        if (TuiFlag == true)
+        if (TuiFlag == true && doorcollision == false)
         {
+            //==============================================================================================================
+            //水ないとき、追従時のエネミーのスピード
+            if (FireGenerated1.WaterHight == 0.0f || FireGenerated1.WaterHight == -0.11f)
+            {
+                speed = 10.0f;
+
+                AnimSpeed = 8.0f;
+
+                if (SETime == 0)
+                {
+                    this.aud.PlayOneShot(this.WalkSE);
+                }
+                if (SETime < 30)
+                {
+                    SETime++;
+                }
+                if (SETime == 30)
+                {
+                    SETime = 0;
+                }
+            }
+
+
+            //水あるとき、追従時のエネミーのスピード
+            if (FireGenerated1.WaterHight == 0.11f)
+            {
+                speed = 6.0f;
+
+                AnimSpeed = 4.0f;
+
+                if (SETime == 0)
+                {
+                    this.aud.PlayOneShot(this.WalkSE);
+                }
+                if (SETime < 15)
+                {
+                    SETime++;
+                }
+                if (SETime == 15)
+                {
+                    SETime = 0;
+                }
+            }
+            //==============================================================================================================
+
             if (walkFlag_Right == true)
             {
                 direction = -1;
@@ -87,7 +170,7 @@ public class Enemy1Move : MonoBehaviour
                 }
 
                 Vector3 axis = transform.TransformDirection(Vector3.down);
-                transform.RotateAround(target.position, axis, FireGenerated1.speed * Time.deltaTime);
+                transform.RotateAround(target.position, axis, speed * Time.deltaTime);
             }
 
             if (walkFlag_Left == true)
@@ -100,7 +183,7 @@ public class Enemy1Move : MonoBehaviour
                 }
 
                 Vector3 axis = transform.TransformDirection(Vector3.up);
-                transform.RotateAround(target.position, axis, FireGenerated1.speed * Time.deltaTime);
+                transform.RotateAround(target.position, axis, speed * Time.deltaTime);
             }
         }
 
@@ -108,6 +191,28 @@ public class Enemy1Move : MonoBehaviour
 
         if (TuiFlag == false)
         {
+
+
+            //==============================================================================================================
+            //水ないとき、普通時のエネミーのスピード
+            if (FireGenerated1.WaterHight == 0.0f || FireGenerated1.WaterHight == -0.11f)
+            {
+                speed = 6.0f;
+
+                AnimSpeed = 4.0f;
+            }
+
+
+            //水あるとき、普通時のエネミーのスピード
+            if (FireGenerated1.WaterHight == 0.11f)
+            {
+                speed = 2.0f;
+
+                AnimSpeed = 1.0f;
+            }
+            //==============================================================================================================
+
+
             if (direction == -1)
             {
                 if (radian != -180.0f)
@@ -117,7 +222,7 @@ public class Enemy1Move : MonoBehaviour
                 }
 
                 Vector3 axis = transform.TransformDirection(Vector3.down);
-                transform.RotateAround(target.position, axis, FireGenerated1.speed * Time.deltaTime);
+                transform.RotateAround(target.position, axis, speed * Time.deltaTime);
             }
 
             if (direction == 1)
@@ -129,7 +234,7 @@ public class Enemy1Move : MonoBehaviour
                 }
 
                 Vector3 axis = transform.TransformDirection(Vector3.up);
-                transform.RotateAround(target.position, axis, FireGenerated1.speed * Time.deltaTime);
+                transform.RotateAround(target.position, axis, speed * Time.deltaTime);
             }
         }
     }
@@ -138,33 +243,65 @@ public class Enemy1Move : MonoBehaviour
     //当たり判定当たっている間
     void OnTriggerStay(Collider collision)
     {
-        if (collision.gameObject.tag == "StageUp" || collision.gameObject.tag == "Up")
+        if (collision.gameObject.tag == "StageUp1" || collision.gameObject.tag == "Up1")
         {
-            hasigocollision = true;
+            hasigocollisionUp = true;
         }
-        if (collision.gameObject.tag == "StageUp_1" || collision.gameObject.tag == "Up_1")
+        if (collision.gameObject.tag == "StageUp1_1" || collision.gameObject.tag == "Up1_1")
         {
-            hasigocollision1 = true;
+            hasigocollisionUp1 = true;
         }
-        if (collision.gameObject.tag == "StageUp_2" || collision.gameObject.tag == "Up_2")
+        if (collision.gameObject.tag == "StageUp1_2" || collision.gameObject.tag == "Up1_2")
         {
-            hasigocollision2 = true;
+            hasigocollisionUp2 = true;
         }
-        if (collision.gameObject.tag == "StageUp_3" || collision.gameObject.tag == "Up_3")
+        if (collision.gameObject.tag == "StageUp1_3" || collision.gameObject.tag == "Up1_3")
         {
-            hasigocollision3 = true;
+            hasigocollisionUp3 = true;
         }
-        if (collision.gameObject.tag == "StageUp_4" || collision.gameObject.tag == "Up_4")
+        if (collision.gameObject.tag == "StageUp1_4" || collision.gameObject.tag == "Up1_4")
         {
-            hasigocollision4 = true;
+            hasigocollisionUp4 = true;
         }
-        if (collision.gameObject.tag == "StageUp_5" || collision.gameObject.tag == "Up_5")
+        if (collision.gameObject.tag == "StageUp1_5" || collision.gameObject.tag == "Up1_5")
         {
-            hasigocollision5 = true;
+            hasigocollisionUp5 = true;
         }
-        if (collision.gameObject.tag == "StageUp_6" || collision.gameObject.tag == "Up_6")
+        if (collision.gameObject.tag == "StageUp1_6" || collision.gameObject.tag == "Up1_6")
         {
-            hasigocollision6 = true;
+            hasigocollisionUp6 = true;
+        }
+
+
+
+
+        if (collision.gameObject.tag == "StageDown1" || collision.gameObject.tag == "Down1")
+        {
+            hasigocollisionDown = true;
+        }
+        if (collision.gameObject.tag == "StageDown1_1" || collision.gameObject.tag == "Down1_1")
+        {
+            hasigocollisionDown1 = true;
+        }
+        if (collision.gameObject.tag == "StageDown1_2" || collision.gameObject.tag == "Down1_2")
+        {
+            hasigocollisionDown2 = true;
+        }
+        if (collision.gameObject.tag == "StageDown1_3" || collision.gameObject.tag == "Down1_3")
+        {
+            hasigocollisionDown3 = true;
+        }
+        if (collision.gameObject.tag == "StageDown1_4" || collision.gameObject.tag == "Down1_4")
+        {
+            hasigocollisionDown4 = true;
+        }
+        if (collision.gameObject.tag == "StageDown1_5" || collision.gameObject.tag == "Down1_5")
+        {
+            hasigocollisionDown5 = true;
+        }
+        if (collision.gameObject.tag == "StageDown1_6" || collision.gameObject.tag == "Down1_6")
+        {
+            hasigocollisionDown6 = true;
         }
 
         if (collision.gameObject.tag == "Tui_L")
@@ -180,17 +317,24 @@ public class Enemy1Move : MonoBehaviour
         }
     }
 
-
     //ノット当たり判定トリガー
     void OnTriggerExit(Collider collision)
     {
-        hasigocollision = false;
-        hasigocollision1 = false;
-        hasigocollision2 = false;
-        hasigocollision3 = false;
-        hasigocollision4 = false;
-        hasigocollision5 = false;
-        hasigocollision6 = false;
+        hasigocollisionUp = false;
+        hasigocollisionUp1 = false;
+        hasigocollisionUp2 = false;
+        hasigocollisionUp3 = false;
+        hasigocollisionUp4 = false;
+        hasigocollisionUp5 = false;
+        hasigocollisionUp6 = false;
+
+        hasigocollisionDown = false;
+        hasigocollisionDown1 = false;
+        hasigocollisionDown2 = false;
+        hasigocollisionDown3 = false;
+        hasigocollisionDown4 = false;
+        hasigocollisionDown5 = false;
+        hasigocollisionDown6 = false;
 
         walkFlag_Left = false;
         walkFlag_Right = false;
@@ -211,10 +355,18 @@ public class Enemy1Move : MonoBehaviour
             direction *= -1;
         }
 
-        if (collision.gameObject.tag == "Wall" || collision.gameObject.tag == "Door")
+        if (collision.gameObject.tag == "Wall" || collision.gameObject.tag == "Door" || collision.gameObject.tag == "MoveWall" || collision.gameObject.tag == "MoveWall1"
+             || collision.gameObject.tag == "MoveWall2" || collision.gameObject.tag == "MoveWall3" || collision.gameObject.tag == "MoveWall4" || collision.gameObject.tag == "MoveWall5"
+              || collision.gameObject.tag == "MoveWall6" || collision.gameObject.tag == "MoveWall7" || collision.gameObject.tag == "MoveWall8")
         {
             direction *= -1;
+            doorcollision = true;
         }
+    }
+
+    void OnCollisionExit(Collision collision)
+    {
+        doorcollision = false;
     }
 
 }

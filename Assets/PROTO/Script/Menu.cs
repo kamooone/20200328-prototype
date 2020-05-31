@@ -23,6 +23,11 @@ public class Menu : MonoBehaviour
     Button stage13;
     Button stage14;
     Button stage15;
+    Button stage16;
+    Button stage17;
+    Button stage18;
+    Button stage19;
+    Button stage20;
 
 
     Button sound;
@@ -76,6 +81,11 @@ public class Menu : MonoBehaviour
         stage13 = GameObject.Find("StageSelectCanvas/stage/World3/stage3").GetComponent<Button>();
         stage14 = GameObject.Find("StageSelectCanvas/stage/World3/stage4").GetComponent<Button>();
         stage15 = GameObject.Find("StageSelectCanvas/stage/World3/stage5").GetComponent<Button>();
+        stage16 = GameObject.Find("StageSelectCanvas/stage/World4/stage1").GetComponent<Button>();
+        stage17 = GameObject.Find("StageSelectCanvas/stage/World4/stage2").GetComponent<Button>();
+        stage18 = GameObject.Find("StageSelectCanvas/stage/World4/stage3").GetComponent<Button>();
+        stage19 = GameObject.Find("StageSelectCanvas/stage/World4/stage4").GetComponent<Button>();
+        stage20 = GameObject.Find("StageSelectCanvas/stage/World4/stage5").GetComponent<Button>();
 
 
         sound = GameObject.Find("StageSelectCanvas/stage/sound").GetComponent<Button>(); ;
@@ -106,17 +116,27 @@ public class Menu : MonoBehaviour
         float Down = Input.GetAxis("S");
 
         //チャタリング防止
-        if (Left == 1 && stick == false)
+        if (Left >= 0.5 && stick == false)
         {
             LeftFlag = true;
             stick = true;
         }
-        if (Right == 1 && stick == false)
+        if (Right >= 0.5 && stick == false)
         {
             RightFlag = true;
             stick = true;
         }
-       
+        if (Up >= 0.5 && Upstick == false)
+        {
+            UpFlag = true;
+            Upstick = true;
+        }
+        if (Down >= 0.5 && Upstick == false)
+        {
+            DownFlag = true;
+            Upstick = true;
+        }
+
 
 
         //ステージを選択
@@ -124,7 +144,7 @@ public class Menu : MonoBehaviour
         {
             if (RightFlag == true || Input.GetKeyDown("right"))
             {
-                if (StageNo < 18)
+                if (StageNo < 23)
                 {
                     StageNo++;
                     this.aud.PlayOneShot(this.CursorSE);
@@ -142,6 +162,37 @@ public class Menu : MonoBehaviour
             }
         }
 
+        if (SoundControll == false && FadeFlag == false && TitleFadeFlag == false)
+        {
+            if (UpFlag == true || Input.GetKeyDown("up"))
+            {
+                if (StageNo >= 6)
+                {
+                    StageNo-=5;
+                    this.aud.PlayOneShot(this.CursorSE);
+                }
+                UpFlag = false;
+            }
+            if (DownFlag == true || Input.GetKeyDown("down"))
+            {
+                if (StageNo >= 16 && StageNo <= 20)
+                {
+                    StageNo=21;
+                    this.aud.PlayOneShot(this.CursorSE);
+                }
+                if (StageNo <= 15)
+                {
+                    StageNo += 5;
+                    this.aud.PlayOneShot(this.CursorSE);
+                }
+                DownFlag = false;
+            }
+        }
+
+
+
+
+
         //チャタリング防止
         if (Left == 0)
         {
@@ -151,15 +202,23 @@ public class Menu : MonoBehaviour
         {
             stick = false;
         }
+        if (Up == 0)
+        {
+            Upstick = false;
+        }
+        if (Down == 0)
+        {
+            Upstick = false;
+        }
 
 
 
-        if (Up == 1 && Upstick == false)
+        if (Up >= 0.5 && Upstick == false)
         {
             UpFlag = true;
             stick = true;
         }
-        if (Down == 1 && Upstick == false)
+        if (Down >= 0.5 && Upstick == false)
         {
             DownFlag = true;
             stick = true;
@@ -227,7 +286,7 @@ public class Menu : MonoBehaviour
         //シーン遷移
         if (SoundControll == false && FadeFlag == false && TitleFadeFlag == false)
         {
-            if ((Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown("joystick button 0"))  && StageNo <= 14)
+            if ((Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown("joystick button 0"))  && StageNo <= 20)
             {
                 this.aud.PlayOneShot(this.DecidedSE);
 
@@ -237,7 +296,7 @@ public class Menu : MonoBehaviour
 
 
 
-            if ((Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown("joystick button 0"))  && StageNo == 16)
+            if ((Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown("joystick button 0"))  && StageNo == 21)
             {
                 this.aud.PlayOneShot(this.DecidedSE);
                 SoundControll = true;
@@ -262,7 +321,7 @@ public class Menu : MonoBehaviour
             }
 
 
-            if ((Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown("joystick button 0"))  && StageNo == 17)
+            if ((Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown("joystick button 0"))  && StageNo == 22)
             {
                 this.aud.PlayOneShot(this.DecidedSE);
 
@@ -271,7 +330,7 @@ public class Menu : MonoBehaviour
             }
 
             //ゲーム終了
-            if ((Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown("joystick button 0"))  && StageNo == 18)
+            if ((Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown("joystick button 0"))  && StageNo == 23)
             {
                 //エディタ用
                 // UnityEditor.EditorApplication.isPlaying = false;
@@ -341,17 +400,37 @@ public class Menu : MonoBehaviour
         {
             stage15.Select();
         }
-
-
         if (StageNo == 16)
         {
-            sound.Select();
+            stage16.Select();
         }
         if (StageNo == 17)
         {
-            title.Select();
+            stage17.Select();
         }
         if (StageNo == 18)
+        {
+            stage18.Select();
+        }
+        if (StageNo == 19)
+        {
+            stage19.Select();
+        }
+        if (StageNo == 20)
+        {
+            stage20.Select();
+        }
+
+
+        if (StageNo == 21)
+        {
+            sound.Select();
+        }
+        if (StageNo == 22)
+        {
+            title.Select();
+        }
+        if (StageNo == 23)
         {
             GameEnd.Select();
         }

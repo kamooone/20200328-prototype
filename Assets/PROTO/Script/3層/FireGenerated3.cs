@@ -11,13 +11,11 @@ public class FireGenerated3 : MonoBehaviour//炎パーティクル生成と消�
     AudioSource aud;
     int SETime = 0;
 
-    public static float speed;
-
     // アニメーション再生速度設定
     public static float AnimSpeed;
 
     //水の高さ取得
-    float WaterHight;
+    public static float WaterHight;
 
     /*パーティクル関係宣言*/
     private GameObject Particle;//出現させる炎のパーティクル(prefab科しているためGameObject宣言)
@@ -41,10 +39,7 @@ public class FireGenerated3 : MonoBehaviour//炎パーティクル生成と消�
 
         this.aud = GetComponent<AudioSource>();
         SETime = 0;
-
-        speed = 1.5f;
-
-        AnimSpeed = 1.0f;
+        
     }
 
     // Update is called once per frame
@@ -72,25 +67,6 @@ public class FireGenerated3 : MonoBehaviour//炎パーティクル生成と消�
 
                 Generated = true;
 
-
-                //==============================================================================================================
-                //水ないとき、普通時のエネミーのスピード
-                if (Enemy3Move.TuiFlag == false)
-                {
-                    speed = 6.0f;
-
-                    AnimSpeed = 4.0f;
-                }
-
-                //水ないとき、追従時のエネミーのスピード
-                if (Enemy3Move.TuiFlag == true)
-                {
-                    speed = 10.0f;
-
-                    AnimSpeed = 8.0f;
-                }
-                //==============================================================================================================
-
                 /*直接代入(追加)*/
                 ChildObj.transform.localPosition = new Vector3(0.0f, 0.03f, 0.0f);
                 Vector3 rotationVector = new Vector3(-90, 0, 0);
@@ -107,40 +83,22 @@ public class FireGenerated3 : MonoBehaviour//炎パーティクル生成と消�
             {
                 Destroy(gameObject.transform.Find("Fire(Clone)").gameObject);
                 Generated = false;
-
-
-                //==============================================================================================================
-                //水あるとき、普通時のエネミーのスピード
-                if (Enemy3Move.TuiFlag == false)
-                {
-                    speed = 0.0f;
-
-                    AnimSpeed = 0.0f;
-                }
-
-                //水あるとき、追従時のエネミーのスピード
-                if (Enemy3Move.TuiFlag == true)
-                {
-                    speed = 0.0f;
-
-                    AnimSpeed = 0.0f;
-                }
-                //==============================================================================================================
+                
 
             }
 
-            if (SETime == 0)
-            {
-                this.aud.PlayOneShot(this.WalkSE);
-            }
-            if (SETime < 102)
-            {
-                SETime++;
-            }
-            if (SETime == 102)
-            {
-                SETime = 0;
-            }
+            //if (SETime == 0)
+            //{
+            //    this.aud.PlayOneShot(this.WalkSE);
+            //}
+            //if (SETime < 102)
+            //{
+            //    SETime++;
+            //}
+            //if (SETime == 102)
+            //{
+            //    SETime = 0;
+            //}
         }
     }
 }
