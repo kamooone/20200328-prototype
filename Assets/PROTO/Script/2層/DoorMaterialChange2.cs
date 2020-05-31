@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class button2 : MonoBehaviour
+public class DoorMaterialChange2 : MonoBehaviour
 {
     GameObject PlayerObject;
     PlayerMove PlayerScript;
@@ -10,20 +10,18 @@ public class button2 : MonoBehaviour
     //水の高さ取得
     float WaterHight;
 
-    float rotate = -1f;
+    /*マテリアル関係宣言*/
+    public Material[] material;           // マテリアル(0は光るマテリアル,1は普通のマテリアルをいれてください) 
+    private int No;                         //現在のマテリアルの番号(0は光るマテリアル,1は普通のマテリアルをいれてください)
 
-    /*パーティクル追加*/
-    [SerializeField]
-    private ParticleSystem particle;//スプリンクラー
 
     // Start is called before the first frame update
     void Start()
     {
+        No = 1;//普通のマテリアルを指定
+
         PlayerObject = GameObject.Find("player");
         PlayerScript = PlayerObject.GetComponent<PlayerMove>();
-
-        /*パーティクル*/
-        particle.gameObject.SetActive(false);//非表示にする
     }
 
     // Update is called once per frame
@@ -32,23 +30,20 @@ public class button2 : MonoBehaviour
         //二階の水の高さ取得
         WaterHight = PlayerScript.WaterHight2;
 
+        //水の判定
         if (WaterHight == 0.11f)
         {
-            rotate = -1f;
+            No = 0;
         }
+
+        //水の判定
         if (WaterHight == 0.0f || WaterHight == -0.11f)
         {
-            rotate = 1f;
-
-            /*パーティクル*/
-            particle.gameObject.SetActive(true);//表示にする
-            particle.Play();
+            No = 1;
         }
 
+        this.GetComponent<Renderer>().sharedMaterial = material[No];//割り当てのマテリアルを表現(0は普通,1は透明)
 
-        if (PlayerMove.StageNow == 2 && PlayerMove.WaterAction == true)
-        {
-            transform.Rotate(new Vector3(rotate, 0f, 0f));
-        }
     }
+
 }
