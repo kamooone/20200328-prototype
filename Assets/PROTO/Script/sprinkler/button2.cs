@@ -35,14 +35,14 @@ public class button2 : MonoBehaviour
         if (WaterHight == 0.11f)
         {
             rotate = -1f;
-        }
-        if (WaterHight == 0.0f || WaterHight == -0.11f)
-        {
-            rotate = 1f;
 
             /*パーティクル*/
             particle.gameObject.SetActive(true);//表示にする
             particle.Play();
+        }
+        if (WaterHight == 0.0f || WaterHight == -0.11f)
+        {
+            rotate = 1f;
         }
 
 
