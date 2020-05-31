@@ -293,6 +293,11 @@ public class Menu : MonoBehaviour
             World2.gameObject.SetActive(true);
             World3.gameObject.SetActive(true);
             World4.gameObject.SetActive(true);
+            stage1.gameObject.SetActive(true);
+            stage2.gameObject.SetActive(true);
+            stage3.gameObject.SetActive(true);
+            stage4.gameObject.SetActive(true);
+            stage5.gameObject.SetActive(true);
 
             sound.gameObject.SetActive(true);
             title.gameObject.SetActive(true);
@@ -352,6 +357,11 @@ public class Menu : MonoBehaviour
                 World2.gameObject.SetActive(false);
                 World3.gameObject.SetActive(false);
                 World4.gameObject.SetActive(false);
+                stage1.gameObject.SetActive(false);
+                stage2.gameObject.SetActive(false);
+                stage3.gameObject.SetActive(false);
+                stage4.gameObject.SetActive(false);
+                stage5.gameObject.SetActive(false);
 
                 sound.gameObject.SetActive(false);
                 title.gameObject.SetActive(false);

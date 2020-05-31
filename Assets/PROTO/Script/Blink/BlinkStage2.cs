@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class BlinkStage2 : MonoBehaviour
 {
-    public float speed = 1.0f;
+    public float speed = 0.5f;
 
     private Text text;
     private Image image;
@@ -36,6 +36,7 @@ public class BlinkStage2 : MonoBehaviour
 
     void Update()
     {
+
         if (Menu.StageNo == 2 && Menu.stageControll == true)
         {
             //オブジェクトのAlpha値を更新
@@ -48,6 +49,19 @@ public class BlinkStage2 : MonoBehaviour
                 text.color = GetAlphaColor(text.color);
             }
         }
+        else
+        {
+            //オブジェクトのAlpha値を更新
+            if (thisObjType == ObjType.IMAGE)
+            {
+                image.color = alphaColor(image.color);
+            }
+            else if (thisObjType == ObjType.TEXT)
+            {
+                text.color = alphaColor(text.color);
+            }
+        }
+
     }
     //Alpha値を更新してColorを返す
     Color GetAlphaColor(Color color)
@@ -55,5 +69,11 @@ public class BlinkStage2 : MonoBehaviour
         time += Time.deltaTime * 5.0f * speed;
         color.a = Mathf.Sin(time) * 0.5f + 0.5f;
         return color;
+    }
+
+    Color alphaColor(Color iro)
+    {
+        iro.a = 1.0f;
+        return iro;
     }
 }
