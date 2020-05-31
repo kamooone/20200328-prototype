@@ -68,6 +68,10 @@ public class Enemy1Move : MonoBehaviour
     public static bool hasigocollisionUp6 = false;
     public static bool hasigocollisionDown6 = false;
 
+    public AudioClip WalkSE;
+    AudioSource aud;
+    int SETime = 0;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -97,6 +101,15 @@ public class Enemy1Move : MonoBehaviour
 
         hasigocollisionUp6 = false;
         hasigocollisionDown6 = false;
+
+        this.aud = GetComponent<AudioSource>();
+        SETime = 0;
+
+        TuiFlag = false;
+        walkFlag_Left = false;
+        walkFlag_Right = false;
+
+        doorcollision = false;
     }
 
     // Update is called once per frame
@@ -115,6 +128,19 @@ public class Enemy1Move : MonoBehaviour
                 speed = 10.0f;
 
                 AnimSpeed = 8.0f;
+
+                if (SETime == 0)
+                {
+                    this.aud.PlayOneShot(this.WalkSE);
+                }
+                if (SETime < 30)
+                {
+                    SETime++;
+                }
+                if (SETime == 30)
+                {
+                    SETime = 0;
+                }
             }
 
 
@@ -124,6 +150,19 @@ public class Enemy1Move : MonoBehaviour
                 speed = 6.0f;
 
                 AnimSpeed = 4.0f;
+
+                if (SETime == 0)
+                {
+                    this.aud.PlayOneShot(this.WalkSE);
+                }
+                if (SETime < 15)
+                {
+                    SETime++;
+                }
+                if (SETime == 15)
+                {
+                    SETime = 0;
+                }
             }
             //==============================================================================================================
 

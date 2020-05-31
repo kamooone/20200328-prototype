@@ -184,22 +184,136 @@ public class PlayerMove : MonoBehaviour
         PlayerKeyDraw = false;
         WalkStopTime = 11;
 
-        
 
-        if (Menu.StageNo >= 0)
-        {
-            WaterHight1 = 0.0f;
 
-            W_Machine1.transform.position = new Vector3(W_Machine1.transform.position.x, W_Machine1.transform.position.y + WaterHight1, W_Machine1.transform.position.z);
+        //水増し機1
+        WaterHight1 = 0.0f;
+        WaterUp1_Flag = false;
+        WaterUp1 = false;
 
-            WaterHight2 = 0.0f;
+        WaterDown1_Flag = false;
+        WaterDown1 = false;
 
-            W_Machine2.transform.position = new Vector3(W_Machine2.transform.position.x, W_Machine2.transform.position.y + WaterHight2, W_Machine2.transform.position.z);
+        //水増し機2
+        WaterHight2 = 0.0f;
+        WaterUp2_Flag = false;
+        WaterUp2 = false;
 
-            WaterHight3 = 0.0f;
+        WaterDown2_Flag = false;
+        WaterDown2 = false;
 
-            W_Machine3.transform.position = new Vector3(W_Machine3.transform.position.x, W_Machine3.transform.position.y + WaterHight3, W_Machine3.transform.position.z);
-        }
+        //水増し機3
+        WaterHight3 = 0.0f;
+        WaterUp3_Flag = false;
+        WaterUp3 = false;
+
+        WaterDown3_Flag = false;
+        WaterDown3 = false;
+
+
+        Enemy2_Collision_Left = false;
+        Enemy2_Collision_Right = false;
+
+
+        wallspeed = 4.0f;
+
+        WallFlag0 = false;
+        Wall_Move0 = false;
+        WallNo0 = false;
+
+        WallFlag1 = false;
+        Wall_Move1 = false;
+        WallNo1 = false;
+
+        WallFlag2 = false;
+        Wall_Move2 = false;
+        WallNo2 = false;
+
+        WallFlag3 = false;
+        Wall_Move3 = false;
+        WallNo3 = false;
+
+        WallFlag4 = false;
+        Wall_Move4 = false;
+        WallNo4 = false;
+
+
+        WallFlag5 = false;
+        Wall_Move5 = false;
+        WallNo5 = false;
+
+
+        WallFlag6 = false;
+        Wall_Move6 = false;
+        WallNo6 = false;
+
+
+        WallFlag7 = false;
+        Wall_Move7 = false;
+        WallNo7 = false;
+
+
+        WallFlag8 = false;
+        Wall_Move8 = false;
+        WallNo8 = false;
+
+
+
+        ClassUp_Flag = false;
+        up = 0.0f;
+
+        ClassDown_Flag = false;
+        Down = 0.0f;
+        FallDown = 0.0f;
+
+        UIUp_Flag = false;
+        UIDown_Flag = false;
+        UI_B_Flag = false;
+        UI_X_Flag = false;
+
+        GroundCollision = true;
+
+        StageNow = 1;
+
+        NoWaterMove = false;
+
+        sprinklercollision = false;
+        WaterAction = false;
+        WaterTime = 0;
+        Water = false;
+
+        //プレイヤー移動中かどうか
+        Move = false;
+
+        WalkStopTime = 0;
+
+
+        Enemy1Move.TuiFlag = false;
+        Enemy2Move.TuiFlag = false;
+        Enemy3Move.TuiFlag = false;
+        Enemy2_1Move.TuiFlag = false;
+        Enemy2_2Move.TuiFlag = false;
+        Enemy2_3Move.TuiFlag = false;
+
+
+
+        Enemy1Move.doorcollision = false;
+        Enemy2Move.doorcollision = false;
+        Enemy3Move.doorcollision = false;
+        Enemy2_1Move.doorcollision = false;
+        Enemy2_2Move.doorcollision = false;
+        Enemy2_3Move.doorcollision = false;
+
+
+        Wall.wallcollision0 = false;
+        Wall1.wallcollision1 = false;
+        Wall2.wallcollision2 = false;
+        Wall3.wallcollision3 = false;
+        Wall4.wallcollision4 = false;
+        Wall5.wallcollision5 = false;
+        Wall6.wallcollision6 = false;
+        Wall7.wallcollision7 = false;
+        Wall8.wallcollision8 = false;
     }
 
 
@@ -371,6 +485,7 @@ public class PlayerMove : MonoBehaviour
         {
             Vector3 axis = transform.TransformDirection(Vector3.up);
             transform.RotateAround(target.position, axis, wallspeed * Time.deltaTime);
+            anim.SetBool("wall", true);
         }
 
         //右に移動
@@ -378,6 +493,7 @@ public class PlayerMove : MonoBehaviour
         {
             Vector3 axis = transform.TransformDirection(Vector3.down);
             transform.RotateAround(target.position, axis, wallspeed * Time.deltaTime);
+            anim.SetBool("wall", true);
         }
         if(Wall.wallcollision0 == true)
         {
@@ -405,6 +521,7 @@ public class PlayerMove : MonoBehaviour
         {
             Vector3 axis = transform.TransformDirection(Vector3.up);
             transform.RotateAround(target.position, axis, wallspeed * Time.deltaTime);
+            anim.SetBool("wall", true);
         }
 
         //右に移動
@@ -412,6 +529,7 @@ public class PlayerMove : MonoBehaviour
         {
             Vector3 axis = transform.TransformDirection(Vector3.down);
             transform.RotateAround(target.position, axis, wallspeed * Time.deltaTime);
+            anim.SetBool("wall", true);
         }
         if (Wall1.wallcollision1 == true)
         {
@@ -439,6 +557,7 @@ public class PlayerMove : MonoBehaviour
         {
             Vector3 axis = transform.TransformDirection(Vector3.up);
             transform.RotateAround(target.position, axis, wallspeed * Time.deltaTime);
+            anim.SetBool("wall", true);
         }
 
         //右に移動
@@ -446,6 +565,7 @@ public class PlayerMove : MonoBehaviour
         {
             Vector3 axis = transform.TransformDirection(Vector3.down);
             transform.RotateAround(target.position, axis, wallspeed * Time.deltaTime);
+            anim.SetBool("wall", true);
         }
         if (Wall2.wallcollision2 == true)
         {
@@ -473,6 +593,7 @@ public class PlayerMove : MonoBehaviour
         {
             Vector3 axis = transform.TransformDirection(Vector3.up);
             transform.RotateAround(target.position, axis, wallspeed * Time.deltaTime);
+            anim.SetBool("wall", true);
         }
 
         //右に移動
@@ -480,6 +601,7 @@ public class PlayerMove : MonoBehaviour
         {
             Vector3 axis = transform.TransformDirection(Vector3.down);
             transform.RotateAround(target.position, axis, wallspeed * Time.deltaTime);
+            anim.SetBool("wall", true);
         }
         if (Wall3.wallcollision3 == true)
         {
@@ -507,6 +629,7 @@ public class PlayerMove : MonoBehaviour
         {
             Vector3 axis = transform.TransformDirection(Vector3.up);
             transform.RotateAround(target.position, axis, wallspeed * Time.deltaTime);
+            anim.SetBool("wall", true);
         }
 
         //右に移動
@@ -514,6 +637,7 @@ public class PlayerMove : MonoBehaviour
         {
             Vector3 axis = transform.TransformDirection(Vector3.down);
             transform.RotateAround(target.position, axis, wallspeed * Time.deltaTime);
+            anim.SetBool("wall", true);
         }
         if (Wall4.wallcollision4 == true)
         {
@@ -541,6 +665,7 @@ public class PlayerMove : MonoBehaviour
         {
             Vector3 axis = transform.TransformDirection(Vector3.up);
             transform.RotateAround(target.position, axis, wallspeed * Time.deltaTime);
+            anim.SetBool("wall", true);
         }
 
         //右に移動
@@ -548,6 +673,7 @@ public class PlayerMove : MonoBehaviour
         {
             Vector3 axis = transform.TransformDirection(Vector3.down);
             transform.RotateAround(target.position, axis, wallspeed * Time.deltaTime);
+            anim.SetBool("wall", true);
         }
         if (Wall5.wallcollision5 == true)
         {
@@ -575,6 +701,7 @@ public class PlayerMove : MonoBehaviour
         {
             Vector3 axis = transform.TransformDirection(Vector3.up);
             transform.RotateAround(target.position, axis, wallspeed * Time.deltaTime);
+            anim.SetBool("wall", true);
         }
 
         //右に移動
@@ -582,6 +709,7 @@ public class PlayerMove : MonoBehaviour
         {
             Vector3 axis = transform.TransformDirection(Vector3.down);
             transform.RotateAround(target.position, axis, wallspeed * Time.deltaTime);
+            anim.SetBool("wall", true);
         }
         if (Wall6.wallcollision6 == true)
         {
@@ -610,6 +738,7 @@ public class PlayerMove : MonoBehaviour
         {
             Vector3 axis = transform.TransformDirection(Vector3.up);
             transform.RotateAround(target.position, axis, wallspeed * Time.deltaTime);
+            anim.SetBool("wall", true);
         }
 
         //右に移動
@@ -617,6 +746,7 @@ public class PlayerMove : MonoBehaviour
         {
             Vector3 axis = transform.TransformDirection(Vector3.down);
             transform.RotateAround(target.position, axis, wallspeed * Time.deltaTime);
+            anim.SetBool("wall", true);
         }
         if (Wall7.wallcollision7 == true)
         {
@@ -644,6 +774,7 @@ public class PlayerMove : MonoBehaviour
         {
             Vector3 axis = transform.TransformDirection(Vector3.up);
             transform.RotateAround(target.position, axis, wallspeed * Time.deltaTime);
+            anim.SetBool("wall", true);
         }
 
         //右に移動
@@ -651,6 +782,7 @@ public class PlayerMove : MonoBehaviour
         {
             Vector3 axis = transform.TransformDirection(Vector3.down);
             transform.RotateAround(target.position, axis, wallspeed * Time.deltaTime);
+            anim.SetBool("wall", true);
         }
         if (Wall8.wallcollision8 == true)
         {

@@ -55,6 +55,10 @@ public class Enemy2_3Move : MonoBehaviour//敵の移動処理(本来はまとめ
     public static bool hasigocollision5 = false;
     public static bool hasigocollision6 = false;
 
+    public AudioClip WalkSE;
+    AudioSource aud;
+    int SETime = 0;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -72,6 +76,16 @@ public class Enemy2_3Move : MonoBehaviour//敵の移動処理(本来はまとめ
         // Animatorコンポーネントを取得する
         anim = GetComponent<Animator>();
 
+        this.aud = GetComponent<AudioSource>();
+        SETime = 0;
+
+        TuiFlag = false;
+        walkFlag_Left = false;
+        walkFlag_Right = false;
+
+        doorcollision = false;
+
+        direction = -1;
     }
 
     // Update is called once per frame
@@ -132,6 +146,19 @@ public class Enemy2_3Move : MonoBehaviour//敵の移動処理(本来はまとめ
 
             if (TuiFlag == true && doorcollision == false)
             {
+                if (SETime == 0)
+                {
+                    this.aud.PlayOneShot(this.WalkSE);
+                }
+                if (SETime < 15)
+                {
+                    SETime++;
+                }
+                if (SETime == 15)
+                {
+                    SETime = 0;
+                }
+
                 /*移動処理*/
                 if (walkFlag_Right == true)
                 {
