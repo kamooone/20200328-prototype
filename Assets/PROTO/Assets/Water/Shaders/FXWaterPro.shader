@@ -1,6 +1,4 @@
-// Upgrade NOTE: replaced '_Object2World' with 'unity_ObjectToWorld'
-
-Shader "FX/Water" {
+Shader "Custom/Water" {
 Properties {
 	_WaveScale ("Wave scale", Range (0.02,0.15)) = 0.063
 	_ReflDistort ("Reflection distort", Range (0,1.5)) = 0.44
@@ -14,11 +12,6 @@ Properties {
 	[HideInInspector] _ReflectionTex ("Internal Reflection", 2D) = "" {}
 	[HideInInspector] _RefractionTex ("Internal Refraction", 2D) = "" {}
 }
-
-
-// -----------------------------------------------------------
-// Fragment program cards
-
 
 Subshader {
 	Tags { "WaterMode"="Refractive" "RenderType"="Opaque" }

@@ -24,6 +24,8 @@ public class button2 : MonoBehaviour
 
         /*パーティクル*/
         particle.gameObject.SetActive(false);//非表示にする
+
+        rotate = -1f;
     }
 
     // Update is called once per frame
@@ -32,10 +34,6 @@ public class button2 : MonoBehaviour
         //二階の水の高さ取得
         WaterHight = PlayerScript.WaterHight2;
 
-        if (WaterHight == 0.11f)
-        {
-            rotate = -1f;
-        }
         if (WaterHight == 0.0f || WaterHight == -0.11f)
         {
             rotate = 1f;
@@ -43,6 +41,10 @@ public class button2 : MonoBehaviour
             /*パーティクル*/
             particle.gameObject.SetActive(true);//表示にする
             particle.Play();
+        }
+        if (WaterHight == 0.11f)
+        {
+            rotate = -1f;
         }
 
 

@@ -104,6 +104,12 @@ public class Enemy1Move : MonoBehaviour
 
         this.aud = GetComponent<AudioSource>();
         SETime = 0;
+
+        TuiFlag = false;
+        walkFlag_Left = false;
+        walkFlag_Right = false;
+
+        doorcollision = false;
     }
 
     // Update is called once per frame
