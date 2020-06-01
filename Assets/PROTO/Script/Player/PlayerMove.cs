@@ -55,7 +55,6 @@ public class PlayerMove : MonoBehaviour
     float FallDown = 0.0f;
 
     public bool UIUp_Flag = false;
-    public bool UIDown_Flag = false;
     public bool UI_B_Flag = false;
     public bool UI_X_Flag = false;
 
@@ -267,7 +266,6 @@ public class PlayerMove : MonoBehaviour
         FallDown = 0.0f;
 
         UIUp_Flag = false;
-        UIDown_Flag = false;
         UI_B_Flag = false;
         UI_X_Flag = false;
 
@@ -813,7 +811,7 @@ public class PlayerMove : MonoBehaviour
             if (WaterHight1 == 0.11f)
             {
                 WaterDown1_Flag = true;
-                UIDown_Flag = true;
+                UIUp_Flag = true;
             }
 
 
@@ -843,7 +841,7 @@ public class PlayerMove : MonoBehaviour
             if (WaterHight2 == 0.11f)
             {
                 WaterDown2_Flag = true;
-                UIDown_Flag = true;
+                UIUp_Flag = true;
             }
 
             if (WaterDown2_Flag == true)
@@ -872,7 +870,7 @@ public class PlayerMove : MonoBehaviour
             if (WaterHight3 == 0.11f)
             {
                 WaterDown3_Flag = true;
-                UIDown_Flag = true;
+                UIUp_Flag = true;
             }
 
             if (WaterDown3_Flag == true)
@@ -1146,7 +1144,7 @@ public class PlayerMove : MonoBehaviour
             //================================================================================================================================================================================================
             if (collision.gameObject.tag == "Down1")
             {
-                UIDown_Flag = true;
+                UIUp_Flag = true;
 
                 if ((Input.GetKey("down") || Input.GetKeyDown("joystick button 0")) && ClassDown_Flag == false && GroundCollision == true && WaterAction == false && GoalDoor.GoalFlag == false)
                 {
@@ -1157,7 +1155,7 @@ public class PlayerMove : MonoBehaviour
             }
             if (collision.gameObject.tag == "Down1_1")
             {
-                UIDown_Flag = true;
+                UIUp_Flag = true;
 
                 if ((Input.GetKey("down") || Input.GetKeyDown("joystick button 0")) && ClassDown_Flag == false && GroundCollision == true && WaterAction == false && GoalDoor.GoalFlag == false)
                 {
@@ -1168,7 +1166,7 @@ public class PlayerMove : MonoBehaviour
             }
             if (collision.gameObject.tag == "Down1_2")
             {
-                UIDown_Flag = true;
+                UIUp_Flag = true;
 
                 if ((Input.GetKey("down") || Input.GetKeyDown("joystick button 0")) && ClassDown_Flag == false && GroundCollision == true && WaterAction == false && GoalDoor.GoalFlag == false)
                 {
@@ -1179,7 +1177,7 @@ public class PlayerMove : MonoBehaviour
             }
             if (collision.gameObject.tag == "Down1_3")
             {
-                UIDown_Flag = true;
+                UIUp_Flag = true;
 
                 if ((Input.GetKey("down") || Input.GetKeyDown("joystick button 0")) && ClassDown_Flag == false && GroundCollision == true && WaterAction == false && GoalDoor.GoalFlag == false)
                 {
@@ -1190,7 +1188,7 @@ public class PlayerMove : MonoBehaviour
             }
             if (collision.gameObject.tag == "Down1_4")
             {
-                UIDown_Flag = true;
+                UIUp_Flag = true;
 
                 if ((Input.GetKey("down") || Input.GetKeyDown("joystick button 0")) && ClassDown_Flag == false && GroundCollision == true && WaterAction == false && GoalDoor.GoalFlag == false)
                 {
@@ -1201,7 +1199,7 @@ public class PlayerMove : MonoBehaviour
             }
             if (collision.gameObject.tag == "Down1_5")
             {
-                UIDown_Flag = true;
+                UIUp_Flag = true;
 
                 if ((Input.GetKey("down") || Input.GetKeyDown("joystick button 0")) && ClassDown_Flag == false && GroundCollision == true && WaterAction == false && GoalDoor.GoalFlag == false)
                 {
@@ -1212,7 +1210,7 @@ public class PlayerMove : MonoBehaviour
             }
             if (collision.gameObject.tag == "Down1_6")
             {
-                UIDown_Flag = true;
+                UIUp_Flag = true;
 
                 if ((Input.GetKey("down") || Input.GetKeyDown("joystick button 0")) && ClassDown_Flag == false && GroundCollision == true && WaterAction == false && GoalDoor.GoalFlag == false)
                 {
@@ -1230,7 +1228,7 @@ public class PlayerMove : MonoBehaviour
 
             if (collision.gameObject.tag == "Down2")
             {
-                UIDown_Flag = true;
+                UIUp_Flag = true;
 
                 if ((Input.GetKey("down") || Input.GetKeyDown("joystick button 0")) && ClassDown_Flag == false && GroundCollision == true && WaterAction == false && GoalDoor.GoalFlag == false)
                 {
@@ -1241,7 +1239,7 @@ public class PlayerMove : MonoBehaviour
             }
             if (collision.gameObject.tag == "Down2_1")
             {
-                UIDown_Flag = true;
+                UIUp_Flag = true;
 
                 if ((Input.GetKey("down") || Input.GetKeyDown("joystick button 0")) && ClassDown_Flag == false && GroundCollision == true && WaterAction == false && GoalDoor.GoalFlag == false)
                 {
@@ -1252,7 +1250,7 @@ public class PlayerMove : MonoBehaviour
             }
             if (collision.gameObject.tag == "Down2_2")
             {
-                UIDown_Flag = true;
+                UIUp_Flag = true;
 
                 if ((Input.GetKey("down") || Input.GetKeyDown("joystick button 0")) && ClassDown_Flag == false && GroundCollision == true && WaterAction == false && GoalDoor.GoalFlag == false)
                 {
@@ -1263,7 +1261,7 @@ public class PlayerMove : MonoBehaviour
             }
             if (collision.gameObject.tag == "Down2_3")
             {
-                UIDown_Flag = true;
+                UIUp_Flag = true;
 
                 if ((Input.GetKey("down") || Input.GetKeyDown("joystick button 0")) && ClassDown_Flag == false && GroundCollision == true && WaterAction == false && GoalDoor.GoalFlag == false)
                 {
@@ -1274,7 +1272,7 @@ public class PlayerMove : MonoBehaviour
             }
             if (collision.gameObject.tag == "Down2_4")
             {
-                UIDown_Flag = true;
+                UIUp_Flag = true;
 
                 if ((Input.GetKey("down") || Input.GetKeyDown("joystick button 0")) && ClassDown_Flag == false && GroundCollision == true && WaterAction == false && GoalDoor.GoalFlag == false)
                 {
@@ -1285,7 +1283,7 @@ public class PlayerMove : MonoBehaviour
             }
             if (collision.gameObject.tag == "Down2_5")
             {
-                UIDown_Flag = true;
+                UIUp_Flag = true;
 
                 if ((Input.GetKey("down") || Input.GetKeyDown("joystick button 0")) && ClassDown_Flag == false && GroundCollision == true && WaterAction == false && GoalDoor.GoalFlag == false)
                 {
@@ -1296,7 +1294,7 @@ public class PlayerMove : MonoBehaviour
             }
             if (collision.gameObject.tag == "Down2_6")
             {
-                UIDown_Flag = true;
+                UIUp_Flag = true;
 
                 if ((Input.GetKey("down") || Input.GetKeyDown("joystick button 0")) && ClassDown_Flag == false && GroundCollision == true && WaterAction == false && GoalDoor.GoalFlag == false)
                 {
@@ -1423,7 +1421,7 @@ public class PlayerMove : MonoBehaviour
     void OnTriggerExit(Collider collision)
     {
         UIUp_Flag = false;
-        UIDown_Flag = false;
+        UIUp_Flag = false;
         NoWaterMove = false;
         Text.gameObject.SetActive(false);
         FallDown = 0.0f;
@@ -1817,7 +1815,7 @@ public class PlayerMove : MonoBehaviour
         {
             Down = 0.0f;
             ClassDown_Flag = false;
-            UIDown_Flag = false;
+            UIUp_Flag = false;
 
             // anim.SetBool("climb", false);     // Animatorにジャンプに切り替えるフラグを送る
         }
@@ -1852,7 +1850,7 @@ public class PlayerMove : MonoBehaviour
 
         WaterDown1 = false;
 
-        UIDown_Flag = false;
+        UIUp_Flag = false;
     }
 
 
@@ -1885,7 +1883,7 @@ public class PlayerMove : MonoBehaviour
 
         WaterDown2 = false;
 
-        UIDown_Flag = false;
+        UIUp_Flag = false;
     }
 
 
@@ -1917,7 +1915,7 @@ public class PlayerMove : MonoBehaviour
 
         WaterDown3 = false;
 
-        UIDown_Flag = false;
+        UIUp_Flag = false;
     }
 
 }
