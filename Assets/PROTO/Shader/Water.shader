@@ -1,6 +1,4 @@
-// Upgrade NOTE: replaced '_Object2World' with 'unity_ObjectToWorld'
-
-Shader "VRWaterShader2/Water" {
+Shader "Custom/Water" {
     Properties {
         // Culling, ZWrite
         [Enum(Off, 0, On, 1)]_ZWrite("ZWrite", Float) = 0 

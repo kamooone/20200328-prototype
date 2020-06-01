@@ -99,6 +99,14 @@ public class Enemy2_2Move : MonoBehaviour//敵の移動処理(本来はまとめ
 
         this.aud = GetComponent<AudioSource>();
         SETime = 0;
+
+        TuiFlag = false;
+        walkFlag_Left = false;
+        walkFlag_Right = false;
+
+        doorcollision = false;
+
+        direction = -1;
     }
 
     // Update is called once per frame
