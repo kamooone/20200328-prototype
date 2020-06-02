@@ -36,13 +36,13 @@ public class Enemy3Move : MonoBehaviour
     float Down = 0.0f;
 
     public static bool TuiFlag = false;
-    bool walkFlag_Left = false;
-    bool walkFlag_Right = false;
+    public static bool walkFlag_Left = false;
+    public static bool walkFlag_Right = false;
 
     public static bool doorcollision = false;
 
     //エネミーの向き
-    int direction = 1;
+    public static int direction = 1;
 
     //方向チェンジ時の角度
     float radian = 180.0f;
@@ -118,6 +118,39 @@ public class Enemy3Move : MonoBehaviour
         anim.speed = AnimSpeed;
 
 
+        if (TuiFlag == true && (FireGenerated3.WaterHight == 0.0f || FireGenerated3.WaterHight == -0.11f))
+        {
+            if (SETime == 0)
+            {
+                this.aud.PlayOneShot(this.WalkSE);
+            }
+            if (SETime < 15)
+            {
+                SETime++;
+            }
+            if (SETime == 15)
+            {
+                SETime = 0;
+            }
+        }
+
+        //水あるとき、追従時のエネミーのスピード
+        if (TuiFlag == true && FireGenerated3.WaterHight == 0.11f)
+        {
+            if (SETime == 0)
+            {
+                this.aud.PlayOneShot(this.WalkSE);
+            }
+            if (SETime < 30)
+            {
+                SETime++;
+            }
+            if (SETime == 30)
+            {
+                SETime = 0;
+            }
+        }
+
         /*移動処理*/
         if (TuiFlag == true && doorcollision == false)
         {
@@ -129,18 +162,6 @@ public class Enemy3Move : MonoBehaviour
 
                 AnimSpeed = 8.0f;
 
-                if (SETime == 0)
-                {
-                    this.aud.PlayOneShot(this.WalkSE);
-                }
-                if (SETime < 30)
-                {
-                    SETime++;
-                }
-                if (SETime == 30)
-                {
-                    SETime = 0;
-                }
             }
 
 
@@ -151,18 +172,6 @@ public class Enemy3Move : MonoBehaviour
 
                 AnimSpeed = 4.0f;
 
-                if (SETime == 0)
-                {
-                    this.aud.PlayOneShot(this.WalkSE);
-                }
-                if (SETime < 15)
-                {
-                    SETime++;
-                }
-                if (SETime == 15)
-                {
-                    SETime = 0;
-                }
             }
             //==============================================================================================================
 
