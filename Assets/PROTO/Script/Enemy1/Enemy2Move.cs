@@ -111,6 +111,8 @@ public class Enemy2Move : MonoBehaviour
         walkFlag_Right = false;
 
         doorcollision = false;
+
+        PlayerMove.GameOverFlag = false;
     }
 
     // Update is called once per frame
@@ -134,8 +136,8 @@ public class Enemy2Move : MonoBehaviour
                 SETime = 0;
             }
         }
+        
 
-        //水あるとき、追従時のエネミーのスピード
         if (TuiFlag == true && FireGenerated2.WaterHight == 0.11f)
         {
             if (SETime == 0)
@@ -153,7 +155,7 @@ public class Enemy2Move : MonoBehaviour
         }
 
         /*移動処理*/
-        if (TuiFlag == true && doorcollision == false)
+        if (TuiFlag == true && doorcollision == false && PlayerMove.GameOverFlag == false)
         {
             //==============================================================================================================
             //水ないとき、追従時のエネミーのスピード
@@ -364,8 +366,9 @@ public class Enemy2Move : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
-            Debug.Log("ゲームオーバー");
-            SceneManager.LoadScene("GameOverScene");
+            //Debug.Log("ゲームオーバー");
+            //SceneManager.LoadScene("GameOverScene");
+            PlayerMove.GameOverFlag = true;
         }
 
         if (collision.gameObject.tag == "Enemy2" || collision.gameObject.tag == "Enemy")
