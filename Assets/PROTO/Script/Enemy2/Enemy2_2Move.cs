@@ -336,7 +336,7 @@ public class Enemy2_2Move : MonoBehaviour//敵の移動処理(本来はまとめ
             SceneManager.LoadScene("GameOverScene");
         }
 
-        if (collision.gameObject.tag == "Enemy2" || collision.gameObject.tag == "Enemy" && WaterHight == 0.11f && doorcollision == false)
+        if (collision.gameObject.tag == "Enemy2" || collision.gameObject.tag == "Enemy" && WaterHight == 0.11f)
         {
             direction *= -1;
         }

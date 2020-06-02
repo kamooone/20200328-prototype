@@ -21,7 +21,7 @@ public class Wall3 : MonoBehaviour
         float Right = Input.GetAxis("R");
 
         //左に移動  
-        if ((Left > 0 || Input.GetKey("left")) && PlayerMove.Wall_Move3 == true && PlayerMove.PlayerDirection == 2 && PlayerMove.WallNo3 == true)
+        if ((Left > 0 || Input.GetKey("left")) && PlayerMove.Wall_Move3 == true && PlayerMove.PlayerDirection == 1 && PlayerMove.WallNo3 == true)
         {
             Vector3 axis = transform.TransformDirection(Vector3.up);
             transform.RotateAround(target.position, axis, PlayerMove.wallspeed * Time.deltaTime);
@@ -40,7 +40,7 @@ public class Wall3 : MonoBehaviour
     {
         if (collision.gameObject.tag == "MoveWall" || collision.gameObject.tag == "MoveWall1" || collision.gameObject.tag == "MoveWall2" || collision.gameObject.tag == "MoveWall3"
             || collision.gameObject.tag == "MoveWall4" || collision.gameObject.tag == "MoveWall5" || collision.gameObject.tag == "MoveWall6" || collision.gameObject.tag == "MoveWall7"
-             || collision.gameObject.tag == "MoveWall8" || collision.gameObject.tag == "Enemy" || collision.gameObject.tag == "Enemy2")
+             || collision.gameObject.tag == "MoveWall8" || collision.gameObject.tag == "Enemy" || collision.gameObject.tag == "Enemy2" || collision.gameObject.tag == "Wall")
         {
             wallcollision3 = true;
         }
