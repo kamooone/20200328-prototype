@@ -28,7 +28,7 @@ public class UI_X : MonoBehaviour
         if (PlayerScript.UI_X_Flag == true) { alfa = 1.0f; }
 
         uiImage.position = RectTransformUtility.WorldToScreenPoint(Camera.main, targetObject.position);
-        uiImage.position = new Vector3(uiImage.position.x + 0.0f, uiImage.position.y + 80.0f, uiImage.position.z);
+        uiImage.position = new Vector3(uiImage.position.x + 3.0f, uiImage.position.y + 225.0f, uiImage.position.z);
         GetComponent<Image>().color = new Color(red, green, blue, alfa);
     }
 }

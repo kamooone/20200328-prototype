@@ -16,14 +16,14 @@ public class Enemy2_3Move : MonoBehaviour//敵の移動処理(本来はまとめ
     float speed = 7.0f;
 
     //エネミーの向き(1が左-1が右)
-    int direction = -1;
+    public static int direction = -1;
 
     //方向チェンジ時の角度
     float radian = -180.0f;
 
     public static bool TuiFlag = false;
-    bool walkFlag_Left = false;
-    bool walkFlag_Right = false;
+    public static bool walkFlag_Left = false;
+    public static bool walkFlag_Right = false;
 
     public static bool doorcollision = false;
 
@@ -41,11 +41,11 @@ public class Enemy2_3Move : MonoBehaviour//敵の移動処理(本来はまとめ
     // アニメーション再生速度設定
     float animSpeed = 1.0f;
 
-    bool walkflag = true;
+    public static bool walkflag = true;
     int walkflagTime = 0;
 
     //各層の水の高さ取得
-    float WaterHight;
+    public static float WaterHight;
 
     public static bool hasigocollision = false;
     public static bool hasigocollision1 = false;
@@ -86,6 +86,8 @@ public class Enemy2_3Move : MonoBehaviour//敵の移動処理(本来はまとめ
         doorcollision = false;
 
         direction = -1;
+
+        PlayerMove.GameOverFlag = false;
     }
 
     // Update is called once per frame
@@ -144,7 +146,9 @@ public class Enemy2_3Move : MonoBehaviour//敵の移動処理(本来はまとめ
                 }
             }
 
-            if (TuiFlag == true && doorcollision == false)
+
+
+            if (TuiFlag == true)
             {
                 if (SETime == 0)
                 {
@@ -158,7 +162,11 @@ public class Enemy2_3Move : MonoBehaviour//敵の移動処理(本来はまとめ
                 {
                     SETime = 0;
                 }
+            }
 
+
+            if (TuiFlag == true && doorcollision == false && PlayerMove.GameOverFlag == false)
+            {
                 /*移動処理*/
                 if (walkFlag_Right == true)
                 {
@@ -266,10 +274,12 @@ public class Enemy2_3Move : MonoBehaviour//敵の移動処理(本来はまとめ
     {
         if (collision.gameObject.tag == "Player" && walkflag == true)
         {
-            SceneManager.LoadScene("GameOverScene");
+            //Debug.Log("ゲームオーバー");
+            //SceneManager.LoadScene("GameOverScene");
+            PlayerMove.GameOverFlag = true;
         }
 
-        if (collision.gameObject.tag == "Enemy2" || collision.gameObject.tag == "Enemy" && WaterHight == 0.11f)
+        if (collision.gameObject.tag == "Enemy2" || collision.gameObject.tag == "Enemy" && WaterHight == 0.11f && doorcollision == false)
         {
             direction *= -1;
         }

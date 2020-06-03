@@ -36,13 +36,13 @@ public class Enemy1Move : MonoBehaviour
     float Down = 0.0f;
 
     public static bool TuiFlag = false;
-    bool walkFlag_Left = false;
-    bool walkFlag_Right = false;
+    public static bool walkFlag_Left = false;
+    public static bool walkFlag_Right = false;
 
     public static bool doorcollision = false;
 
     //エネミーの向き
-    int direction = 1;
+    public static int direction = 1;
 
     //方向チェンジ時の角度
     float radian = 180.0f;
@@ -110,6 +110,8 @@ public class Enemy1Move : MonoBehaviour
         walkFlag_Right = false;
 
         doorcollision = false;
+
+        PlayerMove.GameOverFlag = false;
     }
 
     // Update is called once per frame
@@ -118,8 +120,41 @@ public class Enemy1Move : MonoBehaviour
         anim.speed = AnimSpeed;
 
 
+        //if (TuiFlag == true && (FireGenerated1.WaterHight == 0.0f || FireGenerated1.WaterHight == -0.11f))
+        //{
+        //    if (SETime == 0)
+        //    {
+        //        this.aud.PlayOneShot(this.WalkSE);
+        //    }
+        //    if (SETime < 15)
+        //    {
+        //        SETime++;
+        //    }
+        //    if (SETime == 15)
+        //    {
+        //        SETime = 0;
+        //    }
+        //}
+        
+        if (TuiFlag == true && FireGenerated1.WaterHight == 0.11f)
+        {
+            if (SETime == 0)
+            {
+                this.aud.PlayOneShot(this.WalkSE);
+            }
+            if (SETime < 15)
+            {
+                SETime++;
+            }
+            if (SETime == 15)
+            {
+                SETime = 0;
+            }
+        }
+
+
         /*移動処理*/
-        if (TuiFlag == true && doorcollision == false)
+        if (TuiFlag == true && doorcollision == false && PlayerMove.GameOverFlag == false)
         {
             //==============================================================================================================
             //水ないとき、追従時のエネミーのスピード
@@ -128,19 +163,7 @@ public class Enemy1Move : MonoBehaviour
                 speed = 10.0f;
 
                 AnimSpeed = 8.0f;
-
-                if (SETime == 0)
-                {
-                    this.aud.PlayOneShot(this.WalkSE);
-                }
-                if (SETime < 30)
-                {
-                    SETime++;
-                }
-                if (SETime == 30)
-                {
-                    SETime = 0;
-                }
+                
             }
 
 
@@ -150,19 +173,6 @@ public class Enemy1Move : MonoBehaviour
                 speed = 6.0f;
 
                 AnimSpeed = 4.0f;
-
-                if (SETime == 0)
-                {
-                    this.aud.PlayOneShot(this.WalkSE);
-                }
-                if (SETime < 15)
-                {
-                    SETime++;
-                }
-                if (SETime == 15)
-                {
-                    SETime = 0;
-                }
             }
             //==============================================================================================================
 
@@ -352,8 +362,9 @@ public class Enemy1Move : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
-            Debug.Log("ゲームオーバー");
-            SceneManager.LoadScene("GameOverScene");
+            //Debug.Log("ゲームオーバー");
+            //SceneManager.LoadScene("GameOverScene");
+            PlayerMove.GameOverFlag = true;
         }
 
         if (collision.gameObject.tag == "Enemy2" || collision.gameObject.tag == "Enemy")
