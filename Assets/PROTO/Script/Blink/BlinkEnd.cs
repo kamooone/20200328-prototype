@@ -37,11 +37,7 @@ public class BlinkEnd : MonoBehaviour
     void Update()
     {
 
-<<<<<<< Updated upstream
-        if (Menu.ButtonNo == 7 && Menu.stageControll == false)
-=======
         if (Menu.StageNo == 27)
->>>>>>> Stashed changes
         {
             //オブジェクトのAlpha値を更新
             if (thisObjType == ObjType.IMAGE)

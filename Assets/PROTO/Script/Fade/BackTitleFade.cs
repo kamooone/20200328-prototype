@@ -22,6 +22,8 @@ public class BackTitleFade : MonoBehaviour
         blue = 0.0f;
         alfa = 0.0f;
         GetComponent<Image>().color = new Color(red, green, blue, alfa);
+
+        PlayerMove.GameOverFlag = false;
     }
 
     // Update is called once per frame
@@ -31,10 +33,14 @@ public class BackTitleFade : MonoBehaviour
         {
             if (alfa <= 1.0f)
             {
-                //red -= speed;
-                //green -= speed;
-                //blue -= speed;
-                alfa += speed;
+                if (PlayerMove.GameOverFlag == false)
+                {
+                    alfa += speed;
+                }
+                if (PlayerMove.GameOverFlag == true)
+                {
+                    alfa += 0.0025f;
+                }
                 GetComponent<Image>().color = new Color(red, green, blue, alfa);
             }
             if (alfa >= 1.0f)
@@ -47,8 +53,7 @@ public class BackTitleFade : MonoBehaviour
                 // Titleのオブジェクトを消す(BGMを消すため)
                 Destroy(TitleObj);
 
-                //ワールド1
-                if(Menu.ButtonNo==1)
+                if (PlayerMove.GameOverFlag == false)
                 {
                     if (Menu.StageNo == 5)
                     {
@@ -75,161 +80,73 @@ public class BackTitleFade : MonoBehaviour
                         SceneManager.LoadScene("GameScene1_5");
                         Menu.NowStageNo = 5;
                     }
-<<<<<<< Updated upstream
-                }
-
-                //ワールド2
-                if (Menu.ButtonNo == 2)
-                {
-                    if (Menu.StageNo == 1)
-=======
                     if (Menu.StageNo == 10)
->>>>>>> Stashed changes
                     {
                         SceneManager.LoadScene("GameScene2_1");
-                        Menu.NowStageNo = 1;
+                        Menu.NowStageNo = 6;
                     }
-<<<<<<< Updated upstream
-
-                    if (Menu.StageNo == 2)
-=======
                     if (Menu.StageNo == 11)
->>>>>>> Stashed changes
                     {
                         SceneManager.LoadScene("GameScene2_2");
-                        Menu.NowStageNo = 2;
+                        Menu.NowStageNo = 7;
                     }
-<<<<<<< Updated upstream
-
-                    if (Menu.StageNo == 3)
-=======
                     if (Menu.StageNo == 12)
->>>>>>> Stashed changes
                     {
                         SceneManager.LoadScene("GameScene2_3");
-                        Menu.NowStageNo = 3;
+                        Menu.NowStageNo = 8;
                     }
-<<<<<<< Updated upstream
-
-                    if (Menu.StageNo == 4)
-=======
                     if (Menu.StageNo == 13)
->>>>>>> Stashed changes
                     {
                         SceneManager.LoadScene("GameScene2_4");
-                        Menu.NowStageNo = 4;
+                        Menu.NowStageNo = 9;
                     }
-<<<<<<< Updated upstream
-
-                    if (Menu.StageNo == 5)
-=======
                     if (Menu.StageNo == 14)
->>>>>>> Stashed changes
                     {
                         SceneManager.LoadScene("GameScene2_5");
-                        Menu.NowStageNo = 5;
+                        Menu.NowStageNo = 10;
                     }
-                }
 
-<<<<<<< Updated upstream
-                //ワールド3
-                if (Menu.ButtonNo == 3)
-                {
-                    if (Menu.StageNo == 1)
-=======
                     if (Menu.StageNo == 15)
->>>>>>> Stashed changes
                     {
                         SceneManager.LoadScene("GameScene3_1");
-                        Menu.NowStageNo = 1;
+                        Menu.NowStageNo = 11;
                     }
-<<<<<<< Updated upstream
-
-                    if (Menu.StageNo == 2)
-=======
                     if (Menu.StageNo == 16)
->>>>>>> Stashed changes
                     {
                         SceneManager.LoadScene("GameScene3_2");
-                        Menu.NowStageNo = 2;
+                        Menu.NowStageNo = 12;
                     }
-<<<<<<< Updated upstream
-
-                    if (Menu.StageNo == 3)
-=======
                     if (Menu.StageNo == 17)
->>>>>>> Stashed changes
                     {
                         SceneManager.LoadScene("GameScene3_3");
-                        Menu.NowStageNo = 3;
+                        Menu.NowStageNo = 13;
                     }
-<<<<<<< Updated upstream
-
-                    if (Menu.StageNo == 4)
-=======
                     if (Menu.StageNo == 18)
->>>>>>> Stashed changes
                     {
                         SceneManager.LoadScene("GameScene3_4");
-                        Menu.NowStageNo = 4;
+                        Menu.NowStageNo = 14;
                     }
-<<<<<<< Updated upstream
-
-                    if (Menu.StageNo == 5)
-=======
                     if (Menu.StageNo == 19)
->>>>>>> Stashed changes
                     {
                         SceneManager.LoadScene("GameScene3_5");
-                        Menu.NowStageNo = 5;
+                        Menu.NowStageNo = 15;
                     }
-                }
 
-<<<<<<< Updated upstream
-                //ワールド4
-                if (Menu.ButtonNo == 4)
-                {
-                    if (Menu.StageNo == 1)
-=======
                     if (Menu.StageNo == 20)
->>>>>>> Stashed changes
                     {
                         SceneManager.LoadScene("GameScene4_1");
-                        Menu.NowStageNo = 1;
+                        Menu.NowStageNo = 16;
                     }
-<<<<<<< Updated upstream
-
-                    if (Menu.StageNo == 2)
-=======
                     if (Menu.StageNo == 21)
->>>>>>> Stashed changes
                     {
                         SceneManager.LoadScene("GameScene4_2");
-                        Menu.NowStageNo = 2;
+                        Menu.NowStageNo = 17;
                     }
-<<<<<<< Updated upstream
-
-                    if (Menu.StageNo == 3)
-=======
                     if (Menu.StageNo == 22)
->>>>>>> Stashed changes
                     {
                         SceneManager.LoadScene("GameScene4_3");
-                        Menu.NowStageNo = 3;
+                        Menu.NowStageNo = 18;
                     }
-<<<<<<< Updated upstream
-
-                    if (Menu.StageNo == 4)
-                    {
-                        SceneManager.LoadScene("GameScene4_4");
-                        Menu.NowStageNo = 4;
-                    }
-
-                    if (Menu.StageNo == 5)
-                    {
-                        SceneManager.LoadScene("GameScene4_5");
-                        Menu.NowStageNo = 5;
-=======
                     if (Menu.StageNo == 23)
                     {
                         SceneManager.LoadScene("GameScene4_4");
@@ -246,8 +163,13 @@ public class BackTitleFade : MonoBehaviour
                     {
                         SceneManager.LoadScene("TitleScene");
                         Menu.NowStageNo = 26;
->>>>>>> Stashed changes
                     }
+                }
+
+                if (PlayerMove.GameOverFlag == true)
+                {
+                    SceneManager.LoadScene("GameOverScene");
+                    PlayerMove.GameOverFlag = false;
                 }
             }
         }

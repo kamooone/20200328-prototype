@@ -15,12 +15,13 @@ public class PauseScript : MonoBehaviour
     void Start()
     {
         this.aud = GetComponent<AudioSource>();
+        PauseMenu.SoundControll = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if ((Input.GetKeyDown("p") || Input.GetKeyDown("joystick button 7")) && PauseMenuNo != 3) 
+        if ((Input.GetKeyDown("p") || Input.GetKeyDown("joystick button 7")) && PauseMenu.SoundControll == false) 
         {
             this.aud.PlayOneShot(this.DecidedSE);
 

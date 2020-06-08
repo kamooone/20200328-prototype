@@ -37,11 +37,7 @@ public class Blink2 : MonoBehaviour
     void Update()
     {
 
-<<<<<<< Updated upstream
-        if (Menu.ButtonNo == 2 && Menu.stageControll == false)
-=======
         if (Menu.StageNo == 2)
->>>>>>> Stashed changes
         {
             //オブジェクトのAlpha値を更新
             if (thisObjType == ObjType.IMAGE)
