@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class BlinkEnd : MonoBehaviour
+public class BlinkS5 : MonoBehaviour
 {
-    public float speed = 0.5f;
+    public float speed = 1.0f;
 
     private Text text;
     private Image image;
@@ -36,12 +36,7 @@ public class BlinkEnd : MonoBehaviour
 
     void Update()
     {
-
-<<<<<<< Updated upstream
-        if (Menu.ButtonNo == 7 && Menu.stageControll == false)
-=======
-        if (Menu.StageNo == 27)
->>>>>>> Stashed changes
+        if (Menu.StageNo == 9|| Menu.StageNo == 14 || Menu.StageNo == 19 || Menu.StageNo == 24)
         {
             //オブジェクトのAlpha値を更新
             if (thisObjType == ObjType.IMAGE)

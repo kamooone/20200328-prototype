@@ -37,7 +37,11 @@ public class BlinkTitle : MonoBehaviour
     void Update()
     {
 
+<<<<<<< Updated upstream
         if (Menu.ButtonNo == 6 && Menu.stageControll == false)
+=======
+        if (Menu.StageNo == 26) 
+>>>>>>> Stashed changes
         {
             //オブジェクトのAlpha値を更新
             if (thisObjType == ObjType.IMAGE)
