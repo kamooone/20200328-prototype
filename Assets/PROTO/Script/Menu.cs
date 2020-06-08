@@ -311,7 +311,7 @@ public class Menu : MonoBehaviour
         }
 
         //ステージ選択に移動
-        if ((Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown("joystick button 0")) && StageNo <= 4) 
+        if ((Input.GetKeyDown(KeyCode.Space) || (Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown("joystick button 0")) && StageNo <= 4))
         {
             if (Space == true)
             {
