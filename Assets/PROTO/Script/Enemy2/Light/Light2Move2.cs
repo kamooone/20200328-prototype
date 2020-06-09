@@ -23,42 +23,47 @@ public class Light2Move2 : MonoBehaviour//カメラ移動処理
         Enemy2_3Move.walkFlag_Left = false;
         Enemy2_3Move.TuiFlag = false;
         Enemy2_3Move.doorcollision = false;
+        PlayerMove.GameClearFlag = false;
+        PlayerMove.WaterAction = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Enemy2_3Move.walkflag == true)
+        if (PlayerMove.GameClearFlag == false && PlayerMove.WaterAction == false)
         {
-            if (Enemy2_3Move.TuiFlag == false)
+            if (Enemy2_3Move.walkflag == true)
             {
-                /*移動処理*/
-                if (Enemy2_3Move.direction == 1)
+                if (Enemy2_3Move.TuiFlag == false)
                 {
-                    Vector3 axis = Enemy2_3Script.transform.TransformDirection(Vector3.up);
-                    transform.RotateAround(target.position, axis, speed * Time.deltaTime);
+                    /*移動処理*/
+                    if (Enemy2_3Move.direction == 1)
+                    {
+                        Vector3 axis = Enemy2_3Script.transform.TransformDirection(Vector3.up);
+                        transform.RotateAround(target.position, axis, speed * Time.deltaTime);
+                    }
+
+                    if (Enemy2_3Move.direction == -1)
+                    {
+                        Vector3 axis = Enemy2_3Script.transform.TransformDirection(Vector3.down);
+                        transform.RotateAround(target.position, axis, speed * Time.deltaTime);
+                    }
                 }
 
-                if (Enemy2_3Move.direction == -1)
+                if (Enemy2_3Move.TuiFlag == true && Enemy2_3Move.doorcollision == false)
                 {
-                    Vector3 axis = Enemy2_3Script.transform.TransformDirection(Vector3.down);
-                    transform.RotateAround(target.position, axis, speed * Time.deltaTime);
-                }
-            }
+                    /*移動処理*/
+                    if (Enemy2_3Move.walkFlag_Right == true)
+                    {
+                        Vector3 axis = Enemy2_3Script.transform.TransformDirection(Vector3.down);
+                        transform.RotateAround(target.position, axis, speed * Time.deltaTime);
+                    }
 
-            if (Enemy2_3Move.TuiFlag == true && Enemy2_3Move.doorcollision == false)
-            {
-                /*移動処理*/
-                if (Enemy2_3Move.walkFlag_Right == true)
-                {
-                    Vector3 axis = Enemy2_3Script.transform.TransformDirection(Vector3.down);
-                    transform.RotateAround(target.position, axis, speed * Time.deltaTime);
-                }
-
-                if (Enemy2_3Move.walkFlag_Left == true)
-                {
-                    Vector3 axis = Enemy2_3Script.transform.TransformDirection(Vector3.up);
-                    transform.RotateAround(target.position, axis, speed * Time.deltaTime);
+                    if (Enemy2_3Move.walkFlag_Left == true)
+                    {
+                        Vector3 axis = Enemy2_3Script.transform.TransformDirection(Vector3.up);
+                        transform.RotateAround(target.position, axis, speed * Time.deltaTime);
+                    }
                 }
             }
         }

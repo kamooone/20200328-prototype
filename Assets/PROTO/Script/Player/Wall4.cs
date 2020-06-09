@@ -21,14 +21,14 @@ public class Wall4 : MonoBehaviour
         float Right = Input.GetAxis("R");
 
         //左に移動  
-        if ((Left > 0 || Input.GetKey("left")) && PlayerMove.Wall_Move4 == true && PlayerMove.PlayerDirection == 1 && PlayerMove.WallNo4 == true)
+        if ((Left > 0 || Input.GetKey("left")) && PlayerMove.Wall_Move4 == true && PlayerMove.PlayerDirection == 1 && PlayerMove.WallNo4 == true && wallcollision4 == false)
         {
             Vector3 axis = transform.TransformDirection(Vector3.up);
             transform.RotateAround(target.position, axis, PlayerMove.wallspeed * Time.deltaTime);
         }
 
         //右に移動
-        if ((Right > 0 || Input.GetKey("right")) && PlayerMove.Wall_Move4 == true && PlayerMove.PlayerDirection == -1 && PlayerMove.WallNo4 == true)
+        if ((Right > 0 || Input.GetKey("right")) && PlayerMove.Wall_Move4 == true && PlayerMove.PlayerDirection == -1 && PlayerMove.WallNo4 == true && wallcollision4 == false)
         {
             Vector3 axis = transform.TransformDirection(Vector3.down);
             transform.RotateAround(target.position, axis, PlayerMove.wallspeed * Time.deltaTime);

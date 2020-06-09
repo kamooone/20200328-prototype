@@ -218,7 +218,8 @@ public class PauseMenu : MonoBehaviour
                 //ポーズ解除
                 Time.timeScale = 1f;
                 this.aud.PlayOneShot(this.DecidedSE);
-                SceneManager.LoadScene("NewSelectScene");
+                SceneManager.LoadScene("SelectScene");
+                Menu.StageNo = 1;
             }
             if ((Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown("joystick button 0")) && Pause.PauseMenuNo == 3)
             {

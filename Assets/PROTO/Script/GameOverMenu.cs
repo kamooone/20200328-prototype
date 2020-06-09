@@ -140,7 +140,8 @@ public class GameOverMenu : MonoBehaviour
             //ポーズ解除
             Time.timeScale = 1f;
             this.aud.PlayOneShot(this.DecidedSE);
-            SceneManager.LoadScene("NewSelectScene");
+            SceneManager.LoadScene("SelectScene");
+            Menu.StageNo = 1;
         }
         if ((Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown("joystick button 0"))  && PauseMenuNo == 3)
         {
@@ -149,10 +150,10 @@ public class GameOverMenu : MonoBehaviour
             this.aud.PlayOneShot(this.DecidedSE);
 
 
-            //SceneManager.LoadScene("TitleScene");
+            SceneManager.LoadScene("TitleScene");
 
             //フェードインフェードアウト処理
-            Menu.StageNo = 22;
+            //Menu.StageNo = 1;
             Menu.TitleFadeFlag = true;
         }
 

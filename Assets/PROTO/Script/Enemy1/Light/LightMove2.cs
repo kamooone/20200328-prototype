@@ -24,12 +24,13 @@ public class LightMove2 : MonoBehaviour//カメラ移動処理
         Enemy3Move.TuiFlag = false;
         Enemy3Move.doorcollision = false;
         PlayerMove.GameClearFlag = false;
+        PlayerMove.WaterAction = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (PlayerMove.GameClearFlag == false)
+        if (PlayerMove.GameClearFlag == false && PlayerMove.WaterAction == false)
         {
             if (Enemy3Move.TuiFlag == true && Enemy3Move.doorcollision == false)
             {
