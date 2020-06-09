@@ -1003,7 +1003,8 @@ public class PlayerMove : MonoBehaviour
         if (GameOverFlag == false)
         {
             //================================================================================================================================================================================================
-            if (collision.gameObject.tag == "Up")
+            if (collision.gameObject.tag == "Up" && Wall_Move0 == false && Wall_Move1 == false && Wall_Move2 == false && Wall_Move3 == false && Wall_Move4 == false
+                 && Wall_Move5 == false && Wall_Move6 == false && Wall_Move7 == false && Wall_Move8 == false)
             {
                 UIUp_Flag = true;
 
@@ -1014,7 +1015,8 @@ public class PlayerMove : MonoBehaviour
                     StageNow++;
                 }
             }
-            if (collision.gameObject.tag == "Up_1")
+            if (collision.gameObject.tag == "Up_1" && Wall_Move0 == false && Wall_Move1 == false && Wall_Move2 == false && Wall_Move3 == false && Wall_Move4 == false
+                 && Wall_Move5 == false && Wall_Move6 == false && Wall_Move7 == false && Wall_Move8 == false)
             {
                 UIUp_Flag = true;
 
@@ -1025,7 +1027,8 @@ public class PlayerMove : MonoBehaviour
                     StageNow++;
                 }
             }
-            if (collision.gameObject.tag == "Up_2")
+            if (collision.gameObject.tag == "Up_2" && Wall_Move0 == false && Wall_Move1 == false && Wall_Move2 == false && Wall_Move3 == false && Wall_Move4 == false
+                 && Wall_Move5 == false && Wall_Move6 == false && Wall_Move7 == false && Wall_Move8 == false)
             {
                 UIUp_Flag = true;
 
@@ -1036,7 +1039,8 @@ public class PlayerMove : MonoBehaviour
                     StageNow++;
                 }
             }
-            if (collision.gameObject.tag == "Up_3")
+            if (collision.gameObject.tag == "Up_3" && Wall_Move0 == false && Wall_Move1 == false && Wall_Move2 == false && Wall_Move3 == false && Wall_Move4 == false
+                 && Wall_Move5 == false && Wall_Move6 == false && Wall_Move7 == false && Wall_Move8 == false)
             {
                 UIUp_Flag = true;
 
@@ -1047,7 +1051,8 @@ public class PlayerMove : MonoBehaviour
                     StageNow++;
                 }
             }
-            if (collision.gameObject.tag == "Up_4")
+            if (collision.gameObject.tag == "Up_4" && Wall_Move0 == false && Wall_Move1 == false && Wall_Move2 == false && Wall_Move3 == false && Wall_Move4 == false
+                 && Wall_Move5 == false && Wall_Move6 == false && Wall_Move7 == false && Wall_Move8 == false)
             {
                 UIUp_Flag = true;
 
@@ -1058,7 +1063,8 @@ public class PlayerMove : MonoBehaviour
                     StageNow++;
                 }
             }
-            if (collision.gameObject.tag == "Up_5")
+            if (collision.gameObject.tag == "Up_5" && Wall_Move0 == false && Wall_Move1 == false && Wall_Move2 == false && Wall_Move3 == false && Wall_Move4 == false
+                 && Wall_Move5 == false && Wall_Move6 == false && Wall_Move7 == false && Wall_Move8 == false)
             {
                 UIUp_Flag = true;
 
@@ -1069,7 +1075,8 @@ public class PlayerMove : MonoBehaviour
                     StageNow++;
                 }
             }
-            if (collision.gameObject.tag == "Up_6")
+            if (collision.gameObject.tag == "Up_6" && Wall_Move0 == false && Wall_Move1 == false && Wall_Move2 == false && Wall_Move3 == false && Wall_Move4 == false
+                 && Wall_Move5 == false && Wall_Move6 == false && Wall_Move7 == false && Wall_Move8 == false)
             {
                 UIUp_Flag = true;
 
@@ -1088,7 +1095,8 @@ public class PlayerMove : MonoBehaviour
 
 
 
-            if (collision.gameObject.tag == "Up1")
+            if (collision.gameObject.tag == "Up1" && Wall_Move0 == false && Wall_Move1 == false && Wall_Move2 == false && Wall_Move3 == false && Wall_Move4 == false
+                 && Wall_Move5 == false && Wall_Move6 == false && Wall_Move7 == false && Wall_Move8 == false)
             {
                 UIUp_Flag = true;
 
@@ -1099,7 +1107,8 @@ public class PlayerMove : MonoBehaviour
                     StageNow++;
                 }
             }
-            if (collision.gameObject.tag == "Up1_1")
+            if (collision.gameObject.tag == "Up1_1" && Wall_Move0 == false && Wall_Move1 == false && Wall_Move2 == false && Wall_Move3 == false && Wall_Move4 == false
+                 && Wall_Move5 == false && Wall_Move6 == false && Wall_Move7 == false && Wall_Move8 == false)
             {
                 UIUp_Flag = true;
 
@@ -1110,7 +1119,8 @@ public class PlayerMove : MonoBehaviour
                     StageNow++;
                 }
             }
-            if (collision.gameObject.tag == "Up1_2")
+            if (collision.gameObject.tag == "Up1_2" && Wall_Move0 == false && Wall_Move1 == false && Wall_Move2 == false && Wall_Move3 == false && Wall_Move4 == false
+                 && Wall_Move5 == false && Wall_Move6 == false && Wall_Move7 == false && Wall_Move8 == false)
             {
                 UIUp_Flag = true;
 
@@ -1121,7 +1131,8 @@ public class PlayerMove : MonoBehaviour
                     StageNow++;
                 }
             }
-            if (collision.gameObject.tag == "Up1_3")
+            if (collision.gameObject.tag == "Up1_3" && Wall_Move0 == false && Wall_Move1 == false && Wall_Move2 == false && Wall_Move3 == false && Wall_Move4 == false
+                 && Wall_Move5 == false && Wall_Move6 == false && Wall_Move7 == false && Wall_Move8 == false)
             {
                 UIUp_Flag = true;
 
@@ -1132,7 +1143,8 @@ public class PlayerMove : MonoBehaviour
                     StageNow++;
                 }
             }
-            if (collision.gameObject.tag == "Up1_4")
+            if (collision.gameObject.tag == "Up1_4" && Wall_Move0 == false && Wall_Move1 == false && Wall_Move2 == false && Wall_Move3 == false && Wall_Move4 == false
+                 && Wall_Move5 == false && Wall_Move6 == false && Wall_Move7 == false && Wall_Move8 == false)
             {
                 UIUp_Flag = true;
 
@@ -1143,7 +1155,8 @@ public class PlayerMove : MonoBehaviour
                     StageNow++;
                 }
             }
-            if (collision.gameObject.tag == "Up1_5")
+            if (collision.gameObject.tag == "Up1_5" && Wall_Move0 == false && Wall_Move1 == false && Wall_Move2 == false && Wall_Move3 == false && Wall_Move4 == false
+                 && Wall_Move5 == false && Wall_Move6 == false && Wall_Move7 == false && Wall_Move8 == false)
             {
                 UIUp_Flag = true;
 
@@ -1154,7 +1167,8 @@ public class PlayerMove : MonoBehaviour
                     StageNow++;
                 }
             }
-            if (collision.gameObject.tag == "Up1_6")
+            if (collision.gameObject.tag == "Up1_6" && Wall_Move0 == false && Wall_Move1 == false && Wall_Move2 == false && Wall_Move3 == false && Wall_Move4 == false
+                 && Wall_Move5 == false && Wall_Move6 == false && Wall_Move7 == false && Wall_Move8 == false)
             {
                 UIUp_Flag = true;
 
@@ -1173,7 +1187,8 @@ public class PlayerMove : MonoBehaviour
 
 
             //================================================================================================================================================================================================
-            if (collision.gameObject.tag == "Down1")
+            if (collision.gameObject.tag == "Down1" && Wall_Move0 == false && Wall_Move1 == false && Wall_Move2 == false && Wall_Move3 == false && Wall_Move4 == false
+                 && Wall_Move5 == false && Wall_Move6 == false && Wall_Move7 == false && Wall_Move8 == false)
             {
                 UIDown_Flag = true;
 
@@ -1184,7 +1199,8 @@ public class PlayerMove : MonoBehaviour
                     StageNow--;
                 }
             }
-            if (collision.gameObject.tag == "Down1_1")
+            if (collision.gameObject.tag == "Down1_1" && Wall_Move0 == false && Wall_Move1 == false && Wall_Move2 == false && Wall_Move3 == false && Wall_Move4 == false
+                 && Wall_Move5 == false && Wall_Move6 == false && Wall_Move7 == false && Wall_Move8 == false)
             {
                 UIDown_Flag = true;
 
@@ -1195,7 +1211,8 @@ public class PlayerMove : MonoBehaviour
                     StageNow--;
                 }
             }
-            if (collision.gameObject.tag == "Down1_2")
+            if (collision.gameObject.tag == "Down1_2" && Wall_Move0 == false && Wall_Move1 == false && Wall_Move2 == false && Wall_Move3 == false && Wall_Move4 == false
+                 && Wall_Move5 == false && Wall_Move6 == false && Wall_Move7 == false && Wall_Move8 == false)
             {
                 UIDown_Flag = true;
 
@@ -1206,7 +1223,8 @@ public class PlayerMove : MonoBehaviour
                     StageNow--;
                 }
             }
-            if (collision.gameObject.tag == "Down1_3")
+            if (collision.gameObject.tag == "Down1_3" && Wall_Move0 == false && Wall_Move1 == false && Wall_Move2 == false && Wall_Move3 == false && Wall_Move4 == false
+                 && Wall_Move5 == false && Wall_Move6 == false && Wall_Move7 == false && Wall_Move8 == false)
             {
                 UIDown_Flag = true;
 
@@ -1217,7 +1235,8 @@ public class PlayerMove : MonoBehaviour
                     StageNow--;
                 }
             }
-            if (collision.gameObject.tag == "Down1_4")
+            if (collision.gameObject.tag == "Down1_4" && Wall_Move0 == false && Wall_Move1 == false && Wall_Move2 == false && Wall_Move3 == false && Wall_Move4 == false
+                 && Wall_Move5 == false && Wall_Move6 == false && Wall_Move7 == false && Wall_Move8 == false)
             {
                 UIDown_Flag = true;
 
@@ -1228,7 +1247,8 @@ public class PlayerMove : MonoBehaviour
                     StageNow--;
                 }
             }
-            if (collision.gameObject.tag == "Down1_5")
+            if (collision.gameObject.tag == "Down1_5" && Wall_Move0 == false && Wall_Move1 == false && Wall_Move2 == false && Wall_Move3 == false && Wall_Move4 == false
+                 && Wall_Move5 == false && Wall_Move6 == false && Wall_Move7 == false && Wall_Move8 == false)
             {
                 UIDown_Flag = true;
 
@@ -1239,7 +1259,8 @@ public class PlayerMove : MonoBehaviour
                     StageNow--;
                 }
             }
-            if (collision.gameObject.tag == "Down1_6")
+            if (collision.gameObject.tag == "Down1_6" && Wall_Move0 == false && Wall_Move1 == false && Wall_Move2 == false && Wall_Move3 == false && Wall_Move4 == false
+                 && Wall_Move5 == false && Wall_Move6 == false && Wall_Move7 == false && Wall_Move8 == false)
             {
                 UIDown_Flag = true;
 
@@ -1257,7 +1278,8 @@ public class PlayerMove : MonoBehaviour
 
 
 
-            if (collision.gameObject.tag == "Down2")
+            if (collision.gameObject.tag == "Down2" && Wall_Move0 == false && Wall_Move1 == false && Wall_Move2 == false && Wall_Move3 == false && Wall_Move4 == false
+                 && Wall_Move5 == false && Wall_Move6 == false && Wall_Move7 == false && Wall_Move8 == false)
             {
                 UIDown_Flag = true;
 
@@ -1268,7 +1290,8 @@ public class PlayerMove : MonoBehaviour
                     StageNow--;
                 }
             }
-            if (collision.gameObject.tag == "Down2_1")
+            if (collision.gameObject.tag == "Down2_1" && Wall_Move0 == false && Wall_Move1 == false && Wall_Move2 == false && Wall_Move3 == false && Wall_Move4 == false
+                 && Wall_Move5 == false && Wall_Move6 == false && Wall_Move7 == false && Wall_Move8 == false)
             {
                 UIDown_Flag = true;
 
@@ -1279,7 +1302,8 @@ public class PlayerMove : MonoBehaviour
                     StageNow--;
                 }
             }
-            if (collision.gameObject.tag == "Down2_2")
+            if (collision.gameObject.tag == "Down2_2" && Wall_Move0 == false && Wall_Move1 == false && Wall_Move2 == false && Wall_Move3 == false && Wall_Move4 == false
+                 && Wall_Move5 == false && Wall_Move6 == false && Wall_Move7 == false && Wall_Move8 == false)
             {
                 UIDown_Flag = true;
 
@@ -1290,7 +1314,8 @@ public class PlayerMove : MonoBehaviour
                     StageNow--;
                 }
             }
-            if (collision.gameObject.tag == "Down2_3")
+            if (collision.gameObject.tag == "Down2_3" && Wall_Move0 == false && Wall_Move1 == false && Wall_Move2 == false && Wall_Move3 == false && Wall_Move4 == false
+                 && Wall_Move5 == false && Wall_Move6 == false && Wall_Move7 == false && Wall_Move8 == false)
             {
                 UIDown_Flag = true;
 
@@ -1301,7 +1326,8 @@ public class PlayerMove : MonoBehaviour
                     StageNow--;
                 }
             }
-            if (collision.gameObject.tag == "Down2_4")
+            if (collision.gameObject.tag == "Down2_4" && Wall_Move0 == false && Wall_Move1 == false && Wall_Move2 == false && Wall_Move3 == false && Wall_Move4 == false
+                 && Wall_Move5 == false && Wall_Move6 == false && Wall_Move7 == false && Wall_Move8 == false)
             {
                 UIDown_Flag = true;
 
@@ -1312,7 +1338,8 @@ public class PlayerMove : MonoBehaviour
                     StageNow--;
                 }
             }
-            if (collision.gameObject.tag == "Down2_5")
+            if (collision.gameObject.tag == "Down2_5" && Wall_Move0 == false && Wall_Move1 == false && Wall_Move2 == false && Wall_Move3 == false && Wall_Move4 == false
+                 && Wall_Move5 == false && Wall_Move6 == false && Wall_Move7 == false && Wall_Move8 == false)
             {
                 UIDown_Flag = true;
 
@@ -1323,7 +1350,8 @@ public class PlayerMove : MonoBehaviour
                     StageNow--;
                 }
             }
-            if (collision.gameObject.tag == "Down2_6")
+            if (collision.gameObject.tag == "Down2_6" && Wall_Move0 == false && Wall_Move1 == false && Wall_Move2 == false && Wall_Move3 == false && Wall_Move4 == false
+                 && Wall_Move5 == false && Wall_Move6 == false && Wall_Move7 == false && Wall_Move8 == false)
             {
                 UIDown_Flag = true;
 

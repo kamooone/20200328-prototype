@@ -96,8 +96,15 @@ public class GameClearMenu : MonoBehaviour
 
             this.aud.PlayOneShot(this.DecidedSE);
 
-            Menu.StageNo++;
-
+            if (Menu.StageNo == 0) 
+            {
+                Menu.StageNo = 5;
+            }
+            else
+            {
+                Menu.StageNo++;
+            }
+            
             //リトライ遷移
             //if (Menu.StageNo == 1)
             //{
@@ -142,7 +149,8 @@ public class GameClearMenu : MonoBehaviour
             //ポーズ解除
             Time.timeScale = 1f;
             this.aud.PlayOneShot(this.DecidedSE);
-            SceneManager.LoadScene("NewSelectScene");
+            SceneManager.LoadScene("SelectScene");
+            Menu.StageNo = 1;
         }
         if ((Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown("joystick button 0")) && PauseMenuNo == 3)
         {
@@ -154,7 +162,7 @@ public class GameClearMenu : MonoBehaviour
             //SceneManager.LoadScene("TitleScene");
 
             //フェードインフェードアウト処理
-            Menu.StageNo = 17;
+            //Menu.StageNo = 1;
             Menu.TitleFadeFlag = true;
         }
 

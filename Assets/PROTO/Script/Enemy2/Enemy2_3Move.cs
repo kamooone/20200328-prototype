@@ -88,6 +88,7 @@ public class Enemy2_3Move : MonoBehaviour//敵の移動処理(本来はまとめ
         direction = -1;
 
         PlayerMove.GameOverFlag = false;
+        PlayerMove.GameClearFlag = false;
     }
 
     // Update is called once per frame
@@ -116,87 +117,91 @@ public class Enemy2_3Move : MonoBehaviour//敵の移動処理(本来はまとめ
             walkflagTime++;
         }
 
-        if (walkflag == true)
+        if (PlayerMove.GameClearFlag == false)
         {
-            if (TuiFlag == false)
+            if (walkflag == true)
             {
-                /*移動処理*/
-                if (direction == 1)
+                if (TuiFlag == false)
                 {
-                    if (radian != 180.0f)
+                    /*移動処理*/
+                    if (direction == 1)
                     {
-                        radian = 180.0f;
-                        transform.Rotate(new Vector3(0f, radian, 0f));
+                        if (radian != 180.0f)
+                        {
+                            radian = 180.0f;
+                            transform.Rotate(new Vector3(0f, radian, 0f));
+                        }
+
+                        Vector3 axis = transform.TransformDirection(Vector3.up);
+                        transform.RotateAround(target.position, axis, speed * Time.deltaTime);
                     }
 
-                    Vector3 axis = transform.TransformDirection(Vector3.up);
-                    transform.RotateAround(target.position, axis, speed * Time.deltaTime);
+                    if (direction == -1)
+                    {
+                        if (radian != -180.0f)
+                        {
+                            radian = -180.0f;
+                            transform.Rotate(new Vector3(0f, radian, 0f));
+                        }
+
+                        Vector3 axis = transform.TransformDirection(Vector3.down);
+                        transform.RotateAround(target.position, axis, speed * Time.deltaTime);
+                    }
                 }
 
-                if (direction == -1)
+
+
+                if (TuiFlag == true)
                 {
-                    if (radian != -180.0f)
+                    if (SETime == 0)
                     {
-                        radian = -180.0f;
-                        transform.Rotate(new Vector3(0f, radian, 0f));
+                        this.aud.PlayOneShot(this.WalkSE);
+                    }
+                    if (SETime < 15)
+                    {
+                        SETime++;
+                    }
+                    if (SETime == 15)
+                    {
+                        SETime = 0;
+                    }
+                }
+
+
+                if (TuiFlag == true && doorcollision == false && PlayerMove.GameOverFlag == false)
+                {
+                    /*移動処理*/
+                    if (walkFlag_Right == true)
+                    {
+                        direction = -1;
+
+                        if (radian != -180.0f)
+                        {
+                            radian = -180.0f;
+                            transform.Rotate(new Vector3(0f, radian, 0f));
+                        }
+
+                        Vector3 axis = transform.TransformDirection(Vector3.down);
+                        transform.RotateAround(target.position, axis, speed * Time.deltaTime);
                     }
 
-                    Vector3 axis = transform.TransformDirection(Vector3.down);
-                    transform.RotateAround(target.position, axis, speed * Time.deltaTime);
-                }
-            }
-
-
-
-            if (TuiFlag == true)
-            {
-                if (SETime == 0)
-                {
-                    this.aud.PlayOneShot(this.WalkSE);
-                }
-                if (SETime < 15)
-                {
-                    SETime++;
-                }
-                if (SETime == 15)
-                {
-                    SETime = 0;
-                }
-            }
-
-
-            if (TuiFlag == true && doorcollision == false && PlayerMove.GameOverFlag == false)
-            {
-                /*移動処理*/
-                if (walkFlag_Right == true)
-                {
-                    direction = -1;
-
-                    if (radian != -180.0f)
+                    if (walkFlag_Left == true)
                     {
-                        radian = -180.0f;
-                        transform.Rotate(new Vector3(0f, radian, 0f));
+                        direction = 1;
+
+                        if (radian != 180.0f)
+                        {
+                            radian = 180.0f;
+                            transform.Rotate(new Vector3(0f, radian, 0f));
+                        }
+
+                        Vector3 axis = transform.TransformDirection(Vector3.up);
+                        transform.RotateAround(target.position, axis, speed * Time.deltaTime);
                     }
-
-                    Vector3 axis = transform.TransformDirection(Vector3.down);
-                    transform.RotateAround(target.position, axis, speed * Time.deltaTime);
-                }
-
-                if (walkFlag_Left == true)
-                {
-                    direction = 1;
-
-                    if (radian != 180.0f)
-                    {
-                        radian = 180.0f;
-                        transform.Rotate(new Vector3(0f, radian, 0f));
-                    }
-
-                    Vector3 axis = transform.TransformDirection(Vector3.up);
-                    transform.RotateAround(target.position, axis, speed * Time.deltaTime);
                 }
             }
         }
+
         if (WaterHight == 0.0f || WaterHight == -0.11f)
         {
             walkflag = false;
