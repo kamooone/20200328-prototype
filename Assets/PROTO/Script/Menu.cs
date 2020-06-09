@@ -326,24 +326,28 @@ public class Menu : MonoBehaviour
             //押したワールドによって変化する
             if (WorldNo == 1)
             {
+                Tuto.gameObject.SetActive(false);
                 stage2.gameObject.SetActive(false);
                 stage3.gameObject.SetActive(false);
                 stage4.gameObject.SetActive(false);
             }
             if (WorldNo == 2)
             {
+                Tuto.gameObject.SetActive(false);
                 stage1.gameObject.SetActive(false);
                 stage3.gameObject.SetActive(false);
                 stage4.gameObject.SetActive(false);
             }
             if (WorldNo == 3)
             {
+                Tuto.gameObject.SetActive(false);
                 stage1.gameObject.SetActive(false);
                 stage2.gameObject.SetActive(false);
                 stage4.gameObject.SetActive(false);
             }
             if (WorldNo == 4)
             {
+                Tuto.gameObject.SetActive(false);
                 stage1.gameObject.SetActive(false);
                 stage2.gameObject.SetActive(false);
                 stage3.gameObject.SetActive(false);
@@ -381,6 +385,7 @@ public class Menu : MonoBehaviour
                 WorldNo = 4;
                 this.aud.PlayOneShot(this.CursorSE);
             }
+            Tuto.gameObject.SetActive(true);
             stage1.gameObject.SetActive(true);
             stage2.gameObject.SetActive(true);
             stage3.gameObject.SetActive(true);
@@ -406,16 +411,26 @@ public class Menu : MonoBehaviour
         //シーン遷移
         if (SoundControll == false && FadeFlag == false && TitleFadeFlag == false)
         {
-            if ((Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown("joystick button 0")) && StageNo == 0 || StageNo >= 5 && StageNo <= 24 && Space == true)
+            if ((Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown("joystick button 0")) && StageNo >= 5 && StageNo <= 24)
             {
-                this.aud.PlayOneShot(this.DecidedSE);
-                Space = false;
-                //フェードインフェードアウト処理
-                FadeFlag = true;
+                if(Space==true)
+                {
+                    this.aud.PlayOneShot(this.DecidedSE);
+                    //フェードインフェードアウト処理
+                    FadeFlag = true;
+                    Space = false;
+                }
             }
             else
             {
                 Space = true;
+            }
+
+            if ((Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown("joystick button 0")) && StageNo == 0)
+            {
+                this.aud.PlayOneShot(this.DecidedSE);
+                //フェードインフェードアウト処理
+                FadeFlag = true;
             }
 
             if ((Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown("joystick button 0"))  && StageNo == 25)
