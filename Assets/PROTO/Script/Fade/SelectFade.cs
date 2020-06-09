@@ -44,15 +44,12 @@ public class SelectFade : MonoBehaviour
                 // Titleのオブジェクトを消す(BGMを消すため)
                 Destroy(TitleObj);
 
-<<<<<<< Updated upstream
-=======
                 if(Menu.StageNo==0)
                 {
                     SceneManager.LoadScene("Tutorial1");
                     Menu.NowStageNo = 0;
                 }
 
->>>>>>> Stashed changes
                 //ステージ移動
                 if (Menu.StageNo == 5)
                 {

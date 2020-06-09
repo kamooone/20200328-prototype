@@ -8,11 +8,8 @@ public class Menu : MonoBehaviour
     GameObject FadeObject;
     SelectFade SelectFadeScript;
 
-<<<<<<< Updated upstream
-=======
     Button Tuto;
 
->>>>>>> Stashed changes
     //ワールド
     Button stage1;
     Button stage2;
@@ -64,10 +61,7 @@ public class Menu : MonoBehaviour
         SelectFadeScript = FadeObject.GetComponent<SelectFade>();
 
         // ボタンコンポーネントの取得
-<<<<<<< Updated upstream
-=======
         Tuto= GameObject.Find("StageSelectCanvas/stage/Tutorial").GetComponent<Button>();
->>>>>>> Stashed changes
         stage1 = GameObject.Find("StageSelectCanvas/stage/World1").GetComponent<Button>();
         stage2 = GameObject.Find("StageSelectCanvas/stage/World2").GetComponent<Button>();
         stage3 = GameObject.Find("StageSelectCanvas/stage/World3").GetComponent<Button>();
@@ -181,11 +175,7 @@ public class Menu : MonoBehaviour
                 }
             }
             //下の3つを選んでるとき
-<<<<<<< Updated upstream
-            if (LeftFlag == true || Input.GetKeyDown("left") && StageNo >= 25)
-=======
             if (LeftFlag == true || Input.GetKeyDown("left"))
->>>>>>> Stashed changes
             {
                 if (StageNo > 25)
                 {
@@ -207,21 +197,13 @@ public class Menu : MonoBehaviour
         {
             if (UpFlag == true || Input.GetKeyDown("up"))
             {
-<<<<<<< Updated upstream
-                if (StageNo <= 4)
-=======
                 if (StageNo > 0)
->>>>>>> Stashed changes
                 {
                     StageNo-=1;
                     WorldNo -= 1;
                     this.aud.PlayOneShot(this.CursorSE);
                 }
-<<<<<<< Updated upstream
-                if (StageNo == 0) 
-=======
                 else
->>>>>>> Stashed changes
                 {
                     StageNo = 4;
                     WorldNo = 4;
@@ -231,27 +213,16 @@ public class Menu : MonoBehaviour
             }
             if (DownFlag == true || Input.GetKeyDown("down"))
             {
-<<<<<<< Updated upstream
-                if (StageNo <= 4)
-=======
                 if (StageNo < 4)
->>>>>>> Stashed changes
                 {
                     StageNo += 1;
                     WorldNo += 1;
                     this.aud.PlayOneShot(this.CursorSE);
                 }
-<<<<<<< Updated upstream
-                if (StageNo == 5) 
-                {
-                    StageNo = 1;
-                    WorldNo = 1;
-=======
                 else
                 {
                     StageNo = 0;
                     WorldNo = 0;
->>>>>>> Stashed changes
                     this.aud.PlayOneShot(this.CursorSE);
                 }
                 DownFlag = false;
@@ -343,11 +314,7 @@ public class Menu : MonoBehaviour
         }
 
         //ステージ選択に移動
-<<<<<<< Updated upstream
-        if ((Input.GetKeyDown(KeyCode.Space) || (Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown("joystick button 0")) && StageNo <= 4))
-=======
         if ((Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown("joystick button 0")) && StageNo >= 1 && StageNo <= 4) 
->>>>>>> Stashed changes
         {
             if (Space == true)
             {
@@ -439,11 +406,7 @@ public class Menu : MonoBehaviour
         //シーン遷移
         if (SoundControll == false && FadeFlag == false && TitleFadeFlag == false)
         {
-<<<<<<< Updated upstream
-            if ((Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown("joystick button 0")) && StageNo >= 5 && StageNo <= 24 && Space == true)
-=======
             if ((Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown("joystick button 0")) && StageNo == 0 || StageNo >= 5 && StageNo <= 24 && Space == true)
->>>>>>> Stashed changes
             {
                 this.aud.PlayOneShot(this.DecidedSE);
                 Space = false;
@@ -498,14 +461,11 @@ public class Menu : MonoBehaviour
 
         //選んでいるやつを赤く表示する
         //ステージ
-<<<<<<< Updated upstream
-=======
         if (StageNo == 0)
         {
             Tuto.Select();
         }
 
->>>>>>> Stashed changes
         if (StageNo == 1)
         {
             stage1.Select();
