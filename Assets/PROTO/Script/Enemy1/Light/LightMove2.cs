@@ -23,75 +23,79 @@ public class LightMove2 : MonoBehaviour//カメラ移動処理
         Enemy3Move.walkFlag_Left = false;
         Enemy3Move.TuiFlag = false;
         Enemy3Move.doorcollision = false;
+        PlayerMove.GameClearFlag = false;
+        PlayerMove.WaterAction = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-
-        if (Enemy3Move.TuiFlag == true && Enemy3Move.doorcollision == false)
+        if (PlayerMove.GameClearFlag == false && PlayerMove.WaterAction == false)
         {
-            //==============================================================================================================
-            //水ないとき、追従時のエネミーのスピード
-            if (FireGenerated3.WaterHight == 0.0f || FireGenerated3.WaterHight == -0.11f)
+            if (Enemy3Move.TuiFlag == true && Enemy3Move.doorcollision == false)
             {
-                speed = 10.0f;
+                //==============================================================================================================
+                //水ないとき、追従時のエネミーのスピード
+                if (FireGenerated3.WaterHight == 0.0f || FireGenerated3.WaterHight == -0.11f)
+                {
+                    speed = 10.0f;
+                }
+
+
+                //水あるとき、追従時のエネミーのスピード
+                if (FireGenerated3.WaterHight == 0.11f)
+                {
+                    speed = 6.0f;
+
+                }
+                //==============================================================================================================
+
+                if (Enemy3Move.walkFlag_Right == true)
+                {
+
+                    Vector3 axis = Enemy3Script.transform.TransformDirection(Vector3.down);
+                    transform.RotateAround(target.position, axis, speed * Time.deltaTime);
+                }
+
+                if (Enemy3Move.walkFlag_Left == true)
+                {
+
+                    Vector3 axis = Enemy3Script.transform.TransformDirection(Vector3.up);
+                    transform.RotateAround(target.position, axis, speed * Time.deltaTime);
+                }
             }
 
-
-            //水あるとき、追従時のエネミーのスピード
-            if (FireGenerated3.WaterHight == 0.11f)
-            {
-                speed = 6.0f;
-
-            }
-            //==============================================================================================================
-
-            if (Enemy3Move.walkFlag_Right == true)
+            if (Enemy3Move.TuiFlag == false)
             {
 
-                Vector3 axis = Enemy3Script.transform.TransformDirection(Vector3.down);
-                transform.RotateAround(target.position, axis, speed * Time.deltaTime);
-            }
 
-            if (Enemy3Move.walkFlag_Left == true)
-            {
-
-                Vector3 axis = Enemy3Script.transform.TransformDirection(Vector3.up);
-                transform.RotateAround(target.position, axis, speed * Time.deltaTime);
-            }
-        }
-
-        if (Enemy3Move.TuiFlag == false)
-        {
+                //==============================================================================================================
+                //水ないとき、普通時のエネミーのスピード
+                if (FireGenerated3.WaterHight == 0.0f || FireGenerated3.WaterHight == -0.11f)
+                {
+                    speed = 6.0f;
+                }
 
 
-            //==============================================================================================================
-            //水ないとき、普通時のエネミーのスピード
-            if (FireGenerated3.WaterHight == 0.0f || FireGenerated3.WaterHight == -0.11f)
-            {
-                speed = 6.0f;
-            }
+                //水あるとき、普通時のエネミーのスピード
+                if (FireGenerated3.WaterHight == 0.11f)
+                {
+                    speed = 2.0f;
+                }
+                //==============================================================================================================
 
 
-            //水あるとき、普通時のエネミーのスピード
-            if (FireGenerated3.WaterHight == 0.11f)
-            {
-                speed = 2.0f;
-            }
-            //==============================================================================================================
+                if (Enemy3Move.direction == -1)
+                {
+                    Vector3 axis = Enemy3Script.transform.TransformDirection(Vector3.down);
+                    transform.RotateAround(target.position, axis, speed * Time.deltaTime);
+                }
 
-
-            if (Enemy3Move.direction == -1)
-            {
-                Vector3 axis = Enemy3Script.transform.TransformDirection(Vector3.down);
-                transform.RotateAround(target.position, axis, speed * Time.deltaTime);
-            }
-
-            if (Enemy3Move.direction == 1)
-            {
-                Vector3 axis = Enemy3Script.transform.TransformDirection(Vector3.up);
-                transform.RotateAround(target.position, axis, speed * Time.deltaTime);
+                if (Enemy3Move.direction == 1)
+                {
+                    Vector3 axis = Enemy3Script.transform.TransformDirection(Vector3.up);
+                    transform.RotateAround(target.position, axis, speed * Time.deltaTime);
+                }
             }
         }
     }

@@ -112,6 +112,8 @@ public class Enemy3Move : MonoBehaviour
         doorcollision = false;
 
         PlayerMove.GameOverFlag = false;
+        PlayerMove.GameClearFlag = false;
+        PlayerMove.WaterAction = false;
     }
 
     // Update is called once per frame
@@ -120,7 +122,24 @@ public class Enemy3Move : MonoBehaviour
         anim.speed = AnimSpeed;
 
 
-        if (TuiFlag == true && (FireGenerated3.WaterHight == 0.0f || FireGenerated3.WaterHight == -0.11f))
+        //if (TuiFlag == true && (FireGenerated3.WaterHight == 0.0f || FireGenerated3.WaterHight == -0.11f))
+        //{
+        //    if (SETime == 0)
+        //    {
+        //        this.aud.PlayOneShot(this.WalkSE);
+        //    }
+        //    if (SETime < 15)
+        //    {
+        //        SETime++;
+        //    }
+        //    if (SETime == 15)
+        //    {
+        //        SETime = 0;
+        //    }
+        //}
+
+
+        if (TuiFlag == true && FireGenerated3.WaterHight == 0.11f)
         {
             if (SETime == 0)
             {
@@ -136,120 +155,105 @@ public class Enemy3Move : MonoBehaviour
             }
         }
 
-
-        if (TuiFlag == true && FireGenerated3.WaterHight == 0.11f)
+        if (PlayerMove.GameClearFlag == false && PlayerMove.WaterAction == false)
         {
-            if (SETime == 0)
+            /*移動処理*/
+            if (TuiFlag == true && doorcollision == false)
             {
-                this.aud.PlayOneShot(this.WalkSE);
-            }
-            if (SETime < 30)
-            {
-                SETime++;
-            }
-            if (SETime == 30)
-            {
-                SETime = 0;
-            }
-        }
-
-        /*移動処理*/
-        if (TuiFlag == true && doorcollision == false)
-        {
-            //==============================================================================================================
-            //水ないとき、追従時のエネミーのスピード
-            if (FireGenerated3.WaterHight == 0.0f || FireGenerated3.WaterHight == -0.11f && PlayerMove.GameOverFlag == false)
-            {
-                speed = 10.0f;
-
-                AnimSpeed = 8.0f;
-
-            }
-
-
-            //水あるとき、追従時のエネミーのスピード
-            if (FireGenerated3.WaterHight == 0.11f)
-            {
-                speed = 6.0f;
-
-                AnimSpeed = 4.0f;
-
-            }
-            //==============================================================================================================
-
-
-            if (walkFlag_Right == true)
-            {
-                direction = -1;
-                if (radian != -180.0f)
+                //==============================================================================================================
+                //水ないとき、追従時のエネミーのスピード
+                if (FireGenerated3.WaterHight == 0.0f || FireGenerated3.WaterHight == -0.11f && PlayerMove.GameOverFlag == false)
                 {
-                    radian = -180.0f;
-                    transform.Rotate(new Vector3(0f, radian, 0f));
+                    speed = 10.0f;
+
+                    AnimSpeed = 8.0f;
+
                 }
 
-                Vector3 axis = transform.TransformDirection(Vector3.down);
-                transform.RotateAround(target.position, axis, speed * Time.deltaTime);
-            }
 
-            if (walkFlag_Left == true)
-            {
-                direction = 1;
-                if (radian != 180.0f)
+                //水あるとき、追従時のエネミーのスピード
+                if (FireGenerated3.WaterHight == 0.11f)
                 {
-                    radian = 180.0f;
-                    transform.Rotate(new Vector3(0f, radian, 0f));
+                    speed = 6.0f;
+
+                    AnimSpeed = 4.0f;
+
+                }
+                //==============================================================================================================
+
+
+                if (walkFlag_Right == true)
+                {
+                    direction = -1;
+                    if (radian != -180.0f)
+                    {
+                        radian = -180.0f;
+                        transform.Rotate(new Vector3(0f, radian, 0f));
+                    }
+
+                    Vector3 axis = transform.TransformDirection(Vector3.down);
+                    transform.RotateAround(target.position, axis, speed * Time.deltaTime);
                 }
 
-                Vector3 axis = transform.TransformDirection(Vector3.up);
-                transform.RotateAround(target.position, axis, speed * Time.deltaTime);
-            }
-        }
-
-
-
-        if (TuiFlag == false)
-        {
-            //==============================================================================================================
-            //水ないとき、普通時のエネミーのスピード
-            if (FireGenerated3.WaterHight == 0.0f || FireGenerated3.WaterHight == -0.11f)
-            {
-                speed = 6.0f;
-
-                AnimSpeed = 4.0f;
-            }
-
-
-            //水あるとき、普通時のエネミーのスピード
-            if (FireGenerated3.WaterHight == 0.11f)
-            {
-                speed = 2.0f;
-
-                AnimSpeed = 1.0f;
-            }
-            //==============================================================================================================
-
-            if (direction == -1)
-            {
-                if (radian != -180.0f)
+                if (walkFlag_Left == true)
                 {
-                    radian = -180.0f;
-                    transform.Rotate(new Vector3(0f, radian, 0f));
+                    direction = 1;
+                    if (radian != 180.0f)
+                    {
+                        radian = 180.0f;
+                        transform.Rotate(new Vector3(0f, radian, 0f));
+                    }
+
+                    Vector3 axis = transform.TransformDirection(Vector3.up);
+                    transform.RotateAround(target.position, axis, speed * Time.deltaTime);
+                }
+            }
+
+
+            if (TuiFlag == false)
+            {
+                //==============================================================================================================
+                //水ないとき、普通時のエネミーのスピード
+                if (FireGenerated3.WaterHight == 0.0f || FireGenerated3.WaterHight == -0.11f)
+                {
+                    speed = 6.0f;
+
+                    AnimSpeed = 4.0f;
                 }
 
-                Vector3 axis = transform.TransformDirection(Vector3.down);
-                transform.RotateAround(target.position, axis, speed * Time.deltaTime);
-            }
 
-            if (direction == 1)
-            {
-                if (radian != 180.0f)
+                //水あるとき、普通時のエネミーのスピード
+                if (FireGenerated3.WaterHight == 0.11f)
                 {
-                    radian = 180.0f;
-                    transform.Rotate(new Vector3(0f, radian, 0f));
+                    speed = 2.0f;
+
+                    AnimSpeed = 1.0f;
+                }
+                //==============================================================================================================
+
+                if (direction == -1)
+                {
+                    if (radian != -180.0f)
+                    {
+                        radian = -180.0f;
+                        transform.Rotate(new Vector3(0f, radian, 0f));
+                    }
+
+                    Vector3 axis = transform.TransformDirection(Vector3.down);
+                    transform.RotateAround(target.position, axis, speed * Time.deltaTime);
                 }
 
-                Vector3 axis = transform.TransformDirection(Vector3.up);
-                transform.RotateAround(target.position, axis, speed * Time.deltaTime);
+                if (direction == 1)
+                {
+                    if (radian != 180.0f)
+                    {
+                        radian = 180.0f;
+                        transform.Rotate(new Vector3(0f, radian, 0f));
+                    }
+
+                    Vector3 axis = transform.TransformDirection(Vector3.up);
+                    transform.RotateAround(target.position, axis, speed * Time.deltaTime);
+                }
             }
         }
     }

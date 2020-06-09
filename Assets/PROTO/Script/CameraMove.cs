@@ -51,14 +51,14 @@ public class CameraMove : MonoBehaviour//カメラ移動処理
 
 
             //左に移動  
-            if ((Left > 0 || Input.GetKey("left")) && PlayerMove.Wall_Move0 == true && PlayerMove.PlayerDirection == 1)
+            if ((Left > 0 || Input.GetKey("left")) && PlayerMove.Wall_Move0 == true && PlayerMove.PlayerDirection == 1 && Wall.wallcollision0 == false)
             {
                 Vector3 axis = PlayerScript.transform.TransformDirection(Vector3.up);
                 transform.RotateAround(target.position, axis, PlayerMove.wallspeed * Time.deltaTime);
             }
 
             //右に移動
-            if ((Right > 0 || Input.GetKey("right")) && PlayerMove.Wall_Move0 == true && PlayerMove.PlayerDirection == -1)
+            if ((Right > 0 || Input.GetKey("right")) && PlayerMove.Wall_Move0 == true && PlayerMove.PlayerDirection == -1 && Wall.wallcollision0 == false)
             {
                 Vector3 axis = PlayerScript.transform.TransformDirection(Vector3.down);
                 transform.RotateAround(target.position, axis, PlayerMove.wallspeed * Time.deltaTime);
@@ -67,14 +67,14 @@ public class CameraMove : MonoBehaviour//カメラ移動処理
 
 
             //左に移動  
-            if ((Left > 0 || Input.GetKey("left")) && PlayerMove.Wall_Move1 == true && PlayerMove.PlayerDirection == 1)
+            if ((Left > 0 || Input.GetKey("left")) && PlayerMove.Wall_Move1 == true && PlayerMove.PlayerDirection == 1 && Wall1.wallcollision1 == false)
             {
                 Vector3 axis = PlayerScript.transform.TransformDirection(Vector3.up);
                 transform.RotateAround(target.position, axis, PlayerMove.wallspeed * Time.deltaTime);
             }
 
             //右に移動
-            if ((Right > 0 || Input.GetKey("right")) && PlayerMove.Wall_Move1 == true && PlayerMove.PlayerDirection == -1)
+            if ((Right > 0 || Input.GetKey("right")) && PlayerMove.Wall_Move1 == true && PlayerMove.PlayerDirection == -1 && Wall1.wallcollision1 == false)
             {
                 Vector3 axis = PlayerScript.transform.TransformDirection(Vector3.down);
                 transform.RotateAround(target.position, axis, PlayerMove.wallspeed * Time.deltaTime);
@@ -82,30 +82,14 @@ public class CameraMove : MonoBehaviour//カメラ移動処理
 
 
             //左に移動  
-            if ((Left > 0 || Input.GetKey("left")) && PlayerMove.Wall_Move2 == true && PlayerMove.PlayerDirection == 1)
+            if ((Left > 0 || Input.GetKey("left")) && PlayerMove.Wall_Move2 == true && PlayerMove.PlayerDirection == 1 && Wall2.wallcollision2 == false)
             {
                 Vector3 axis = PlayerScript.transform.TransformDirection(Vector3.up);
                 transform.RotateAround(target.position, axis, PlayerMove.wallspeed * Time.deltaTime);
             }
 
             //右に移動
-            if ((Right > 0 || Input.GetKey("right")) && PlayerMove.Wall_Move2 == true && PlayerMove.PlayerDirection == -1)
-            {
-                Vector3 axis = PlayerScript.transform.TransformDirection(Vector3.down);
-                transform.RotateAround(target.position, axis, PlayerMove.wallspeed * Time.deltaTime);
-            }
-
-
-
-            //左に移動  
-            if ((Left > 0 || Input.GetKey("left")) && PlayerMove.Wall_Move3 == true && PlayerMove.PlayerDirection == 1)
-            {
-                Vector3 axis = PlayerScript.transform.TransformDirection(Vector3.up);
-                transform.RotateAround(target.position, axis, PlayerMove.wallspeed * Time.deltaTime);
-            }
-
-            //右に移動
-            if ((Right > 0 || Input.GetKey("right")) && PlayerMove.Wall_Move3 == true && PlayerMove.PlayerDirection == -1)
+            if ((Right > 0 || Input.GetKey("right")) && PlayerMove.Wall_Move2 == true && PlayerMove.PlayerDirection == -1 && Wall2.wallcollision2 == false)
             {
                 Vector3 axis = PlayerScript.transform.TransformDirection(Vector3.down);
                 transform.RotateAround(target.position, axis, PlayerMove.wallspeed * Time.deltaTime);
@@ -114,14 +98,14 @@ public class CameraMove : MonoBehaviour//カメラ移動処理
 
 
             //左に移動  
-            if ((Left > 0 || Input.GetKey("left")) && PlayerMove.Wall_Move4 == true && PlayerMove.PlayerDirection == 1)
+            if ((Left > 0 || Input.GetKey("left")) && PlayerMove.Wall_Move3 == true && PlayerMove.PlayerDirection == 1 && Wall3.wallcollision3 == false)
             {
                 Vector3 axis = PlayerScript.transform.TransformDirection(Vector3.up);
                 transform.RotateAround(target.position, axis, PlayerMove.wallspeed * Time.deltaTime);
             }
 
             //右に移動
-            if ((Right > 0 || Input.GetKey("right")) && PlayerMove.Wall_Move4 == true && PlayerMove.PlayerDirection == -1)
+            if ((Right > 0 || Input.GetKey("right")) && PlayerMove.Wall_Move3 == true && PlayerMove.PlayerDirection == -1 && Wall3.wallcollision3 == false)
             {
                 Vector3 axis = PlayerScript.transform.TransformDirection(Vector3.down);
                 transform.RotateAround(target.position, axis, PlayerMove.wallspeed * Time.deltaTime);
@@ -130,14 +114,14 @@ public class CameraMove : MonoBehaviour//カメラ移動処理
 
 
             //左に移動  
-            if ((Left > 0 || Input.GetKey("left")) && PlayerMove.Wall_Move5 == true && PlayerMove.PlayerDirection == 1)
+            if ((Left > 0 || Input.GetKey("left")) && PlayerMove.Wall_Move4 == true && PlayerMove.PlayerDirection == 1 && Wall4.wallcollision4 == false)
             {
                 Vector3 axis = PlayerScript.transform.TransformDirection(Vector3.up);
                 transform.RotateAround(target.position, axis, PlayerMove.wallspeed * Time.deltaTime);
             }
 
             //右に移動
-            if ((Right > 0 || Input.GetKey("right")) && PlayerMove.Wall_Move5 == true && PlayerMove.PlayerDirection == -1)
+            if ((Right > 0 || Input.GetKey("right")) && PlayerMove.Wall_Move4 == true && PlayerMove.PlayerDirection == -1 && Wall4.wallcollision4 == false)
             {
                 Vector3 axis = PlayerScript.transform.TransformDirection(Vector3.down);
                 transform.RotateAround(target.position, axis, PlayerMove.wallspeed * Time.deltaTime);
@@ -146,14 +130,14 @@ public class CameraMove : MonoBehaviour//カメラ移動処理
 
 
             //左に移動  
-            if ((Left > 0 || Input.GetKey("left")) && PlayerMove.Wall_Move6 == true && PlayerMove.PlayerDirection == 1)
+            if ((Left > 0 || Input.GetKey("left")) && PlayerMove.Wall_Move5 == true && PlayerMove.PlayerDirection == 1 && Wall5.wallcollision5 == false)
             {
                 Vector3 axis = PlayerScript.transform.TransformDirection(Vector3.up);
                 transform.RotateAround(target.position, axis, PlayerMove.wallspeed * Time.deltaTime);
             }
 
             //右に移動
-            if ((Right > 0 || Input.GetKey("right")) && PlayerMove.Wall_Move6 == true && PlayerMove.PlayerDirection == -1)
+            if ((Right > 0 || Input.GetKey("right")) && PlayerMove.Wall_Move5 == true && PlayerMove.PlayerDirection == -1 && Wall5.wallcollision5 == false)
             {
                 Vector3 axis = PlayerScript.transform.TransformDirection(Vector3.down);
                 transform.RotateAround(target.position, axis, PlayerMove.wallspeed * Time.deltaTime);
@@ -162,14 +146,14 @@ public class CameraMove : MonoBehaviour//カメラ移動処理
 
 
             //左に移動  
-            if ((Left > 0 || Input.GetKey("left")) && PlayerMove.Wall_Move7 == true && PlayerMove.PlayerDirection == 1)
+            if ((Left > 0 || Input.GetKey("left")) && PlayerMove.Wall_Move6 == true && PlayerMove.PlayerDirection == 1 && Wall6.wallcollision6 == false)
             {
                 Vector3 axis = PlayerScript.transform.TransformDirection(Vector3.up);
                 transform.RotateAround(target.position, axis, PlayerMove.wallspeed * Time.deltaTime);
             }
 
             //右に移動
-            if ((Right > 0 || Input.GetKey("right")) && PlayerMove.Wall_Move7 == true && PlayerMove.PlayerDirection == -1)
+            if ((Right > 0 || Input.GetKey("right")) && PlayerMove.Wall_Move6 == true && PlayerMove.PlayerDirection == -1 && Wall6.wallcollision6 == false)
             {
                 Vector3 axis = PlayerScript.transform.TransformDirection(Vector3.down);
                 transform.RotateAround(target.position, axis, PlayerMove.wallspeed * Time.deltaTime);
@@ -178,14 +162,30 @@ public class CameraMove : MonoBehaviour//カメラ移動処理
 
 
             //左に移動  
-            if ((Left > 0 || Input.GetKey("left")) && PlayerMove.Wall_Move8 == true && PlayerMove.PlayerDirection == 1)
+            if ((Left > 0 || Input.GetKey("left")) && PlayerMove.Wall_Move7 == true && PlayerMove.PlayerDirection == 1 && Wall7.wallcollision7 == false)
             {
                 Vector3 axis = PlayerScript.transform.TransformDirection(Vector3.up);
                 transform.RotateAround(target.position, axis, PlayerMove.wallspeed * Time.deltaTime);
             }
 
             //右に移動
-            if ((Right > 0 || Input.GetKey("right")) && PlayerMove.Wall_Move8 == true && PlayerMove.PlayerDirection == -1)
+            if ((Right > 0 || Input.GetKey("right")) && PlayerMove.Wall_Move7 == true && PlayerMove.PlayerDirection == -1 && Wall7.wallcollision7 == false)
+            {
+                Vector3 axis = PlayerScript.transform.TransformDirection(Vector3.down);
+                transform.RotateAround(target.position, axis, PlayerMove.wallspeed * Time.deltaTime);
+            }
+
+
+
+            //左に移動  
+            if ((Left > 0 || Input.GetKey("left")) && PlayerMove.Wall_Move8 == true && PlayerMove.PlayerDirection == 1 && Wall8.wallcollision8 == false)
+            {
+                Vector3 axis = PlayerScript.transform.TransformDirection(Vector3.up);
+                transform.RotateAround(target.position, axis, PlayerMove.wallspeed * Time.deltaTime);
+            }
+
+            //右に移動
+            if ((Right > 0 || Input.GetKey("right")) && PlayerMove.Wall_Move8 == true && PlayerMove.PlayerDirection == -1 && Wall8.wallcollision8 == false)
             {
                 Vector3 axis = PlayerScript.transform.TransformDirection(Vector3.down);
                 transform.RotateAround(target.position, axis, PlayerMove.wallspeed * Time.deltaTime);
