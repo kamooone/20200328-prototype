@@ -36,7 +36,11 @@ public class TitleFade : MonoBehaviour
             if (alfa >= 1.0f)
             {
                 Menu.StageNo = 1;
+<<<<<<< Updated upstream
                 SceneManager.LoadScene("SelectScene");
+=======
+                SceneManager.LoadScene("NewSelectScene");
+>>>>>>> Stashed changes
             }
         }
     }

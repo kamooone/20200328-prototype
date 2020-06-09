@@ -55,6 +55,15 @@ public class BackTitleFade : MonoBehaviour
 
                 if (PlayerMove.GameOverFlag == false)
                 {
+<<<<<<< Updated upstream
+=======
+                    if (Menu.StageNo == 0) 
+                    {
+                        SceneManager.LoadScene("Tutorial1");
+                        Menu.NowStageNo = 0;
+                    }
+
+>>>>>>> Stashed changes
                     if (Menu.StageNo == 5)
                     {
                         SceneManager.LoadScene("GameScene1_1");

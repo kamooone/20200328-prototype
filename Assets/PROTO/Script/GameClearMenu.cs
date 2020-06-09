@@ -96,8 +96,15 @@ public class GameClearMenu : MonoBehaviour
 
             this.aud.PlayOneShot(this.DecidedSE);
 
-            Menu.StageNo++;
-
+            if (Menu.StageNo == 0) 
+            {
+                Menu.StageNo = 5;
+            }
+            else
+            {
+                Menu.StageNo++;
+            }
+            
             //リトライ遷移
             //if (Menu.StageNo == 1)
             //{
