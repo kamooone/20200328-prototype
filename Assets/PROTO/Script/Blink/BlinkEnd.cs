@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class BlinkEnd : MonoBehaviour
 {
-    public float speed = 0.5f;
+    public float speed = 1.0f;
 
     private Text text;
     private Image image;
@@ -37,7 +37,7 @@ public class BlinkEnd : MonoBehaviour
     void Update()
     {
 
-        if (Menu.StageNo == 27)
+        if (Menu.StageNo == 7)
         {
             //オブジェクトのAlpha値を更新
             if (thisObjType == ObjType.IMAGE)

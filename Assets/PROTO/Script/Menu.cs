@@ -99,6 +99,8 @@ public class Menu : MonoBehaviour
         float Up = Input.GetAxis("W");
         float Down = Input.GetAxis("S");
 
+        WorldNo = StageNo;
+
         //チャタリング防止
         if (Left >= 0.5 && stick == false)
         {
@@ -125,9 +127,9 @@ public class Menu : MonoBehaviour
         if (SoundControll == false && FadeFlag == false && TitleFadeFlag == false)
         {
             //右キー(ステージ選択時)
-            if (RightFlag == true || Input.GetKeyDown("right") && StageNo >= 5 && StageNo <= 24) 
+            if (RightFlag == true || Input.GetKeyDown("right") && StageNo >= 8) 
             {
-                if (StageNo == 9 || StageNo == 14 || StageNo == 19 || StageNo == 24)
+                if (StageNo == 12 || StageNo == 17 || StageNo == 22 || StageNo == 27)
                 {
                     StageNo -= 4;
                     this.aud.PlayOneShot(this.CursorSE);
@@ -140,28 +142,31 @@ public class Menu : MonoBehaviour
                     RightFlag = false;
                 }         
             }
-            //下の3つを選んでるとき
-            if (RightFlag == true || Input.GetKeyDown("right") && StageNo >= 25)
+            //ワールド選択時
+            if (Input.GetKeyDown("right") || RightFlag == true)
             {
-                if (StageNo < 27)
+                if (StageNo < 8)
                 {
-                    StageNo += 1;
-                    this.aud.PlayOneShot(this.CursorSE);
-                    RightFlag = false;
-                }
-                else
-                {
-                    StageNo = 25;
-                    this.aud.PlayOneShot(this.CursorSE);
-                    RightFlag = false;
-                }                
+                    if (StageNo == 7)
+                    {
+                        StageNo = 0;
+                        this.aud.PlayOneShot(this.CursorSE);
+                        RightFlag = false;
+                    }
+                    else
+                    {
+                        StageNo++;
+                        this.aud.PlayOneShot(this.CursorSE);
+                        RightFlag = false;
+                    }
+                }                            
             }
 
             //左キー
-            if (LeftFlag == true || Input.GetKeyDown("left") && StageNo >= 5 && StageNo <= 24)
+            if (LeftFlag == true || Input.GetKeyDown("left") && StageNo >= 8)
             {
                 //ステージ選択時
-                if (StageNo == 5 || StageNo == 10 || StageNo == 15 || StageNo == 20)
+                if (StageNo == 8 || StageNo == 13 || StageNo == 18 || StageNo == 23)
                 {
                     StageNo += 4;
                     this.aud.PlayOneShot(this.CursorSE);
@@ -174,10 +179,10 @@ public class Menu : MonoBehaviour
                     LeftFlag = false;
                 }
             }
-            //下の3つを選んでるとき
-            if (LeftFlag == true || Input.GetKeyDown("left"))
+            //ワールド選択時
+            if (LeftFlag == true || Input.GetKeyDown("left") && StageNo < 8)
             {
-                if (StageNo > 25)
+                if (StageNo > 0)
                 {
                     StageNo -= 1;
                     this.aud.PlayOneShot(this.CursorSE);
@@ -185,7 +190,7 @@ public class Menu : MonoBehaviour
                 }
                 else
                 {
-                    StageNo = 27;
+                    StageNo = 7;
                     this.aud.PlayOneShot(this.CursorSE);
                     LeftFlag = false;
                 }
@@ -195,37 +200,73 @@ public class Menu : MonoBehaviour
         //上下キー入力処理
         if (SoundControll == false && FadeFlag == false && TitleFadeFlag == false)
         {
-            if (UpFlag == true || Input.GetKeyDown("up"))
+            if (UpFlag == true || Input.GetKeyDown("up") && StageNo >= 8)
             {
-                if (StageNo > 0)
+                //ステージ選択時
+                if (StageNo == 8 || StageNo == 13 || StageNo == 18 || StageNo == 23)
                 {
-                    StageNo-=1;
-                    WorldNo -= 1;
+                    StageNo += 4;
                     this.aud.PlayOneShot(this.CursorSE);
+                    UpFlag = false;
                 }
                 else
                 {
-                    StageNo = 4;
-                    WorldNo = 4;
+                    StageNo--;
                     this.aud.PlayOneShot(this.CursorSE);
+                    UpFlag = false;
                 }
-                UpFlag = false;
             }
-            if (DownFlag == true || Input.GetKeyDown("down"))
+
+            //ワールド選択時
+            if (UpFlag == true || Input.GetKeyDown("up") && StageNo < 8)
             {
-                if (StageNo < 4)
+                if (StageNo > 0)
+                {
+                    StageNo -= 1;
+                    this.aud.PlayOneShot(this.CursorSE);
+                    UpFlag = false;
+                }
+                else
+                {
+                    StageNo = 7;
+                    this.aud.PlayOneShot(this.CursorSE);
+                    UpFlag = false;
+                }
+
+            }
+
+            //ステージ選択時
+            if (DownFlag == true || Input.GetKeyDown("down") && StageNo >= 8)
+            {
+                if (StageNo == 12 || StageNo == 17 || StageNo == 22 || StageNo == 27)
+                {
+                    StageNo -= 4;
+                    this.aud.PlayOneShot(this.CursorSE);
+                    DownFlag = false;
+                }
+                else
+                {
+                    StageNo++;
+                    this.aud.PlayOneShot(this.CursorSE);
+                    DownFlag = false;
+                }
+            }
+
+            //ワールド選択時
+            if (DownFlag == true || Input.GetKeyDown("down") && StageNo < 8)
+            {
+                if (StageNo < 7)
                 {
                     StageNo += 1;
-                    WorldNo += 1;
                     this.aud.PlayOneShot(this.CursorSE);
+                    DownFlag = false;
                 }
                 else
                 {
                     StageNo = 0;
-                    WorldNo = 0;
                     this.aud.PlayOneShot(this.CursorSE);
+                    DownFlag = false;
                 }
-                DownFlag = false;
             }
         }
 
@@ -318,7 +359,7 @@ public class Menu : MonoBehaviour
         {
             if (Space == true)
             {
-                StageNo *= 5;
+                //StageNo *= 5;
                 this.aud.PlayOneShot(this.DecidedSE);
                 Space = false;
             }
@@ -326,6 +367,7 @@ public class Menu : MonoBehaviour
             //押したワールドによって変化する
             if (WorldNo == 1)
             {
+                StageNo = 8;
                 Tuto.gameObject.SetActive(false);
                 stage2.gameObject.SetActive(false);
                 stage3.gameObject.SetActive(false);
@@ -333,6 +375,7 @@ public class Menu : MonoBehaviour
             }
             if (WorldNo == 2)
             {
+                StageNo = 13;
                 Tuto.gameObject.SetActive(false);
                 stage1.gameObject.SetActive(false);
                 stage3.gameObject.SetActive(false);
@@ -340,6 +383,7 @@ public class Menu : MonoBehaviour
             }
             if (WorldNo == 3)
             {
+                StageNo = 18;
                 Tuto.gameObject.SetActive(false);
                 stage1.gameObject.SetActive(false);
                 stage2.gameObject.SetActive(false);
@@ -347,6 +391,7 @@ public class Menu : MonoBehaviour
             }
             if (WorldNo == 4)
             {
+                StageNo = 23;
                 Tuto.gameObject.SetActive(false);
                 stage1.gameObject.SetActive(false);
                 stage2.gameObject.SetActive(false);
@@ -361,25 +406,25 @@ public class Menu : MonoBehaviour
         //ワールド選択に移動
         if ((Input.GetKeyDown("o") || Input.GetKeyDown("joystick button 1")) && StageNo >= 5 && StageNo <= 24)
         {
-            if (StageNo >= 5 && StageNo <= 9) 
+            if (StageNo >= 8 && StageNo <= 12) 
             {
                 StageNo = 1;
                 WorldNo = 1;
                 this.aud.PlayOneShot(this.CursorSE);
             }
-            if (StageNo >= 10 && StageNo <= 14) 
+            if (StageNo >= 13 && StageNo <= 17) 
             {
                 StageNo = 2;
                 WorldNo = 2;
                 this.aud.PlayOneShot(this.CursorSE);
             }
-            if (StageNo >= 15 && StageNo <= 19) 
+            if (StageNo >= 18 && StageNo <= 22) 
             {
                 StageNo = 3;
                 WorldNo = 3;
                 this.aud.PlayOneShot(this.CursorSE);
             }
-            if (StageNo >= 20 && StageNo <= 24)
+            if (StageNo >= 23 && StageNo <= 27)
             {
                 StageNo = 4;
                 WorldNo = 4;
@@ -392,26 +437,10 @@ public class Menu : MonoBehaviour
             stage4.gameObject.SetActive(true);
         }
 
-        //コンフィグの下3つに移動
-        if ((Input.GetKeyDown(KeyCode.C)|| Input.GetKeyDown("joystick button 3")))
-        {
-            if (StageNo <= 4) 
-            {
-                StageNo = 25;
-                this.aud.PlayOneShot(this.DecidedSE);
-            }
-            else if (StageNo == 25 || StageNo == 26 || StageNo == 27)
-            {
-                StageNo = 1;
-                this.aud.PlayOneShot(this.DecidedSE);
-            }
-            
-        }
-
         //シーン遷移
         if (SoundControll == false && FadeFlag == false && TitleFadeFlag == false)
         {
-            if ((Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown("joystick button 0")) && StageNo >= 5 && StageNo <= 24)
+            if ((Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown("joystick button 0")) && StageNo >= 8 && StageNo <= 27)
             {
                 if(Space==true)
                 {
@@ -433,7 +462,7 @@ public class Menu : MonoBehaviour
                 FadeFlag = true;
             }
 
-            if ((Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown("joystick button 0"))  && StageNo == 25)
+            if ((Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown("joystick button 0"))  && StageNo == 5)
             {
                 this.aud.PlayOneShot(this.DecidedSE);
                 SoundControll = true;
@@ -457,7 +486,7 @@ public class Menu : MonoBehaviour
             }
 
             //タイトルに戻る
-            if ((Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown("joystick button 0"))  && StageNo == 26)
+            if ((Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown("joystick button 0"))  && StageNo == 6)
             {
                 this.aud.PlayOneShot(this.DecidedSE);
 
@@ -466,7 +495,7 @@ public class Menu : MonoBehaviour
             }
 
             //ゲーム終了
-            if ((Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown("joystick button 0"))  && StageNo == 27)
+            if ((Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown("joystick button 0"))  && StageNo == 7)
             {
                 //エディタ用
                 // UnityEditor.EditorApplication.isPlaying = false;
@@ -497,39 +526,39 @@ public class Menu : MonoBehaviour
         {
             stage4.Select();
         }
-        if (StageNo == 5 || StageNo == 10 || StageNo == 15 || StageNo == 20) 
+        if (StageNo == 8  || StageNo == 13 || StageNo == 18 || StageNo == 23) 
         {
             stage5.Select();
         }
-        if (StageNo == 6|| StageNo == 11| StageNo == 16|| StageNo == 21)
+        if (StageNo == 9  || StageNo == 14 || StageNo == 19 || StageNo == 24)
         {
             stage6.Select();
         }
-        if (StageNo == 7|| StageNo == 12|| StageNo == 17|| StageNo == 22)
+        if (StageNo == 10 || StageNo == 15 || StageNo == 20 || StageNo == 25)
         {
             stage7.Select();
         }
-        if (StageNo == 8|| StageNo == 13|| StageNo == 18|| StageNo == 23)
+        if (StageNo == 11 || StageNo == 16 || StageNo == 21 || StageNo == 26)
         {
             stage8.Select();
         }
-        if (StageNo == 9 || StageNo == 14 || StageNo == 19 || StageNo == 24)
+        if (StageNo == 12 || StageNo == 17 || StageNo == 22 || StageNo == 27)
         {
             stage9.Select();
         }
 
         //サウンド設定
-        if (StageNo == 25)
+        if (StageNo == 5)
         {
             sound.Select();
         }
         //タイトルへ移動
-        if (StageNo == 26)
+        if (StageNo == 6)
         {
             title.Select();
         }
         //ゲーム終了
-        if (StageNo == 27)
+        if (StageNo == 7)
         {
             GameEnd.Select();
         }

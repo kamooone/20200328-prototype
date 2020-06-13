@@ -36,7 +36,7 @@ public class BlinkS3 : MonoBehaviour
 
     void Update()
     {
-        if (Menu.StageNo == 7|| Menu.StageNo == 12 || Menu.StageNo == 17 || Menu.StageNo == 22)
+        if (Menu.StageNo == 10|| Menu.StageNo == 15 || Menu.StageNo == 20 || Menu.StageNo == 25)
         {
             //オブジェクトのAlpha値を更新
             if (thisObjType == ObjType.IMAGE)

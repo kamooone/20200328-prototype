@@ -98,7 +98,7 @@ public class GameClearMenu : MonoBehaviour
 
             if (Menu.StageNo == 0) 
             {
-                Menu.StageNo = 5;
+                Menu.StageNo = 8;
             }
             else
             {
