@@ -15,6 +15,8 @@ public class TutorialHit : MonoBehaviour//チュートリアルの物と当た�
 
     int No;
 
+    public GameObject Key;//鍵
+
 
     // Start is called before the first frame update
     void Start()
@@ -25,6 +27,8 @@ public class TutorialHit : MonoBehaviour//チュートリアルの物と当た�
         Tutorial2.SetActive(false);
         Tutorial3.SetActive(false);
         Tutorial4.SetActive(false);
+
+        Key.SetActive(false);
     }
 
     // Update is called once per frame
@@ -46,11 +50,14 @@ public class TutorialHit : MonoBehaviour//チュートリアルの物と当た�
         {
             Tutorial3.SetActive(false);
             Tutorial4.SetActive(true);
+            Key.SetActive(true);
         }
 
         if (No == 4)
         {
             Tutorial4.SetActive(false);
+            Key.SetActive(false);
+            
         }
 
     }

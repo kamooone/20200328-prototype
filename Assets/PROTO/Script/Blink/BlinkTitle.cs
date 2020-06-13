@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class BlinkTitle : MonoBehaviour
 {
-    public float speed = 0.5f;
+    public float speed = 1.0f;
 
     private Text text;
     private Image image;
@@ -37,7 +37,7 @@ public class BlinkTitle : MonoBehaviour
     void Update()
     {
 
-        if (Menu.StageNo == 26) 
+        if (Menu.StageNo == 6) 
         {
             //オブジェクトのAlpha値を更新
             if (thisObjType == ObjType.IMAGE)

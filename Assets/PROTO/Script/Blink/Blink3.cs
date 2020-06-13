@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class Blink3 : MonoBehaviour
 {
-    public float speed = 0.5f;
+    public float speed = 1.0f;
 
     private Text text;
     private Image image;

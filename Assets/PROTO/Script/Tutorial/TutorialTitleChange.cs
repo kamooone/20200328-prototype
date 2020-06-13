@@ -21,27 +21,27 @@ public class TutorialTitleChange : MonoBehaviour//チュートリアルチェン
     {
         if (No == 0)
         {
-            text.text = "チュートリアル1 (左右移動)";
+            text.text = "チュートリアル1　移動";
         }
 
         if (No == 1)
         {
-            text.text = "チュートリアル2 (上下移動)";
+            text.text = "チュートリアル2　はしご";
         }
 
         if (No == 2)
         {
-            text.text = "チュートリアル3 (水の上下)";
+            text.text = "チュートリアル3　スプリンクラー";
         }
 
         if (No == 3)
         {
-            text.text = "チュートリアル4 (鍵の出現)";
+            text.text = "チュートリアル4　鍵";
         }
 
         if (No == 4)
         {
-            text.text = "チュートリアル5 (ゴール)";
+            text.text = "";
         }
 
     }
